@@ -4,6 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -12,4 +17,50 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
-})
+});
+
+router.beforeEach((to, from, next) => {
+    window.document.title = to.meta.title;
+    next()
+});
+
+Vue.prototype.thisUrl = process.env.NODE_ENV === 'development' ? '/api' : '';
+
+if(process.env.NODE_ENV === 'development'){
+    Vue.prototype.headhttp = 'http://op/';//测试端域名，zw
+    Vue.prototype.headapi = '/api/';
+}else{
+    Vue.prototype.headhttp = 'http://op.xxx.cc/';//线上实际域名
+    Vue.prototype.headapi =  'http://op.xxx.cc/';//线上实际域名
+    // let vConsole = new VConsole() // 初始化
+}
+
+
+// 校验内容长度
+Vue.prototype.valid = function (data,mins,maxs,text){//changeData是函数名
+    let that = this;
+    let thisVal = data;
+    let thisLeng = thisVal.length;
+    let min = parseInt(mins);
+    let max = parseInt(maxs);
+    let dispalyMin = min;
+    let title = '警告';
+    if(thisVal==''){
+        that.$message({
+            message: '警告哦，这是一条警告消息',
+            type: 'warning'
+        });
+        // Toast(text+'不能为空！');
+        return false
+    }else if(thisLeng <= min){
+        Toast(text+'最少'+dispalyMin+'字符！');
+        return false
+    }
+    else if(thisLeng > max){
+        Toast(text+'超出限制数量！');
+        return false
+    }
+    else {
+        return true
+    }
+};
