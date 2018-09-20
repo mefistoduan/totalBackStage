@@ -47,17 +47,22 @@ Vue.prototype.valid = function (data,mins,maxs,text){//changeData是函数名
     let title = '警告';
     if(thisVal==''){
         that.$message({
-            message: '警告哦，这是一条警告消息',
+            message: text+'不能为空！',
             type: 'warning'
         });
-        // Toast(text+'不能为空！');
         return false
     }else if(thisLeng <= min){
-        Toast(text+'最少'+dispalyMin+'字符！');
+        that.$message({
+            message: text+'最少'+dispalyMin+'字符！',
+            type: 'warning'
+        });
         return false
     }
     else if(thisLeng > max){
-        Toast(text+'超出限制数量！');
+        that.$message({
+            message: text+'超出限制数量！',
+            type: 'warning'
+        });
         return false
     }
     else {

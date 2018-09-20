@@ -4,7 +4,7 @@
                 <div class="header_logo">
                     logo
                 </div>
-                <h5 class="title">app name</h5>
+                <h5 class="title">{{company.app}}</h5>
                 <!--login start-->
                 <div class="control">
                     <div class="login col-lg-12 col-xs-12">
@@ -23,18 +23,21 @@
                             <li class="form-group">
                                 <input type="text" class="form-control" id="sms_username" ref="sms_username" placeholder="手机号/用户名">
                             </li>
+                            <li class="form-group">
+                                <input type="text" class="form-control" id="valid_img" ref="imgValid" placeholder="请输入图形验证码">
+                                <img src="/static/images/login/valid_img.png" alt="点击刷新" class="valid_code">
+                            </li>
                             <li class="form-group item">
                                 <input type="password" class="form-control" id="userValid" ref="userValid" placeholder="请输入验证码">
-                                <button id="valid_btn">获取验证码</button>
+                                <button id="valid_btn" @click="get_phone_valid">获取验证码</button>
                             </li>
                             <li class="form-group">
                                 <button type="submit" class="btn btn-default login_btn" id="valid_login_btn" @click="valid_login_btn">登录</button>
                             </li>
                         </ul>
                         <div class="info">
-                            <span>客服电话：1234-5678-9101</span>
-                            <button id="register" onclick="$('#modal_register').modal('show', {backdrop: 'fade'});">注册账户</button>
-                            <button id="forget" onclick="$('#modal_retrieve').modal('show', {backdrop: 'fade'});">忘记密码</button>
+                            <span>客服电话：{{company.tel}}</span>
+                            <button id="register" @click="register">注册账户</button>
                         </div>
                         <div class="change_container">
                             <button id="change_login" @click="change_login">切换验证码登录</button>
@@ -46,128 +49,81 @@
                             <div class="row text-center">
                                 Copyright © 2018
                                 <a href="" target="_blank">
-
+                                    {{company.name}}
                                 </a>.
                                 All Rights Reserved.   版权所有 &nbsp;&nbsp;&nbsp;
-                                <a href="">
-                                    关于我们
-                                </a>
                             </div>
                         </div>
                     </footer>
                 </div>
                 <!--login end-->
             </div>
-            <!--注册-->
-            <div class="modal" id="modal_register" aria-hidden="false" v-show="modal_register">
-                <div class="modal-dialog">
-                    <div class="modal-content"> <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="false">×</button>
-                        <h4 class="modal-title text-center">注册</h4>
-                    </div>
-                        <form id="register_user" data-url="" method="post" novalidate="novalidate">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label class="control-label">姓名</label>
-                                    <input type="text" name="re_name" class="form-control" id="re_name" placeholder="请输入注册人的姓名">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">手机号 <em class="red">*必填</em></label>
-                                    <input type="text" name="re_phone" class="form-control" id="re_phone" placeholder="请输入要注册的手机号,手机号将会作为登录名">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">手机验证码 <em class="red">*必填</em></label>
-                                    <div class="input-group input-group-sm input-group-minimal">
-                                        <input type="text" name="re_phonevalid" id="re_phonevalid" class="form-control  no-right-border " placeholder="请输入手机验证码">
-                                        <span class="input-group-btn"> <input type="button" class="btn btn-warning phone_valid" id="get_phone_valid" name="get_phone_valid" value="获取手机验证码" data-url="/?ctl=ajax&amp;mod=index&amp;act=getsmscode"></span>
+                <div class="modal_simle" id="modal_register" v-show="modal_register" >
+                    <div class="modal-dialog">
+                        <div class="modal-content"> <div class="modal-header">
+                            <button type="button" class="close" @click="close_modal">×</button>
+                            <h4 class="modal-title text-center">注册</h4>
+                        </div>
+                            <form id="register_user" data-url="" method="post" novalidate="novalidate">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="control-label">姓名</label>
+                                        <input type="text" name="re_name" class="form-control" id="re_name" placeholder="请输入注册人的姓名">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">手机号 <em class="red">*必填</em></label>
+                                        <input type="text" name="re_phone" class="form-control" id="re_phone" placeholder="请输入要注册的手机号,手机号将会作为登录名">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">手机验证码 <em class="red">*必填</em></label>
+                                        <div class="input-group input-group-sm input-group-minimal">
+                                            <input type="text" name="re_phonevalid" id="re_phonevalid" class="form-control  no-right-border " placeholder="请输入手机验证码">
+                                            <span class="input-group-btn"> <input type="button" class="btn btn-warning phone_valid" id="get_phone_valid" name="get_phone_valid" value="获取手机验证码"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">密码 <em class="red">*必填</em></label>
+                                        <input type="password" class="form-control" name="first_pwd" id="first_pwd" placeholder="请输入密码">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">重复密码 <em class="red">*必填</em></label>
+                                        <input type="password" class="form-control" name="confirm_pwd" id="confirm_pwd" placeholder="请再次输入密码">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">密码 <em class="red">*必填</em></label>
-                                    <input type="password" class="form-control" name="first_pwd" id="first_pwd" placeholder="请输入密码">
+                                <div class="modal-footer form-block">
+                                    <button type="submit" class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12" id="register_btn">注    册</button>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">重复密码 <em class="red">*必填</em></label>
-                                    <input type="password" class="form-control" name="confirm_pwd" id="confirm_pwd" placeholder="请再次输入密码">
-                                </div>
-                            </div>
-                            <div class="modal-footer form-block">
-                                <button type="submit" class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12" id="register_btn">注    册</button>
-                            </div>
-                            <div class="form-group">
-                                <label class="ruler_container">
-                                    <div class="checkbox-custom checkbox-default">
-                                        <input type="checkbox" id="agree" name="agree">
-                                        <label for="agree"></label>
-                                    </div>
-                                    <a href="#" onclick="$('#modal_ruler').modal('show', {backdrop: 'fade'});">我同意注册协议条款</a>
-                                </label>
-                                <span class="right">
-                              <button type="button" class="close blue" data-dismiss="modal" aria-hidden="false">登录</button>
+                                    <label class="ruler_container">
+                                        <div class="checkbox-custom checkbox-default">
+                                            <input type="checkbox" id="agree" name="agree">
+                                            <label for="agree"></label>
+                                        </div>
+                                        <a href="#" @click="openruler">我同意注册协议条款</a>
+                                    </label>
+                                    <span class="right">
+                              <button type="button" class="close blue"  @click="close_modal">登录</button>
                               <em>已有账户</em>
                          </span>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="modal  " id="modal_retrieve" aria-hidden="false" v-show="modal_retrieve">
-                <div class="modal-dialog">
-                    <div class="modal-content"> <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title text-center">忘记密码</h4>
-                    </div>
-                        <form id="retrieve_user" method="post" novalidate="novalidate">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label class="control-label">手机号</label>
-                                    <input type="text" class="form-control" name="bk_phone" id="bk_phone" placeholder="请输入要找回密码的手机号">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">验证码</label>
-                                    <div class="input-group input-group-sm input-group-minimal">
-                                        <input type="text" name="bk_valid" id="bk_valid" class="form-control " placeholder="请输入图形验证码">
-                                        <span class="input-group-btn valid_container"><img class="valid_code " src="/sys/mod/index/login_validcode.php" onclick="this.src = this.src + '?'+ Math.random();" alt=""></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">手机验证码</label>
-                                    <div class="input-group input-group-sm input-group-minimal">
-                                        <input id="bk_phonevalid" name="bk_phonevalid" type="text" class="form-control  no-right-border " placeholder="请输入手机验证码">
-                                        <span class="input-group-btn"> <input type="button" id="bk_get_phone" name="bk_get_phone" class="btn btn-warning phone_valid" value="获取手机验证码" data-url="/?ctl=ajax&amp;mod=index&amp;act=getsmscode"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">新密码</label>
-                                    <input id="first_bk_pwd" name="first_bk_pwd" type="password" class="form-control" placeholder="请输入新密码">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">重复新密码</label>
-                                    <input type="password" id="confirm_bk_pwd" name="confirm_bk_pwd" class="form-control" placeholder="请再次输入新密码">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12">确认</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <!--modal_ruler-->
-            <div class="modal  " id="modal_ruler" aria-hidden="true" v-show="modal_ruler">
+            <div class="modal_simle" id="modal_ruler" aria-hidden="true" v-show="modal_ruler">
                 <div class="modal-dialog">
                     <div class="modal-content"> <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" @click="close_rule">×</button>
                         <h4 class="modal-title text-center">注册协议条款</h4>
                     </div>
                         <div class="modal-body" style="height: 700px;overflow-y: scroll">
                             <p class="row col-lg-12">
+                                注册协议内容巴拉巴拉巴拉巴拉
                             </p>
-                            <p></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12" data-dismiss="modal" aria-hidden="true" value="关闭">
+                            <input type="button" class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12" @click="close_rule" value="关闭">
                         </div>
                     </div>
                 </div>
@@ -183,6 +139,11 @@
                 modal_ruler:false,
                 pwd_login:true,
                 sms_login:false,
+                company:{
+                    name:'XXX公司',
+                    tel:'123-5678-91011',
+                    app:'xxx应用管理后台',
+                }
             }
         },
         methods:{
@@ -203,15 +164,147 @@
                 let userpwd = this.$refs.userpwd.value;
                 if (!this.valid(username, 2, 17, '用户名')) return;
                 if (!this.valid(userpwd, 5, 17, '密码')) return;
-//                loginInfo();
+                this.loginInfo();
             },
             valid_login_btn:function () {
                 let sms_username = this.$refs.sms_username.value;
                 let userValid = this.$refs.userValid.value;
                 if (!this.valid(sms_username, 2, 17, '手机号')) return;
                 if (!this.valid( userValid, 4, 6, '短信验证码')) return;
-                console.log(123);
-            }
+                this.loginInfo();
+            },
+            //获取注册手机验证码
+            get_phone_valid:function () {
+                let img_valid = this.$refs.imgValid.value;
+                let tel = this.$refs.sms_username.value;
+                let that = this;
+                if(!tel){
+                     this.$message.error('手机号码不能为空');
+                    return false
+                }
+                if(!this.valid(tel,10,12,'手机号'))return;
+                if(!img_valid){
+                     this.$message.error('图形验证码不能为空');
+                    return false
+                }
+                if(img_valid.length != 4){
+                     this.$message.error('图形验证码位数不正确');
+                    return false
+                }
+                let url =  this.headapi + '?ctl=ajax&mod=index&act=regsend';
+                let param = {
+                    phone: tel,
+                    tcode: img_valid,
+                    smstype: 3,
+                };
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    let code = json.code;
+                    if (code == 1) {
+                        let countdown = 60;
+                        that.valid_button = countdown + "秒";
+                        let timer = setInterval(()=>{
+                            if (countdown == 0) {
+                                clearInterval(timer);//停止计时器
+                                that.valid_button = "重新发送";
+                                that.button_state = false;
+                            }
+                            else {
+                                countdown--;
+                                that.valid_button = countdown + "秒";
+                                that.button_state = true
+                            }
+                        },1000);
+                        this.$message({
+                            message: '短信已发送，请注意查收',
+                            type: 'success'
+                        });
+
+                    }else{
+                        this.$message({
+                            message: json.memo,
+                            type: 'warning'
+                        });
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            },
+//            重置密码 todo
+            bk_get_phone:function () {
+                let img_valid = this.$refs.imgValid.value;
+                let tel = this.$refs.sms_username.value;
+                let that = this;
+                if(!tel){
+                     this.$message.error('手机号码不能为空');
+                    return false
+                }
+                if(!this.valid(tel,10,12,'手机号'))return;
+                if(!img_valid){
+                     this.$message.error('图形验证码不能为空');
+                    return false
+                }
+                if(img_valid.length != 4){
+                     this.$message.error('图形验证码位数不正确');
+                    return false
+                }
+                let url =  this.headapi + '?ctl=ajax&mod=index&act=regsend';
+                let param = {
+                    phone: tel,
+                    tcode: img_valid,
+                    smstype: 3,
+                };
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    let code = json.code;
+                    if (code == 1) {
+                        let countdown = 60;
+                        that.valid_button = countdown + "秒";
+                        let timer = setInterval(()=>{
+                            if (countdown == 0) {
+                                clearInterval(timer);//停止计时器
+                                that.valid_button = "重新发送";
+                                that.button_state = false;
+                            }
+                            else {
+                                countdown--;
+                                that.valid_button = countdown + "秒";
+                                that.button_state = true
+                            }
+                        },1000);
+                        this.$message({
+                            message: '短信已发送，请注意查收',
+                            type: 'success'
+                        });
+
+                    }else{
+                        this.$message({
+                            message: json.memo,
+                            type: 'warning'
+                        });
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            },
+            register:function () {
+                this.modal_register = true;
+            },
+            openruler:function () {
+                this.modal_register = false;
+                this.modal_ruler = true;
+            },
+            close_rule:function () {
+                this.modal_ruler = false;
+                this.modal_register = true;
+            },
+            close_modal:function () {
+                this.modal_register = false;
+                this.modal_retrieve = false;
+            },
+
         },
     }
 </script>
@@ -258,6 +351,13 @@
         overflow: hidden;
         margin-left: 0;
         margin-right: 0;
+    }
+    .form-group {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
     }
     .row .middle_logo {
         display: block;
@@ -516,6 +616,7 @@
         margin-right: 13px;
     }
     .ruler_container a {
+        float: left;
         color: #0D62C7;
         line-height: 20px;
         font-size: 12px;
@@ -525,8 +626,34 @@
         position: relative;
         padding: 0 0 0 25px;
         margin-bottom: 7px;
-        margin-top: 0;
+        margin-top: 10px;
         float: left;
+    }
+    #valid_img {
+        width: 60%;
+        float: left;
+    }
+    .valid_code {
+        width: 40%;
+        height: 45px;
+        float: right;
+    }
+    .modal_simle .modal-content{
+        padding: 10px;
+    }
+    .modal_simle .form-group label {
+        font-weight: normal;
+        text-align: left;
+        float: left;
+    }
+    .modal_simle .input-group {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+    }
+    #re_phonevalid {
+        width: 80%;
     }
     /*
     å°†åˆå§‹çš„checkboxçš„æ ·å¼æ”¹å˜
@@ -604,11 +731,6 @@
         font-size: 12px;
         margin-left: 10px;
         opacity: 1!important;
-    }
-    .valid_code {
-        width: 44px;
-        height: 18px;
-        float: right;
     }
     .valid_container {
         width: 9%;
