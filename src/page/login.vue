@@ -187,13 +187,14 @@
                 if (!this.valid(userpwd, 5, 17, '密码')) return;
                 this.loginInfo();
             },
+//            sms 登陆
             valid_login_btn: function () {
                 let sms_username = this.$refs.sms_username.value;
                 let userValid = this.$refs.userValid.value;
                 if (!this.valid(sms_username, 2, 17, '手机号')) return;
                 if (!this.valid(userValid, 4, 6, '短信验证码')) return;
-                this.loginInfo();
-            },
+                this.sms_loginInfo();
+                },
             //获取注册手机验证码
             get_phone_valid: function () {
                 let img_valid = this.$refs.imgValid.value;
@@ -365,23 +366,57 @@
                     console.info(response);
                 })
             },
+//            pwd登陆
             loginInfo:function () {
                 const that = this;
                 let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
-                let param = {};
-                let postdata = qs.stringify(param);
-                axios.post(url, postdata).then(function(data){
-                    let json = data.data;
-                    if(json.code == 0){
-                        that.plates = json.rs;
-                    }else{
-                        Toast(JSON.memo);
-                    }
-                },function(response){
-                    console.info(response);
-                })
+                let usercode =  that.$refs.username.value;
+                let passwd =  that.$refs.userpwd.value;
+                let param = {
+                    'usercode': usercode,
+                    'passwd': passwd,
+                    'logintype': 1,
+                    'src': 'pc'
+                };
+//                测试时直接跳至主界面
+                  that.$router.push({path:'/main'});
+//                let postdata = qs.stringify(param);
+//                axios.post(url, postdata).then(function(data){
+//                    let json = data.data;
+//                    if(json.code == 0){
+//                        that.plates = json.rs;
+//                    }else{
+//                        Toast(JSON.memo);
+//                    }
+//                },function(response){
+//                    console.info(response);
+//                })
             }
         },
+//        sms登陆
+        sms_loginInfo:function () {
+            const that = this;
+            let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
+            let sms_username =  that.$refs.sms_username.value;
+            let userValid =  that.$refs.imgValid.value;
+            let param = {
+                'usercode': sms_username,
+                'smscode': userValid,
+                'logintype': 2,
+                'src': 'pc'
+            };
+            let postdata = qs.stringify(param);
+            axios.post(url, postdata).then(function(data){
+                let json = data.data;
+                if(json.code == 0){
+                    that.plates = json.rs;
+                }else{
+                    Toast(JSON.memo);
+                }
+            },function(response){
+                console.info(response);
+            })
+        }
     }
 </script>
 
