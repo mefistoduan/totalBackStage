@@ -72,50 +72,48 @@
                         <button type="button" class="close" @click="close_modal">×</button>
                         <h4 class="modal-title text-center">注册</h4>
                     </div>
-                    <form id="register_user" data-url="" method="post" novalidate="novalidate">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label class="control-label">姓名</label>
-                                <input type="text" name="re_name" class="form-control" id="re_name"
+                                <input type="text" name="re_name" class="form-control" id="re_name" ref="re_name"
                                        placeholder="请输入注册人的姓名">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">手机号 <em class="red">*必填</em></label>
-                                <input type="text" name="re_phone" class="form-control" id="re_phone"
+                                <input type="text" name="re_phone" class="form-control" id="re_phone" ref="re_phone"
                                        placeholder="请输入要注册的手机号,手机号将会作为登录名">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">手机验证码 <em class="red">*必填</em></label>
                                 <div class="input-group input-group-sm input-group-minimal">
                                     <input type="text" name="re_phonevalid" id="re_phonevalid"
-                                           class="form-control  no-right-border " placeholder="请输入手机验证码">
-                                    <span class="input-group-btn"> <input type="button"
-                                                                          class="btn btn-warning phone_valid"
-                                                                          id="get_phone_valid" name="get_phone_valid"
-                                                                          value="获取手机验证码"></span>
+                                           class="form-control  no-right-border " placeholder="请输入手机验证码" ref="re_phonevalid">
+                                    <span class="input-group-btn">
+                                        <input type="button"class="btn btn-warning phone_valid" id="get_phone_valid" name="get_phone_valid" value="获取手机验证码">
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">密码 <em class="red">*必填</em></label>
-                                <input type="password" class="form-control" name="first_pwd" id="first_pwd"
+                                <input type="password" class="form-control" name="first_pwd" id="first_pwd" ref="first_pwd"
                                        placeholder="请输入密码">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">重复密码 <em class="red">*必填</em></label>
-                                <input type="password" class="form-control" name="confirm_pwd" id="confirm_pwd"
+                                <input type="password" class="form-control" name="confirm_pwd" id="confirm_pwd"  ref="confirm_pwd"
                                        placeholder="请再次输入密码">
                             </div>
                         </div>
                         <div class="modal-footer form-block">
                             <button type="submit"
                                     class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12"
-                                    id="register_btn">注 册
+                                    id="register_btn" @click="register_user">注 册
                             </button>
                         </div>
                         <div class="form-group">
                             <label class="ruler_container">
                                 <div class="checkbox-custom checkbox-default">
-                                    <input type="checkbox" id="agree" name="agree">
+                                    <input type="checkbox" id="agree" name="agree" ref="agree">
                                     <label for="agree"></label>
                                 </div>
                                 <a href="#" @click="openruler">我同意注册协议条款</a>
@@ -125,7 +123,6 @@
                               <em>已有账户</em>
                          </span>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -152,6 +149,9 @@
     </div>
 </template>
 <script>
+    import axios from 'axios';
+    let qs = require('qs');
+
     export default {
         data() {
             return {
@@ -212,7 +212,7 @@
                     this.$message.error('图形验证码位数不正确');
                     return false
                 }
-                let url = this.headapi + '?ctl=ajax&mod=index&act=regsend';
+                let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
                 let param = {
                     phone: tel,
                     tcode: img_valid,
@@ -325,7 +325,62 @@
                 this.modal_register = false;
                 this.modal_retrieve = false;
             },
-
+            // 注册
+            register_user:function () {
+                let that = this;
+                let re_name = this.$refs.re_name.value;
+                let re_phone = this.$refs.re_phone.value;
+                let re_phonevalid = this.$refs.re_phonevalid.value;
+                let first_pwd = this.$refs.first_pwd.value;
+                let confirm_pwd = this.$refs.confirm_pwd.value;
+                let agree = this.$refs.agree.checked;
+                if (!this.valid(re_phone, 10, 12, '手机')) return;
+                if (!this.valid(re_phonevalid, 5, 7, '验证码')) return;
+                if (!this.valid(first_pwd, 5, 7, '密码')) return;
+                if(first_pwd != confirm_pwd){
+                    that.$message({
+                        message: '两遍密码不一致！',
+                        type: 'warning'
+                    });
+                    return false
+                }
+                if(!agree){
+                    that.$message({
+                        message: '请先阅读并同意注册协议！',
+                        type: 'warning'
+                    });
+                    return false
+                }
+                let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
+                        that.plates = json.rs;
+                    }else{
+                        Toast(JSON.memo);
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            },
+            loginInfo:function () {
+                const that = this;
+                let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
+                        that.plates = json.rs;
+                    }else{
+                        Toast(JSON.memo);
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            }
         },
     }
 </script>

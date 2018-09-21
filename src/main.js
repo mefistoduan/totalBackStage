@@ -43,7 +43,7 @@ Vue.prototype.valid = function (data,mins,maxs,text){//changeData是函数名
     let thisLeng = thisVal.length;
     let min = parseInt(mins);
     let max = parseInt(maxs);
-    let dispalyMin = min;
+    let dispalyMin = min + 1;
     let title = '警告';
     if(thisVal==''){
         that.$message({
