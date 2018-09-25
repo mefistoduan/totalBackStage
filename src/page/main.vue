@@ -1,11 +1,15 @@
 <template>
     <div id="pages">
         <navside></navside>
+        <headside></headside>
+        <footside></footside>
     </div>
 </template>
 
 <script>
     import navside from  '../../src/components/navside';
+    import headside from  '../../src/components/headside';
+    import footside from  '../../src/components/footside';
 export default {
     data () {
     return {
@@ -19,7 +23,7 @@ export default {
 
     },
     components: {
-        navside
+        navside,headside,footside
     }
 }
 </script>

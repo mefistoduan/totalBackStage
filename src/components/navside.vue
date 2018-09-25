@@ -1,16 +1,15 @@
 <template>
-    <div id="pages">
+    <div id="navside">
         <el-container>
             <el-aside>
                 <header class="logo-env">
-                    <!-- logo -->
                     <div class="logo">
                         <router-link :to="{path: '/main'}" class="logo-expanded">
                             <img src="/static/images/comm/logo.svg" width="160" alt="">
                         </router-link>
                     </div>
                     <div class="main-menu" id="main-menu">
-                        <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+                        <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick"></el-tree>
                     </div>
                 </header>
             </el-aside>
@@ -22,41 +21,26 @@
 export default {
     data () {
     return {
-        data: [{
-            label: '一级 1',
-            children: [{
-                label: '二级 1-1',
+        data: [
+            {
+                label: '一级 1',
                 children: [{
-                    label: '三级 1-1-1'
+                    label: '二级 1-1',
                 }]
-            }]
-        }, {
-            label: '一级 2',
-            children: [{
-                label: '二级 2-1',
+            },
+            {
+                label: '一级 1',
                 children: [{
-                    label: '三级 2-1-1'
+                    label: '二级 1-1',
                 }]
-            }, {
-                label: '二级 2-2',
+            },
+            {
+                label: '一级 1',
                 children: [{
-                    label: '三级 2-2-1'
+                    label: '二级 1-1',
                 }]
-            }]
-        }, {
-            label: '一级 3',
-            children: [{
-                label: '二级 3-1',
-                children: [{
-                    label: '三级 3-1-1'
-                }]
-            }, {
-                label: '二级 3-2',
-                children: [{
-                    label: '三级 3-2-1'
-                }]
-            }]
-        }],
+            },
+        ],
         defaultProps: {
             children: 'children',
             label: 'label'
@@ -80,6 +64,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    #navside{
+        position: absolute;
+        width: 230px;
+        height: 100%;
+        z-index: 2222;
+    }
     .el-aside {
         position: absolute;
         /*top: 0;*/
