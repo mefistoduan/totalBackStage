@@ -1,0 +1,111 @@
+#tabs {
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    margin-left: 225px;
+}
+#tabs li .ui-icon-close {
+    float: left; margin: 0.4em 0.2em 0 0; cursor: pointer;
+}
+.iframetab {
+    width:100%;
+    height:auto;
+    border:0px;
+    margin:0px;
+    position:relative;
+
+    /*top:-13px;*/
+}
+.ui-tabs-panel {
+    padding:0px !important;
+}
+.user-info-navbar .user-info-menu > li .dropdown-menu.messages .dropdown-menu-list li:after, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu.messages .dropdown-menu-list li:after {
+    display: none;
+}
+.user-info-navbar .user-info-menu > li .dropdown-menu > .external a, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu > .external a {
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+}
+.user-info-navbar .user-info-menu > li .dropdown-menu > .external a span, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu > .external a span {
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+}
+.navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu > .external a img {
+    float: left;
+    margin-left: 28px;
+    margin-top: 18px;
+}
+.user-info-navbar .user-info-menu > li .dropdown-menu .dropdown-menu-list li a .line, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu .dropdown-menu-list li a .line {
+    width: 80%;
+    float: right;
+}
+.user-info-navbar .user-info-menu > li .dropdown-menu .dropdown-menu-list li a .line.desc, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu .dropdown-menu-list li a .line.desc {
+    margin-top: 0px;
+}
+.user-info-navbar .user-info-menu > li {
+    cursor: pointer;
+}
+.customer_serve {
+    float: right;
+    margin-right: 20px;
+    font-size: 16px;
+    color: #585858;
+    line-height: 45px;
+    text-align: right;
+}
+#about_us {
+    color: #03B1FF;
+    cursor: pointer;
+}
+.user-info-navbar .user-info-menu li a {
+    text-decoration: underline;
+}
+.dropdown-menu-list a img {
+    width: 30px;
+    height: 30px;
+}
+.user-info-navbar .user-info-menu > li .dropdown-menu .dropdown-menu-list li a .line.desc, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu .dropdown-menu-list li a .line.desc {
+    margin-right: 0;
+}
+.user-info-navbar .user-info-menu > li .dropdown-menu .dropdown-menu-list li, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu .dropdown-menu-list li {
+    min-height: 50px;
+
+}
+.empty_li_noti {
+    text-align: center;
+    line-height: 50px!important;
+}
+.disagree_invite {
+    background-color: #FF0000;
+}
+.agree_invite {
+    background-color: #25CC42;
+}
+.disagree_invite:hover {
+    background-color: #d20000;
+}
+.agree_invite:hover {
+    background-color: #25CC42;
+}
+
+.invite_msg {
+    width: 95%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    margin-top: 34px;
+    margin-top: 10px;
+}
+.invite_time {
+    width: 95%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}

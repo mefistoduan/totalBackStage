@@ -1,19 +1,21 @@
 <template>
     <div id="navside">
-        <el-container>
-            <el-aside>
-                <header class="logo-env">
-                    <div class="logo">
-                        <router-link :to="{path: '/main'}" class="logo-expanded">
-                            <img src="/static/images/comm/logo.svg" width="160" alt="">
-                        </router-link>
-                    </div>
-                    <div class="main-menu" id="main-menu">
-                        <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick"></el-tree>
-                    </div>
-                </header>
-            </el-aside>
-        </el-container>
+        <header class="logo-env">
+            <div class="logo">
+                <router-link :to="{path: '/main'}" class="logo-expanded">
+                    <img src="/static/images/comm/logo.svg" alt="">
+                </router-link>
+            </div>
+                <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
+                    <li>
+                        <a href="javascript:void(null);" data-url="/?ctl=&amp;act=main" data-title="首页" id="">
+                            <i class="fa-home"></i>
+                            <span class="title">首页</span>
+                        </a>
+                    </li>
+                 
+                </ul>
+        </header>
     </div>
 </template>
 
@@ -21,26 +23,6 @@
 export default {
     data () {
     return {
-        data: [
-            {
-                label: '一级 1',
-                children: [{
-                    label: '二级 1-1',
-                }]
-            },
-            {
-                label: '一级 1',
-                children: [{
-                    label: '二级 1-1',
-                }]
-            },
-            {
-                label: '一级 1',
-                children: [{
-                    label: '二级 1-1',
-                }]
-            },
-        ],
         defaultProps: {
             children: 'children',
             label: 'label'
@@ -53,7 +35,7 @@ export default {
     methods: {
         handleNodeClick(data) {
             console.log(data);
-            that.$router.push({path:'/*'});
+            this.$emit('navOpen');
         }
     },
     components: {
@@ -68,28 +50,18 @@ export default {
         position: absolute;
         width: 230px;
         height: 100%;
-        z-index: 2222;
-    }
-    .el-aside {
-        position: absolute;
-        /*top: 0;*/
-        /*bottom: 0;*/
-        width: 230px;
-        height: 100%;
         overflow: hidden;
+        z-index: 2222;
         background-color: #2c2e2f;
         color: #333;
         text-align: center;
         line-height: 200px;
     }
     .logo {
-        height: 140px;
-    }
-    .el-tree {
-        width: 270px;
+        width: 100%;
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        background-color: #2c2e2f;
+        height: 140px;
     }
 </style>
