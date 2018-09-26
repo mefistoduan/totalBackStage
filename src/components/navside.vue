@@ -7,13 +7,20 @@
                 </router-link>
             </div>
                 <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
-                    <li>
-                        <a href="javascript:void(null);" data-url="/?ctl=&amp;act=main" data-title="首页" id="">
-                            <i class="fa-home"></i>
-                            <span class="title">首页</span>
+                    <li v-for="(nav,index) in navs" :key="index">
+                        <a @click="handleNodeClick(nav,nav.child)">
+                           <i :class="nav.icon"></i>
+                            <span class="title">{{nav.name}}</span>
                         </a>
+                        <ul class="hide_tap" v-if="nav.child" v-show="navshow">
+                            <li v-for="child in nav.child">
+                                <a @click="handleNodeClick(child)">
+                                    <i class="el-icon-info"></i>
+                                    <span class="title">{{child.name}}</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                 
                 </ul>
         </header>
     </div>
@@ -23,19 +30,33 @@
 export default {
     data () {
     return {
-        defaultProps: {
-            children: 'children',
-            label: 'label'
-        }
+        navs:[
+            {name:'首页',link:'/#',icon:'el-icon-menu'},
+            {name:'费用管理',link:'/#',icon:'el-icon-menu',
+                child:[
+                    {name:'充值缴费',link:'/recharge'},
+                    ]
+            },
+            {name:'退出',link:'/logout',icon:'el-icon-sold-out'},
+        ],
+        navshow:false,
     }
     },
     mounted() {
 
     },
     methods: {
-        handleNodeClick(data) {
-            console.log(data);
-            this.$emit('navOpen');
+        handleNodeClick:function (data,child)  {
+
+            if(child){
+                this.navshowClick();
+            }else{
+                this.$emit('navOpen',data);
+            }
+
+        },
+        navshowClick:function () {
+            this.navshow = this.navshow == true ? false : true;
         }
     },
     components: {
@@ -46,6 +67,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    @import "../../static/css/bootstrap.css";
+    @import "../../static/css/xenon-core.css";
     #navside{
         position: absolute;
         width: 230px;
@@ -62,6 +85,36 @@ export default {
         overflow: hidden;
         display: block;
         margin: 0 auto;
+        margin-bottom: 30px;
         height: 140px;
+    }
+    .main-menu li {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+    .main-menu li a {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        height: 30px;
+        color: #979898;
+    }
+    .main-menu li a:hover {
+        color: #fff;
+    }
+    .main-menu a i {
+        float: left;
+    }
+    .main-menu a span {
+        width: 100px;
+        float: left;
+        text-align: left;
+        height: 20px;
+        text-indent: 10px;
+        line-height: 20px;
     }
 </style>

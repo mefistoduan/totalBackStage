@@ -6,7 +6,6 @@
                 <div class="footer-text text-center col-lg-12">
                     © 2018 - <a href="#" target="_blank" title="Copyright © 2018 xxx.xxx.com    xx版权所有 "><span>Copyright © 2018 xxx.xxx.com    xx版权所有 </span></a> -
                     All rights reserved
-
                 </div>
             </div>
         </footer>

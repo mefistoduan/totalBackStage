@@ -6,8 +6,8 @@
         <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
             <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all ui-sortable"
                 role="tablist">
-                <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active ui-sortable-handle" v-for="(tab,index) in tabs">
-                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.link)">{{tab.name}}</a>
+                <li :class= "{'ui-state-default ui-corner-top  ui-sortable-handle':true,'ui-tabs-active ui-state-active':index == thisClick}" v-for="(tab,index) in tabs">
+                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.link,index)">{{tab.name}}</a>
                     <span class="el-icon-close" @click="closeNav(index)"></span>
                 </li>
             </ul>
@@ -29,24 +29,29 @@ export default {
     data () {
     return {
         tabs:[
-            {name:'首页',link:'main'}
+            {name:'首页',link:'main'},
             ],
-        thisIframe:'/#'
+        thisIframe:'/#',
+        thisClick:0,
     }
     },
     mounted() {
 
     },
     methods: {
-        openNav:function (link) {
-            this.thisIframe = '/' + link
+        openNav:function (link,index) {
+            this.thisClick = index;
+            this.thisIframe = link
         },
         closeNav:function (index) {
-            this.tabs.splice(0, index + 1);
-            this.thisIframe = '/#/main'
+            this.tabs.splice(index, index + 1);
+            this.thisIframe = '/#'
         },
-        navOpen:function () {
-            console.log(123);
+        navOpen:function (data) {
+            console.log(data);
+            this.tabs.push({name:data.name,link:data.link});
+            this.thisClick = this.thisClick + 1;
+            this.thisIframe = data.link;
         }
     },
     components: {
