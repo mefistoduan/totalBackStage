@@ -19,3 +19,17 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+09/29
+
+todo list
+
+1.基本款的首页 9/30
+
+打算参考下这个页面http://demo.cssmoban.com/cssthemes5/cpts_1048_bot/index.html
+
+2.datatable页面一个 10/1
+
+3.图表页面一个 10/2
+
+4.还没想好，喵喵喵~

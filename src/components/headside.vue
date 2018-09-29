@@ -78,7 +78,6 @@
         right: 10px;
         padding: 4px;
         min-width: 18px;
-        font-size: 400;
         line-height: 1;
     }
 

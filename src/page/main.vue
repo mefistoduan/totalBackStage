@@ -29,7 +29,7 @@ export default {
     data () {
     return {
         tabs:[
-            {name:'首页',link:'main'},
+            {name:'首页',link:'/#',icon:'el-icon-menu'},
             ],
         thisIframe:'/#',
         thisClick:0,
@@ -48,9 +48,18 @@ export default {
             this.thisIframe = '/#'
         },
         navOpen:function (data) {
-            console.log(data);
-            this.tabs.push({name:data.name,link:data.link});
-            this.thisClick = this.thisClick + 1;
+            let that = this;
+            let r = [];
+            let array = that.tabs;
+            array.push({name:data.name,link:data.link});
+            for(var i = 0, l = array.length; i < l; i++) {
+                for(var j = i + 1; j < l; j++)
+                    if (array[i].link === array[j].link) j = ++i;
+                r.push(array[i]);
+            }
+
+            that.tabs = r;
+            this.thisClick = that.tabs.length - 1;
             this.thisIframe = data.link;
         }
     },

@@ -35,6 +35,7 @@ export default {
             {name:'费用管理',link:'/#',icon:'el-icon-menu',
                 child:[
                     {name:'充值缴费',link:'/recharge'},
+                    {name:'充值记录',link:'/bill'},
                     ]
             },
             {name:'退出',link:'/logout',icon:'el-icon-sold-out'},
@@ -88,6 +89,13 @@ export default {
         margin-bottom: 30px;
         height: 140px;
     }
+    #main-menu {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        padding-left: 10px;
+    }
     .main-menu li {
         width: 100%;
         overflow: hidden;
@@ -100,10 +108,16 @@ export default {
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        height: 30px;
+        height: 35px;
+        line-height: 30px;
+        padding-top: 10px;
+        padding-left: 20px;
+        padding-bottom: 5px;
         color: #979898;
+        border-left: 4px solid #333333;
     }
     .main-menu li a:hover {
+        background: #1b93e1;
         color: #fff;
     }
     .main-menu a i {
