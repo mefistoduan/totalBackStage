@@ -1,18 +1,18 @@
 /* eslint-disable */
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import index from '@/page/index'
 import four from '@/components/HelloWorld'
 import login from '@/page/login'
 import main from '@/page/main'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
     routes: [{
         path: '/',
-        name: 'HelloWorld',
-        component: HelloWorld
+        name: 'index',
+        component: index
     },
     {
         path: '/login',

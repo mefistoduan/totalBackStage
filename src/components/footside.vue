@@ -38,9 +38,10 @@ export default {
     #footside {
         position: absolute;
         bottom: 0;
-        width: 100%;
+        right: 0;
+        width: 90%;
         overflow: hidden;
-        display: block;
-        margin: 0 auto;
+        float: right;
+        z-index: 1111;
     }
 </style>
