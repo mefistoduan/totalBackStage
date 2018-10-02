@@ -8,11 +8,11 @@
             </div>
                 <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
                     <li v-for="(nav,index) in navs" :key="index">
-                        <a @click="handleNodeClick(nav,nav.child)">
+                        <a @click="handleNodeClick(nav,nav.child,index)">
                            <i :class="nav.icon"></i>
                             <span class="title">{{nav.name}}</span>
                         </a>
-                        <ul class="hide_tap" v-if="nav.child" v-show="navshow">
+                        <ul class="hide_tap" v-if="nav.child" v-show="navshow[index]">
                             <li v-for="child in nav.child">
                                 <a @click="handleNodeClick(child)">
                                     <i class="el-icon-info"></i>
@@ -38,26 +38,33 @@ export default {
                     {name:'充值记录',link:'/bill'},
                     ]
             },
+            {name:'图表信息',link:'/chart',icon:'el-icon-menu',
+                child:[
+                    {name:'柱状图',link:'/chart_bar'},
+                    {name:'线型图',link:'/chart_line'},
+                    {name:'环形图',link:'/chart_dona'},
+                ]
+            },
             {name:'退出',link:'/logout',icon:'el-icon-sold-out'},
         ],
-        navshow:false,
+        navshow:[false,false,false],
     }
     },
     mounted() {
 
     },
     methods: {
-        handleNodeClick:function (data,child)  {
-
+        handleNodeClick:function (data,child,index)  {
             if(child){
-                this.navshowClick();
+                this.navshowClick(index);
             }else{
                 this.$emit('navOpen',data);
             }
 
         },
-        navshowClick:function () {
-            this.navshow = this.navshow == true ? false : true;
+        navshowClick:function (index) {
+            this.navshow = [false,false,false];
+            this.navshow[index] = true;
         }
     },
     components: {
