@@ -34,24 +34,28 @@ export default {
             {name:'首页',link:'/#',icon:'el-icon-menu'},
             {name:'费用管理',link:'/#',icon:'el-icon-menu',
                 child:[
-                    {name:'充值缴费',link:'/recharge'},
-                    {name:'充值记录',link:'/bill'},
+                    {name:'充值缴费',link:'/#/recharge'},
+                    {name:'充值记录',link:'/#/bill'},
                     ]
             },
-            {name:'图表信息',link:'/chart',icon:'el-icon-menu',
+            {name:'图表信息',link:'/#',icon:'el-icon-menu',
                 child:[
-                    {name:'柱状图',link:'/chart_bar'},
-                    {name:'线型图',link:'/chart_line'},
-                    {name:'环形图',link:'/chart_dona'},
+                    {name:'柱状图',link:'/#/chart_bar'},
+                    {name:'线型图',link:'/#/chart_line'},
+                    {name:'环形图',link:'/#/chart_dona'},
                 ]
             },
             {name:'退出',link:'/logout',icon:'el-icon-sold-out'},
         ],
-        navshow:[false,false,false],
+        navshow:[],
     }
     },
     mounted() {
-
+        let that = this;
+        let navShowLength = this.navs.length;
+        for (let i = 0; i < navShowLength ; i++) {
+            that.navshow.push(false);
+        }
     },
     methods: {
         handleNodeClick:function (data,child,index)  {

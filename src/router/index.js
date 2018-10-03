@@ -5,6 +5,7 @@ import index from '@/page/index'
 import four from '@/components/HelloWorld'
 import login from '@/page/login'
 import main from '@/page/main'
+import chart_bar from '@/components/chart_bar'
 
 Vue.use(Router);
 
@@ -27,6 +28,13 @@ export default new Router({
         meta: {
             title: '首页'},
         component: main
+    },
+        {
+        path: '/chart_bar',
+        name: 'chart_bar',
+        meta: {
+            title: '首页'},
+        component: chart_bar
     },
     {
     path: '*',
