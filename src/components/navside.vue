@@ -35,7 +35,7 @@ export default {
             {name:'费用管理',link:'/#',icon:'el-icon-menu',
                 child:[
                     {name:'充值缴费',link:'/#/recharge'},
-                    {name:'充值记录',link:'/#/bill'},
+                    {name:'充值记录',link:'/#/table'},
                     ]
             },
             {name:'图表信息',link:'/#',icon:'el-icon-menu',
