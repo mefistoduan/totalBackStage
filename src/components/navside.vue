@@ -8,13 +8,13 @@
             </div>
                 <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
                     <li v-for="(nav,index) in navs" :key="index">
-                        <a @click="handleNodeClick(nav,nav.child)">
+                        <a @click="handleNodeClick(nav,nav.child,index)">
                            <i :class="nav.icon"></i>
                             <span class="title">{{nav.name}}</span>
                         </a>
-                        <ul class="hide_tap" v-if="nav.child" v-show="navshow">
+                        <ul class="hide_tap" v-if="nav.child" v-show="navshow[index]">
                             <li v-for="child in nav.child">
-                                <a @click="handleNodeClick(child)">
+                                <a @click="handleNodeClick(child,index)">
                                     <i class="el-icon-info"></i>
                                     <span class="title">{{child.name}}</span>
                                 </a>
@@ -34,22 +34,30 @@ export default {
             {name:'首页',link:'/#',icon:'el-icon-menu'},
             {name:'费用管理',link:'/#',icon:'el-icon-menu',
                 child:[
-                    {name:'充值缴费',link:'/recharge'},
+                    {name:'充值缴费',link:'/#/recharge'},
+                    {name:'表格',link:'/#/table'},
                     ]
+            },
+            {name:'图表管理',link:'/#',icon:'el-icon-menu',
+                child:[
+                    {name:'柱状图',link:'/#/chart_bar'},
+                    {name:'线图',link:'/#/chart_line'},
+                    {name:'环形图',link:'/#/chart_dona'},
+                ]
             },
             {name:'退出',link:'/logout',icon:'el-icon-sold-out'},
         ],
-        navshow:false,
+        navshow:[false,false,false],
     }
     },
     mounted() {
 
     },
     methods: {
-        handleNodeClick:function (data,child)  {
+        handleNodeClick:function (data,child,index)  {
             let that = this;
             if(child){
-                this.navshowClick();
+                this.navshowClick(index);
             }else{
                 if(data.name == '退出'){
                         this.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
@@ -67,8 +75,9 @@ export default {
             }
 
         },
-        navshowClick:function () {
-            this.navshow = this.navshow == true ? false : true;
+        navshowClick:function (index) {
+            this.navshow = [false,false,false];
+            this.navshow[index] = true;
         }
     },
     components: {

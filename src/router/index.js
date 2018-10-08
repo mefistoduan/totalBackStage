@@ -35,7 +35,7 @@ export default new Router({
         path: '/table',
         name: 'table',
         meta: {
-            title: '充值缴费'},
+            title: '表格'},
         component: table
     },
         {

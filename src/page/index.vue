@@ -57,7 +57,6 @@ export default {
                     if (array[i].link === array[j].link) j = ++i;
                 r.push(array[i]);
             }
-
             that.tabs = r;
             this.thisClick = that.tabs.length - 1;
             this.thisIframe = data.link;
