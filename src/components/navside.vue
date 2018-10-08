@@ -31,7 +31,7 @@ export default {
     data () {
     return {
         navs:[
-            {name:'首页',link:'/#',icon:'el-icon-menu'},
+            {name:'首页',link:'/#/main',icon:'el-icon-menu'},
             {name:'费用管理',link:'/#',icon:'el-icon-menu',
                 child:[
                     {name:'充值缴费',link:'/#/recharge'},

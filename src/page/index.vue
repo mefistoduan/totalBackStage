@@ -1,5 +1,5 @@
 <template>
-    <div id="pages">
+    <div id="index">
         <navside @navOpen="navOpen" ></navside>
         <headside></headside>
         <footside></footside>
@@ -74,7 +74,7 @@ export default {
     @import "../../static/css/bootstrap.css";
     @import "../../static/css/index.css";
     @import "../../static/css/ui.css";
-    #pages {
+    #index {
         position: absolute;
         top:0;
         bottom: 0px;
@@ -92,8 +92,9 @@ export default {
         margin-right: 5px;
     }
     #tabs {
-
-        height: 100%;
+        position: absolute;
+        top: 40px;
+        height: 80%;
         overflow: hidden;
     }
     .ui-tabs .ui-tabs-panel{
@@ -117,7 +118,7 @@ export default {
     }
     .iframetab {
         position: absolute;
-        top: 0;
+        top: 0px;
         bottom: 10px;
         left: 0;
         right: 0;
