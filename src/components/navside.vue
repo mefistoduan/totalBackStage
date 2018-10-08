@@ -47,11 +47,23 @@ export default {
     },
     methods: {
         handleNodeClick:function (data,child)  {
-
+            let that = this;
             if(child){
                 this.navshowClick();
             }else{
-                this.$emit('navOpen',data);
+                if(data.name == '退出'){
+                        this.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+//                           ajax todo
+                            that.$router.push({path:'/login'});
+                        }).catch(() => {
+                        });
+                }else{
+                    this.$emit('navOpen',data);
+                }
             }
 
         },
