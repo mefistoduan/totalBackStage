@@ -6,6 +6,7 @@ import four from '@/components/HelloWorld'
 import login from '@/page/login'
 import main from '@/page/main'
 import table from '@/page/table'
+import form from '@/page/form'
 import chart_bar from '@/components/chart_bar'
 import chart_line from '@/components/chart_line'
 import chart_dona from '@/components/chart_dona'
@@ -58,6 +59,13 @@ export default new Router({
         meta: {
             title: '首页'},
         component: chart_dona
+    },
+        {
+        path: '/form',
+        name: 'form',
+        meta: {
+            title: 'form'},
+        component: form
     },
     {
     path: '*',

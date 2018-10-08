@@ -44,8 +44,12 @@ export default {
             this.thisIframe = link
         },
         closeNav:function (index) {
-            this.tabs.splice(index, index + 1);
-            this.thisIframe = '/'
+            if(index == 0){
+                this.thisIframe = '/#/main'
+            }else{
+                this.tabs.splice(index, index + 1);
+                this.thisIframe = '/#/main'
+            }
         },
         navOpen:function (data) {
             let that = this;
@@ -94,7 +98,7 @@ export default {
     #tabs {
         position: absolute;
         top: 40px;
-        height: 80%;
+        height: 100%;
         overflow: hidden;
     }
     .ui-tabs .ui-tabs-panel{

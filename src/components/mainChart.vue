@@ -1,10 +1,9 @@
 <template>
-    <div class="container">
+    <div class="chart_container">
         <div class="Chart">
             <Line-example
                 :firstDate="firstDate"
                 :labels="labels"
-                :width="1200"
                 :height="200"
             />
         </div>
@@ -12,7 +11,6 @@
 </template>
 
 <script>
-    // import BarExample from './BarExample'
     import LineExample from './LineExample'
     export default {
         data () {
@@ -40,14 +38,13 @@
             }
         },
         components: {
-            // BarExample
             LineExample
         },
     }
 </script>
 
 <style>
-    .container {
+    .chart_container {
         width: 100%;
         height: 210px;
         margin: 0 auto;
