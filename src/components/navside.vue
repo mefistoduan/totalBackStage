@@ -8,7 +8,7 @@
             </div>
                 <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
                     <li v-for="(nav,index) in navs" :key="index">
-                        <a @click="handleNodeClick(nav,nav.child,index)">
+                        <a @click="handleNodeClick(nav,index,nav.child)">
                            <i :class="nav.icon"></i>
                             <span class="title">{{nav.name}}</span>
                         </a>
@@ -54,8 +54,9 @@ export default {
 
     },
     methods: {
-        handleNodeClick:function (data,child,index)  {
+        handleNodeClick:function (data,index,child)  {
             let that = this;
+            console.log(data,child,index);
             if(child){
                 this.navshowClick(index);
             }else{
