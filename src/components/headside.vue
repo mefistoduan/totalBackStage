@@ -3,14 +3,14 @@
         <nav class="navbar user-info-navbar" role="navigation">
             <ul class="user-info-menu right-links list-inline list-unstyled">
                 <li class="pull-left" style="min-height: 40px;">
-						<span class="customer_serve">工作日 8:30-17:30 &nbsp;客服电话：123-456-789  &nbsp;
+						<span class="customer_serve">工作日 {{time}} &nbsp;客服电话： &nbsp;{{tel}}&nbsp;
                             <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzkzODA2Mzg3OV80ODQ0MTlfNDAwMDA3OTM2MF8yXw"
                                id="qq_customer" target="_blank">
-                                 客服QQ: 123-456-789
+                                 客服QQ: {{qq}}
                             </a>
                         </span>
                 </li>
-                <li class="dropdown user-profile" style="min-height: 40px;">
+                <li class="dropdown user-profile">
                     <span class="customer_serve">{{user.name}}</span>
                 </li>
             </ul>
@@ -22,8 +22,11 @@
         data() {
             return {
                 user: {
-                    name: 'mefisto'
+                    name: 'mefisto',
                 },
+                time: '8:30-17:30',
+                tel: '123-456-789',
+                qq: '123-456-789',
             }
         },
         mounted() {
@@ -266,6 +269,7 @@
         /*width: 50%;*/
         /*20170623 mefisto*/
     }
+
     .customer_serve {
         float: right;
         margin-right: 20px;
@@ -274,37 +278,47 @@
         line-height: 45px;
         text-align: right;
     }
+
     #about_us {
         color: #03B1FF;
         cursor: pointer;
     }
+
     .user-info-navbar .user-info-menu li a {
         text-decoration: underline;
     }
+
     .dropdown-menu-list a img {
         width: 30px;
         height: 30px;
     }
+
     .user-info-navbar .user-info-menu > li .dropdown-menu .dropdown-menu-list li a .line.desc, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu .dropdown-menu-list li a .line.desc {
         margin-right: 0;
     }
+
     .user-info-navbar .user-info-menu > li .dropdown-menu .dropdown-menu-list li, .navbar.horizontal-menu .navbar-inner > .nav > li .dropdown-menu .dropdown-menu-list li {
         min-height: 50px;
 
     }
+
     .empty_li_noti {
         text-align: center;
-        line-height: 50px!important;
+        line-height: 50px !important;
     }
+
     .disagree_invite {
         background-color: #FF0000;
     }
+
     .agree_invite {
         background-color: #25CC42;
     }
+
     .disagree_invite:hover {
         background-color: #d20000;
     }
+
     .agree_invite:hover {
         background-color: #25CC42;
     }
@@ -317,6 +331,7 @@
         margin-top: 34px;
         margin-top: 10px;
     }
+
     .invite_time {
         width: 95%;
         overflow: hidden;

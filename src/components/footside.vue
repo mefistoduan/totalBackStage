@@ -2,9 +2,8 @@
     <div id="footside">
         <footer class="main-footer sticky footer-type-1  col-lg-12">
             <div class="footer-inner col-lg-12">
-                <!-- Add your copyright text here -->
                 <div class="footer-text text-center col-lg-12">
-                    © 2018 - <a href="#" target="_blank" title="Copyright © 2018 xxx.xxx.com    xx版权所有 "><span>Copyright © 2018 xxx.xxx.com    xx版权所有 </span></a> -
+                    © 2018 - <a href="#" target="_blank"><span>Copyright © 2018 {{url}} &nbsp  {{name}}版权所有 </span></a> -
                     All rights reserved
                 </div>
             </div>
@@ -16,18 +15,10 @@
 export default {
     data () {
     return {
-        data: [
-        ],
+        url: ' xxx.xxx.com',
+        name: ' xx'
     }
     },
-    mounted() {
-
-    },
-    methods: {
-    },
-    components: {
-
-    }
 }
 </script>
 
