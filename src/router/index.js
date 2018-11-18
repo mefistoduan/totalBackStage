@@ -17,6 +17,8 @@ export default new Router({
     routes: [{
         path: '/',
         name: 'index',
+        meta: {
+            title: '首页'},
         component: index
     },
     {
@@ -70,9 +72,9 @@ export default new Router({
     {
     path: '*',
     name: 'four',
-    component: four,//维保详情
     meta: {
         title: '404'},
+    component: four,//维保详情
     },
     ]
 })

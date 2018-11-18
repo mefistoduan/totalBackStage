@@ -780,9 +780,8 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-tabs .ui-tabs-nav {
     width: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     display: block;
-    margin: 0 auto;
     margin: 0;
     padding: .2em .2em 0;
 }

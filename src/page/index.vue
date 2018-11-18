@@ -131,4 +131,7 @@ export default {
         overflow: hidden;
         float: left;
     }
+    .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+
+    }
 </style>

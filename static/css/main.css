@@ -332,7 +332,7 @@ li#menu-academico{
     padding: 0.3em 1em;
 }
 .logo-w3-agile {
-    background: #a2d200;
+    background: #00B19D;
     float: left;
     width: 24.25%;
     text-align: center;
@@ -898,12 +898,12 @@ ul.dropdown-menu.drp-mnu li {
     text-align: center;
 }
 .four-w3ls {
-    background: #a2d200;
+    background: #00B19D;
     padding: 2em 0;
     text-align: center;
 }
 .four-wthree {
-    background: #8e44ad;
+    background: #F7AA47;
     padding: 2em 0;
     text-align: center;
 }
@@ -1136,10 +1136,10 @@ hr {
     border-left-color: #22beef;
 }
 .streamline .sl-success {
-    border-left-color: #a2d200;
+    border-left-color: #00B19D;
 }
 .streamline .sl-warning {
-    border-left-color: #8e44ad;
+    border-left-color: #F7AA47;
 }
 .streamline .sl-item:before {
     content: '';
@@ -1158,10 +1158,10 @@ hr {
     background-color: #22beef;
 }
 .streamline .sl-success:before, .streamline .sl-success:last-child:after {
-    background-color: #a2d200;
+    background-color: #00B19D;
 }
 .streamline .sl-warning:before, .streamline .sl-warning:last-child:after {
-    background-color: #8e44ad;
+    background-color: #F7AA47;
 }
 .card .card-body.card-padding {
     padding: 23px 27px;

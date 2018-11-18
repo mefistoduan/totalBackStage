@@ -121,7 +121,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        width: 100%;
+        width: 96%;
         overflow: hidden;
         display: block;
         margin: 0 auto;
@@ -164,7 +164,7 @@
     .panel_control .el-button {
         float: left;
         height: 40px;
-        line-height: 20px;
+        line-height: 10px;
     }
     .dataTables_length {
         float: left;

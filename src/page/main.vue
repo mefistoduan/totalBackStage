@@ -4,7 +4,7 @@
             <div class="col-md-3 four-grid">
                 <div class="four-agileits">
                     <div class="icon">
-                        <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                        <img src="static/images/main/m1.png" alt="">
                     </div>
                     <div class="four-text">
                         <h3>User</h3>
@@ -15,7 +15,7 @@
             <div class="col-md-3 four-grid">
                 <div class="four-agileinfo">
                     <div class="icon">
-                        <i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
+                        <img src="static/images/main/m2.png" alt="">
                     </div>
                     <div class="four-text">
                         <h3>Clients</h3>
@@ -26,7 +26,7 @@
             <div class="col-md-3 four-grid">
                 <div class="four-w3ls">
                     <div class="icon">
-                        <i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i>
+                        <img src="static/images/main/m3.png" alt="">
                     </div>
                     <div class="four-text">
                         <h3>Projects</h3>
@@ -37,7 +37,7 @@
             <div class="col-md-3 four-grid">
                 <div class="four-wthree">
                     <div class="icon">
-                        <i class="glyphicon glyphicon-briefcase" aria-hidden="true"></i>
+                        <img src="static/images/main/m4.png" alt="">
                     </div>
                     <div class="four-text">
                         <h3>Old</h3>
@@ -170,7 +170,7 @@
                 Clients:'96,420',
                 Projects:'11,370',
                 Old:'4,320',
-                time:'August 2016',
+                time:'August 2019',
                 money:'21,235',
                 tables:[
                     {id:2345,name:'精品洗车',amount:'62,000.00'},
