@@ -32,14 +32,15 @@ export default {
     return {
         navs:[
             {name:'首页',link:'/#/main',icon:'el-icon-menu'},
-            {name:'form',link:'/#/form',icon:'el-icon-menu'},
-            {name:'费用管理',link:'/#',icon:'el-icon-menu',
+            {name:'常用页面',link:'/#',icon:'el-icon-menu',
                 child:[
-                    {name:'充值缴费',link:'/#/recharge'},
+                    {name:'404',link:'/#/recharge'},
                     {name:'表格',link:'/#/table'},
+                    {name:'pricing',link:'/#/pricing'},
+                    {name:'form',link:'/#/form'},
                     ]
             },
-            {name:'图表管理',link:'/#',icon:'el-icon-menu',
+            {name:'图表',link:'/#',icon:'el-icon-menu',
                 child:[
                     {name:'柱状图',link:'/#/chart_bar'},
                     {name:'线图',link:'/#/chart_line'},
