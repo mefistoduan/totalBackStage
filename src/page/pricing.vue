@@ -8,7 +8,7 @@
             <div class="row no-gutters row-bordered ui-bordered text-center">
                 <div class="d-flex col-md flex-column py-4">
                     <div class="display-1 text-primary my-4">
-                        <i class="lnr lnr-briefcase text-big"></i>
+                        <img src="/static/images/pricing/user.png" alt="">
                     </div>
                     <h5 class="m-0">Professional</h5>
                     <div class="flex-grow-1">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="d-flex col-md flex-column py-4">
                     <div class="display-1 text-primary my-4">
-                        <i class="lnr lnr-store text-big"></i>
+                        <img src="/static/images/pricing/add%20user.png" alt="">
                     </div>
                     <h5 class="m-0">Small Buisness</h5>
                     <div class="flex-grow-1">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="d-flex col-md flex-column py-4">
                     <div class="display-1 text-primary my-4">
-                        <i class="lnr lnr-apartment text-big"></i>
+                        <img src="/static/images/pricing/team.png" alt="">
                     </div>
                     <h5 class="m-0">Enterprise</h5>
                     <div class="flex-grow-1">
@@ -118,6 +118,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    @import "../../static/css/bootstrap.css";
+    @import "../../static/css/ele.css";
     #pages {
         position: absolute;
         top:0;
@@ -125,10 +127,13 @@ export default {
         left: 0;
         right: 0;
         width: 100%;
+        height: 100%;
         overflow: hidden;
+        overflow-y: scroll;
         display: block;
         margin: 0 auto;
         background-color: #F2F2F2;
+        padding-bottom: 80px;
     }
     .container {
         width: 100%;
@@ -159,5 +164,55 @@ export default {
         width: 33%;
         float: left;
         border-left: 1px solid #ddd;
+    }
+    .m-0 {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        font-size: 20px;
+    }
+    .font-weight-bold {
+        font-size: 30px;
+    }
+    .btn-outline-primary {
+        width: 80%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        padding: 9px 12px;
+        border-radius: 250px;
+        background: transparent;
+        color: #26B4FF;
+        border: 1px solid #26B4FF;
+        text-decoration: none;
+    }
+    .btn-outline-primary:hover {
+        background:#26B4FF ;
+        color: #fff;
+    }
+    .px-md-3 {
+        width: 100%;
+        height: 80px;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    .btn-primary {
+        width: 80%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        padding: 9px 12px;
+        border-radius: 250px;
+        text-decoration: none;
+        border-color: transparent;
+        background: #26B4FF;
+        color: #fff;
+    }
+    .col-md-6 {
+        width: 50%;
+        overflow: hidden;
+        float: left;
     }
 </style>

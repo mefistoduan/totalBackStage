@@ -38,6 +38,8 @@ export default {
                     {name:'表格',link:'/#/table'},
                     {name:'pricing',link:'/#/pricing'},
                     {name:'form',link:'/#/form'},
+                    {name:'typography',link:'/#/typography'},
+                    {name:'按钮',link:'/#/button'},
                     ]
             },
             {name:'图表',link:'/#',icon:'el-icon-menu',

@@ -8,6 +8,8 @@ import main from '@/page/main'
 import table from '@/page/table'
 import form from '@/page/form'
 import pricing from '@/page/pricing'
+import typography from '@/page/typography'
+import button from '@/page/button'
 import chart_bar from '@/components/chart_bar'
 import chart_line from '@/components/chart_line'
 import chart_dona from '@/components/chart_dona'
@@ -76,6 +78,20 @@ export default new Router({
         meta: {
             title: 'pricing'},
         component: pricing
+    },
+        {
+        path: '/typography',
+        name: 'typography',
+        meta: {
+            title: 'typography'},
+        component: typography
+    },
+        {
+        path: '/button',
+        name: 'button',
+        meta: {
+            title: '按钮'},
+        component: button
     },
     {
     path: '*',
