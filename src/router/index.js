@@ -10,6 +10,7 @@ import form from '@/page/form'
 import pricing from '@/page/pricing'
 import typography from '@/page/typography'
 import button from '@/page/button'
+import Courses from '@/page/Courses'
 import chart_bar from '@/components/chart_bar'
 import chart_line from '@/components/chart_line'
 import chart_dona from '@/components/chart_dona'
@@ -92,6 +93,13 @@ export default new Router({
         meta: {
             title: '按钮'},
         component: button
+    },
+        {
+        path: '/Courses',
+        name: 'Courses',
+        meta: {
+            title: 'Courses'},
+        component: Courses
     },
     {
     path: '*',
