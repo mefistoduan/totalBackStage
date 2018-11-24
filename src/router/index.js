@@ -11,6 +11,9 @@ import pricing from '@/page/pricing'
 import typography from '@/page/typography'
 import button from '@/page/button'
 import Courses from '@/page/Courses'
+import badges from '@/page/badges'
+import dropdown from '@/page/dropdown'
+import page from '@/page/page'
 import chart_bar from '@/components/chart_bar'
 import chart_line from '@/components/chart_line'
 import chart_dona from '@/components/chart_dona'
@@ -22,91 +25,126 @@ export default new Router({
         path: '/',
         name: 'index',
         meta: {
-            title: '首页'},
+            title: '首页'
+        },
         component: index
     },
-    {
-        path: '/login',
-        name: 'login',
-        meta: {
-            title: '登陆'},
-        component: login
-    },
-    {
-        path: '/main',
-        name: 'main',
-        meta: {
-            title: '首页'},
-        component: main
-    },  {
-        path: '/table',
-        name: 'table',
-        meta: {
-            title: '表格'},
-        component: table
-    },
         {
-        path: '/chart_bar',
-        name: 'chart_bar',
-        meta: {
-            title: '首页'},
-        component: chart_bar
-    },
+            path: '/login',
+            name: 'login',
+            meta: {
+                title: '登陆'
+            },
+            component: login
+        },
         {
-        path: '/chart_line',
-        name: 'chart_line',
-        meta: {
-            title: '首页'},
-        component: chart_line
-    },
+            path: '/main',
+            name: 'main',
+            meta: {
+                title: '首页'
+            },
+            component: main
+        }, {
+            path: '/table',
+            name: 'table',
+            meta: {
+                title: '表格'
+            },
+            component: table
+        },
         {
-        path: '/chart_dona',
-        name: 'chart_dona',
-        meta: {
-            title: '首页'},
-        component: chart_dona
-    },
+            path: '/chart_bar',
+            name: 'chart_bar',
+            meta: {
+                title: '首页'
+            },
+            component: chart_bar
+        },
         {
-        path: '/form',
-        name: 'form',
-        meta: {
-            title: 'form'},
-        component: form
-    },
+            path: '/chart_line',
+            name: 'chart_line',
+            meta: {
+                title: '首页'
+            },
+            component: chart_line
+        },
         {
-        path: '/pricing',
-        name: 'pricing',
-        meta: {
-            title: 'pricing'},
-        component: pricing
-    },
+            path: '/chart_dona',
+            name: 'chart_dona',
+            meta: {
+                title: '首页'
+            },
+            component: chart_dona
+        },
         {
-        path: '/typography',
-        name: 'typography',
-        meta: {
-            title: 'typography'},
-        component: typography
-    },
+            path: '/form',
+            name: 'form',
+            meta: {
+                title: 'form'
+            },
+            component: form
+        },
         {
-        path: '/button',
-        name: 'button',
-        meta: {
-            title: '按钮'},
-        component: button
-    },
+            path: '/pricing',
+            name: 'pricing',
+            meta: {
+                title: 'pricing'
+            },
+            component: pricing
+        },
         {
-        path: '/Courses',
-        name: 'Courses',
-        meta: {
-            title: 'Courses'},
-        component: Courses
-    },
-    {
-    path: '*',
-    name: 'four',
-    meta: {
-        title: '404'},
-    component: four,//维保详情
-    },
+            path: '/typography',
+            name: 'typography',
+            meta: {
+                title: 'typography'
+            },
+            component: typography
+        },
+        {
+            path: '/button',
+            name: 'button',
+            meta: {
+                title: '按钮'
+            },
+            component: button
+        },
+        {
+            path: '/Courses',
+            name: 'Courses',
+            meta: {
+                title: 'Courses'
+            },
+            component: Courses
+        },
+        {
+            path: '/badges',
+            name: 'badges',
+            meta: {
+                title: 'badges'
+            },
+            component: badges
+        }, {
+            path: '/dropdown',
+            name: 'dropdown',
+            meta: {
+                title: 'dropdown'
+            },
+            component: dropdown
+        }, {
+            path: '/page',
+            name: 'page',
+            meta: {
+                title: 'page'
+            },
+            component: page
+        },
+        {
+            path: '*',
+            name: 'four',
+            meta: {
+                title: '404'
+            },
+            component: four,//维保详情
+        },
     ]
 })
