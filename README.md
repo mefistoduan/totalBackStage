@@ -34,6 +34,14 @@ todo list
 
 4.还没想好，喵喵喵~
 
+5.缩起左侧panel 的 button , message icon 带 badge 数字
+
+6.message页面，有时间顺序，有是否已读
+
+7.常用表格带checkbox，业务弹窗组件
+
+8.左侧右上角定时轮询和消息弹窗
+
 module
 http://appwork.nicethemes.cn/pages_pricing.html
 

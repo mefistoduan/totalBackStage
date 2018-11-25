@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="header_logo">
-                logo
+                <!--<img id="logo" src="../../static/images/login/logo.png"/>-->
             </div>
             <h5 class="title">{{company.app}}</h5>
             <!--login start-->
@@ -10,36 +10,55 @@
                 <div class="login col-lg-12 col-xs-12">
                     <ul class="col-lg-12 col-xs-12 white_cube" id="pwd_login" v-show="pwd_login">
                         <li class="form-group">
-                            <input type="text" class="form-control" id="username" placeholder="手机号/用户名" style="border: 1px solid rgb(3, 177, 255);">
+                            <input type="text" class="form-control" id="username" placeholder="手机号/用户名"
+                                   ref="username"
+                               style="border: 1px solid rgb(221, 221, 221);">
                         </li>
                         <li class="form-group">
-                            <input type="password" class="form-control" id="userpwd" placeholder="请输入密码" style="border: 1px solid rgb(221, 221, 221);">
+                            <input type="password" class="form-control" id="userpwd" placeholder="请输入密码"
+                                   ref="userpwd"
+                                   style="border: 1px solid rgb(221, 221, 221);">
                         </li>
                         <li class="form-group">
-                            <input type="text" class="form-control" id="uservalid_img" placeholder="验证码" onkeydown="enterIn(event);" style="border: 1px solid rgb(221, 221, 221);">
-                            <!--onkeydown="return disableEnter(event)"-->
-                            <img id="imgValidcode" src="/sys/mod/index/login_validcode.php" onclick="this.src = this.src + '?'+ Math.random();" title="看不清？刷一下试试！">
+                            <input type="text" class="form-control" id="uservalid_img" placeholder="验证码"
+                                   @keyup.13="pwdLoginBtn"
+                                   ref="uservalid"
+                                   style="border: 1px solid rgb(221, 221, 221);">
+                                 <!--onclick="this.src = this.src + '?'+ Math.random();" title="看不清？刷一下试试！">-->
+                            <!--/sys/mod/index/login_validcode.php-->
+                            <img id="imgValidcode"
+                                 :src="valImgSrc"
+                                 title="看不清？刷一下试试！" @click="changeValImg"/>
                         </li>
                         <li class="form-group">
-                            <button type="submit" class="btn btn-default login_btn" id="login_btn" >登录
+                            <button type="submit" class="btn btn-default login_btn" id="login_btn" @click="pwdLoginBtn">登录
                             </button>
                         </li>
                     </ul>
                     <ul class="col-lg-12 col-xs-12 white_cube" id="sms_login" v-show="sms_login">
                         <li class="form-group">
-                            <input type="text" class="form-control" id="sms_username" placeholder="手机号/用户名" style="border: 1px solid rgb(221, 221, 221);">
+                            <input type="text" class="form-control" id="sms_username" placeholder="手机号/用户名"
+                                   ref="sms_username"
+                                   style="border: 1px solid rgb(221, 221, 221);">
                         </li>
                         <li class="form-group">
-                            <input type="text" class="form-control" id="uservalid_sms" placeholder="验证码" onkeydown="return disableEnter(event)" style="border: 1px solid rgb(221, 221, 221);">
-                            <img id="imgValidcode_sms" src="" onclick="this.src = this.src + '?'+ Math.random();" title="看不清？刷一下试试！">
+                            <input type="text" class="form-control" id="uservalid_sms" placeholder="验证码"
+                                   ref="imgValid"
+                                   style="border: 1px solid rgb(221, 221, 221);">
+                            <img id="imgValidcode2"
+                                 :src="valImgSrc"
+                                 title="看不清？刷一下试试！" @click="changeValImg"/>
                         </li>
                         <li class="form-group item">
-                            <input type="password" class="form-control" id="userValid" placeholder="请输入验证码" style="border: 1px solid rgb(221, 221, 221);">
+                            <input type="password" class="form-control" id="userValid" placeholder="请输入验证码"
+                                   ref="sms_valid"
+                                   @keyup.13="smsLoginBtn"
+                                   style="border: 1px solid rgb(221, 221, 221);">
                             <button id="valid_btn" data-url="" @click="valid_btn">获取验证码</button>
                         </li>
                         <li class="form-group">
-                            <button type="submit" class="btn btn-default login_btn" id="valid_login_btn" data-dl="/?ctl=ajax&amp;mod=index&amp;act=login">登录
-                            </button>
+
+                            <button type="submit" class="btn btn-default login_btn" id="valid_login_btn" @click="smsLoginBtn">登录</button>
                         </li>
                     </ul>
                     <div class="info">
@@ -58,7 +77,7 @@
 
                             Copyright © 2018
                             <a href="http://xxx.xxx.com/" target="_blank">
-                               xxx.xxx.com
+                                xxx.xxx.com
                             </a>.
                             All Rights Reserved. xx版权所有 &nbsp;&nbsp;&nbsp;
                         </div>
@@ -74,57 +93,60 @@
                         <button type="button" class="close" @click="close_modal">×</button>
                         <h4 class="modal-title text-center">注册</h4>
                     </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label class="control-label">姓名</label>
-                                <input type="text" name="re_name" class="form-control" id="re_name" ref="re_name"
-                                       placeholder="请输入注册人的姓名">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">手机号 <em class="red">*必填</em></label>
-                                <input type="text" name="re_phone" class="form-control" id="re_phone" ref="re_phone"
-                                       placeholder="请输入要注册的手机号,手机号将会作为登录名">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">手机验证码 <em class="red">*必填</em></label>
-                                <div class="input-group input-group-sm input-group-minimal">
-                                    <input type="text" name="re_phonevalid" id="re_phonevalid"
-                                           class="form-control  no-right-border " placeholder="请输入手机验证码" ref="re_phonevalid">
-                                    <span class="input-group-btn">
-                                        <input type="button"class="btn btn-warning phone_valid" id="get_phone_valid" name="get_phone_valid" value="获取手机验证码" @click="get_phone_valid">
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">密码 <em class="red">*必填</em></label>
-                                <input type="password" class="form-control" name="first_pwd" id="first_pwd" ref="first_pwd"
-                                       placeholder="请输入密码">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">重复密码 <em class="red">*必填</em></label>
-                                <input type="password" class="form-control" name="confirm_pwd" id="confirm_pwd"  ref="confirm_pwd"
-                                       placeholder="请再次输入密码">
-                            </div>
-                        </div>
-                        <div class="modal-footer form-block">
-                            <button type="submit"
-                                    class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12"
-                                    id="register_btn" @click="register_user">注 册
-                            </button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label">姓名</label>
+                            <input type="text" name="re_name" class="form-control" id="re_name" ref="re_name"
+                                   placeholder="请输入注册人的姓名">
                         </div>
                         <div class="form-group">
-                            <label class="ruler_container">
-                                <div class="checkbox-custom checkbox-default">
-                                    <input type="checkbox" id="agree" name="agree" ref="agree">
-                                    <label for="agree"></label>
-                                </div>
-                                <a href="#" @click="openruler">我同意注册协议条款</a>
-                            </label>
-                            <span class="right">
+                            <label class="control-label">手机号 <em class="red">*必填</em></label>
+                            <input type="text" name="re_phone" class="form-control" id="re_phone" ref="re_phone"
+                                   placeholder="请输入要注册的手机号,手机号将会作为登录名">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">手机验证码 <em class="red">*必填</em></label>
+                            <div class="input-group input-group-sm input-group-minimal">
+                                <input type="text" name="re_phonevalid" id="re_phonevalid"
+                                       class="form-control  no-right-border " placeholder="请输入手机验证码"
+                                       ref="re_phonevalid">
+                                <span class="input-group-btn">
+                                        <input type="button" class="btn btn-warning phone_valid" id="get_phone_valid"
+                                               name="get_phone_valid" value="获取手机验证码" @click="get_phone_valid">
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">密码 <em class="red">*必填</em></label>
+                            <input type="password" class="form-control" name="first_pwd" id="first_pwd" ref="first_pwd"
+                                   placeholder="请输入密码">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">重复密码 <em class="red">*必填</em></label>
+                            <input type="password" class="form-control" name="confirm_pwd" id="confirm_pwd"
+                                   ref="confirm_pwd"
+                                   placeholder="请再次输入密码">
+                        </div>
+                    </div>
+                    <div class="modal-footer form-block">
+                        <button type="submit"
+                                class="btn btn-success center-block btn-lg col-lg-12 col-md-12 col-sm-12"
+                                id="register_btn" @click="register_user">注 册
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label class="ruler_container">
+                            <div class="checkbox-custom checkbox-default">
+                                <input type="checkbox" id="agree" name="agree" ref="agree">
+                                <label for="agree"></label>
+                            </div>
+                            <a href="#" @click="openruler">我同意注册协议条款</a>
+                        </label>
+                        <span class="right">
                               <button type="button" class="close blue" @click="close_modal">登录</button>
                               <em>已有账户</em>
                          </span>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -152,6 +174,7 @@
 </template>
 <script>
     import axios from 'axios';
+
     let qs = require('qs');
 
     export default {
@@ -162,6 +185,7 @@
                 modal_ruler: false,
                 pwd_login: true,
                 sms_login: false,
+                valImgSrc: '../../static/images/login/valid_img.png',
                 company: {
                     name: 'XXX公司',
                     tel: '123-5678-91011',
@@ -182,22 +206,28 @@
                     that.sms_login = false;
                 }
             },
+            changeValImg:function() {
+                let that = this;
+                that.valImgSrc = that.valImgSrc + '?'+ Math.random();
+            },
             // pwd登录
-            login_btn: function () {
+            pwdLoginBtn: function () {
                 let username = this.$refs.username.value;
                 let userpwd = this.$refs.userpwd.value;
+                let uservalid = this.$refs.uservalid.value;
                 if (!this.valid(username, 2, 17, '用户名')) return;
                 if (!this.valid(userpwd, 5, 17, '密码')) return;
+                if (!this.valid(uservalid, 3, 5, '验证码')) return;
                 this.loginInfo();
             },
 //            sms 登陆
-            valid_login_btn: function () {
+            smsLoginBtn: function () {
                 let sms_username = this.$refs.sms_username.value;
-                let userValid = this.$refs.userValid.value;
+                let sms_valid = this.$refs.sms_valid.value;
                 if (!this.valid(sms_username, 2, 17, '手机号')) return;
-                if (!this.valid(userValid, 4, 6, '短信验证码')) return;
+                if (!this.valid(sms_valid, 4, 6, '短信验证码')) return;
                 this.sms_loginInfo();
-                },
+            },
             //获取注册手机验证码
             get_phone_valid: function () {
                 let img_valid = this.$refs.imgValid.value;
@@ -388,7 +418,7 @@
                 this.modal_retrieve = false;
             },
             // 注册
-            register_user:function () {
+            register_user: function () {
                 let that = this;
                 let re_name = this.$refs.re_name.value;
                 let re_phone = this.$refs.re_phone.value;
@@ -399,14 +429,14 @@
                 if (!this.valid(re_phone, 10, 12, '手机')) return;
                 if (!this.valid(re_phonevalid, 5, 7, '验证码')) return;
                 if (!this.valid(first_pwd, 5, 7, '密码')) return;
-                if(first_pwd != confirm_pwd){
+                if (first_pwd != confirm_pwd) {
                     that.$message({
                         message: '两遍密码不一致！',
                         type: 'warning'
                     });
                     return false
                 }
-                if(!agree){
+                if (!agree) {
                     that.$message({
                         message: '请先阅读并同意注册协议！',
                         type: 'warning'
@@ -416,36 +446,37 @@
                 let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
                 let param = {};
                 let postdata = qs.stringify(param);
-                axios.post(url, postdata).then(function(data){
+                axios.post(url, postdata).then(function (data) {
                     let json = data.data;
-                    if(json.code == 0){
+                    if (json.code == 0) {
                         that.plates = json.rs;
-                    }else{
+                    } else {
                         Toast(JSON.memo);
                     }
-                },function(response){
+                }, function (response) {
                     console.info(response);
                 })
             },
 //            pwd登陆
-            loginInfo:function () {
+            loginInfo: function () {
                 const that = this;
                 let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
-                let usercode =  that.$refs.username.value;
-                let passwd =  that.$refs.userpwd.value;
+                let username = this.$refs.username.value;
+                let userpwd = this.$refs.userpwd.value;
+                let uservalid = this.$refs.uservalid.value;
                 let param = {
-                    'usercode': usercode,
-                    'passwd': passwd,
+                    'usercode': username,
+                    'passwd': userpwd,
+                    'valid': uservalid,
                     'logintype': 1,
                     'src': 'pc'
                 };
 //                测试时直接跳至主界面
-                  that.$router.push({path:'/main'});
 //                let postdata = qs.stringify(param);
 //                axios.post(url, postdata).then(function(data){
 //                    let json = data.data;
 //                    if(json.code == 0){
-//                        that.plates = json.rs;
+                        that.$router.push({path: '/'});
 //                    }else{
 //                        Toast(JSON.memo);
 //                    }
@@ -455,11 +486,11 @@
             }
         },
 //        sms登陆
-        sms_loginInfo:function () {
+        sms_loginInfo: function () {
             const that = this;
             let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
-            let sms_username =  that.$refs.sms_username.value;
-            let userValid =  that.$refs.imgValid.value;
+            let sms_username = that.$refs.sms_username.value;
+            let userValid = that.$refs.sms_valid.value;
             let param = {
                 'usercode': sms_username,
                 'smscode': userValid,
@@ -467,14 +498,14 @@
                 'src': 'pc'
             };
             let postdata = qs.stringify(param);
-            axios.post(url, postdata).then(function(data){
+            axios.post(url, postdata).then(function (data) {
                 let json = data.data;
-                if(json.code == 0){
+                if (json.code == 0) {
                     that.plates = json.rs;
-                }else{
+                } else {
                     Toast(JSON.memo);
                 }
-            },function(response){
+            }, function (response) {
                 console.info(response);
             })
         }
@@ -490,9 +521,8 @@
         list-style: none;
     }
 
-    .header_logo .logo {
+    .header_logo #logo {
         width: 176px;
-        height: 101px;
         overflow: hidden;
         display: block;
         margin: 0 auto;
@@ -510,7 +540,7 @@
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        background: url("../../static/images/four/bg.jpg")top center no-repeat;
+        background: url("../../static/images/login/bg.jpg") top center no-repeat;
         background-size: 100% 100%;
     }
 
@@ -563,10 +593,22 @@
     }
 
     #imgValidcode {
+        height: 20px;
         position: relative;
         float: right;
         bottom: 30px;
         margin-right: 10px;
+    }
+    #imgValidcode2 {
+        height: 20px;
+        position: relative;
+        float: right;
+        bottom: 30px;
+        margin-right: 10px;
+    }
+    #get_phone_valid {
+        width: 109px;
+        float: right;
     }
 
     .login_btn {
@@ -581,6 +623,14 @@
         margin: 0 auto;
         float: none;
         display: block;
+        outline: none!important;
+    }
+
+    #modal_register {
+        position: absolute;
+        top: 10%;
+        left: 0;
+        right: 0;
     }
 
     .login_btn:hover {
@@ -595,16 +645,18 @@
         margin: 0 auto;
         padding-left: 15px;
         padding-right: 15px;
-        background: rgba(255,255,255,0.8);
+        background: rgba(255, 255, 255, 0.8);
         border-radius: 5px;
         padding-top: 15px;
         padding-bottom: 15px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
+
     .info span {
         color: #fff;
     }
+
     .info button {
         border: none;
         outline: none;
@@ -659,7 +711,7 @@
     #change_login {
         width: 271px;
         height: 36px;
-        line-height: 26px;
+        line-height: 36px;
         overflow: hidden;
         display: block;
         margin: 0 auto;
@@ -671,6 +723,7 @@
         font-size: 14px;
         margin-top: 23px;
         outline: none;
+        background: rgba(0, 107, 155, 0.6);
     }
 
     .form-group .turn_register {
@@ -846,6 +899,7 @@
         margin-bottom: 7px;
         margin-top: 10px;
         float: left;
+        top:10px
     }
 
     #valid_img {
@@ -975,12 +1029,14 @@
         float: right;
         padding-bottom: 2px;
     }
+
     .control {
         width: 30%;
         display: block;
         overflow: hidden;
         margin: 0 auto;
     }
+
     .register {
         width: 30%;
         display: none;
@@ -989,8 +1045,10 @@
         background-color: #43bbee;
         border-radius: 4px;
     }
+
     .register ul {
     }
+
     .bottom_tips {
         width: 100%;
         height: 20px;
@@ -1003,6 +1061,7 @@
         font-size: 16px;
         text-align: center;
     }
+
     .register .register_title {
         width: 100%;
         height: 20px;
@@ -1014,6 +1073,7 @@
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
     .register .back_login {
         position: relative;
         bottom: 20px;
@@ -1021,27 +1081,31 @@
         width: 60px;
         height: 30px;
         border-radius: 4px;
-        background-color:#EFAC4D ;
+        background-color: #EFAC4D;
         color: #fff;
         text-align: center;
         line-height: 30px;
         font-style: normal;
         cursor: pointer;
     }
+
     .form-control-short {
-        width: 60%!important;
+        width: 60% !important;
         float: left;
         border-right: none;
     }
+
     .white {
         overflow: hidden;
         background-color: #fff;
         border: 1px solid #ccc;
         border-radius: 4px;
     }
+
     .white input {
         border: none;
     }
+
     #question_icon {
         width: 30px;
         height: 43px;
@@ -1064,6 +1128,7 @@
         padding: 5px 10px;
 
     }
+
     .register_btn {
         width: 100%;
         border-radius: 4px;
@@ -1071,8 +1136,9 @@
         color: #fff;
         text-align: center;
         font-size: 20px;
-        letter-spacing:5px;
+        letter-spacing: 5px;
     }
+
     .footer {
         width: 100%;
         height: 30px;
@@ -1080,14 +1146,17 @@
         margin: 0 auto;
         color: #fff;
     }
+
     .footer a {
         color: #fff;
     }
+
     .ruler_container {
         width: 200px;
         float: left;
         margin-top: 10px;
     }
+
     .ruler_container input {
         width: 18px;
         height: 18px;
@@ -1097,12 +1166,14 @@
         -webkit-appearance: none;
         margin-right: 13px;
     }
+
     .ruler_container a {
         color: #0D62C7;
         line-height: 20px;
         font-size: 12px;
         text-decoration: underline;
     }
+
     .checkbox-custom {
         position: relative;
         padding: 0 0 0 25px;
@@ -1110,11 +1181,12 @@
         margin-top: 0;
         float: left;
     }
+
     /*
     灏嗗垵濮嬬殑checkbox鐨勬牱寮忔敼鍙�
     */
     .checkbox-custom input[type="checkbox"] {
-        opacity: 0;/*灏嗗垵濮嬬殑checkbox闅愯棌璧锋潵*/
+        opacity: 0; /*灏嗗垵濮嬬殑checkbox闅愯棌璧锋潵*/
         position: absolute;
         cursor: pointer;
         z-index: 2;
@@ -1123,6 +1195,7 @@
         left: 3px;
 
     }
+
     /*
     璁捐鏂扮殑checkbox锛屼綅缃�
     */
@@ -1139,10 +1212,11 @@
         border: 1px solid #bbb;
         background: #fff;
     }
+
     /*
     鐐瑰嚮鍒濆鐨刢heckbox锛屽皢鏂扮殑checkbox鍏宠仈璧锋潵
     */
-    .checkbox-custom input[type="checkbox"]:checked +label:after {
+    .checkbox-custom input[type="checkbox"]:checked + label:after {
         position: absolute;
         display: inline-block;
         font-family: 'FontAwesome';
@@ -1156,16 +1230,19 @@
         height: 16px;
         color: #333;
     }
+
     .checkbox-custom label {
         cursor: pointer;
         line-height: 1.2;
-        font-weight: normal;/*鏀瑰彉浜唕ememberme鐨勫瓧浣�*/
+        font-weight: normal; /*鏀瑰彉浜唕ememberme鐨勫瓧浣�*/
         margin-bottom: 0;
         text-align: left;
     }
+
     #modal_ruler .modal-body {
         color: #000;
     }
+
     .right {
         width: 200px;
         float: right;
@@ -1173,37 +1250,43 @@
         text-align: right;
         color: #8E8E8E;
     }
+
     .right em {
         margin-top: 3px;
         float: right;
         font-style: normal;
         font-weight: normal;
     }
+
     .blue {
         width: 67px;
         height: 24px;
         line-height: 24px;
-        border: 1px solid #03B1FF!important;
-        color: #03B1FF!important;
+        border: 1px solid #03B1FF !important;
+        color: #03B1FF !important;
         float: right;
         font-size: 12px;
         margin-left: 10px;
-        opacity: 1!important;
+        opacity: 1 !important;
     }
+
     .valid_code {
         width: 44px;
         height: 18px;
         float: right;
     }
+
     .valid_container {
         width: 9%;
         background-color: #f5f5f5;
         padding: 7px 26px;
     }
+
     label.error {
         float: right;
         padding-bottom: 2px;
     }
+
     .white_cube {
         width: 300px;
         min-height: 288px;
@@ -1215,8 +1298,9 @@
         float: none;
         padding-top: 20px;
         padding-bottom: 20px;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     }
+
     #forget {
         width: 271px;
         overflow: hidden;
@@ -1228,6 +1312,7 @@
         background: none;
         border: none;
     }
+
     .footer .tel {
         position: relative;
         bottom: 30px;
