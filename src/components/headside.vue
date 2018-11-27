@@ -1,6 +1,9 @@
 <template>
     <div id="headside">
         <nav class="navbar user-info-navbar" role="navigation">
+            <!--<i class="left_hide_icon el-icon-arrow-left " @click="left_hide(0)" v-if="left_panel_state == 0"></i>-->
+            <!--<i class="left_show_icon el-icon-arrow-right " @click="left_hide(1)" v-if="left_panel_state == 1"></i>-->
+            <i :class="[{'el-icon-arrow-left':left_panel_state == 0},{'el-icon-arrow-right':left_panel_state == 1},'left_show_icon'] " @click="left_hide"></i>
             <ul class="user-info-menu right-links list-inline list-unstyled">
                 <li class="pull-left" style="min-height: 40px;">
 						<span class="customer_serve">工作日 {{time}} &nbsp;客服电话： &nbsp;{{tel}}&nbsp;
@@ -27,12 +30,24 @@
                 time: '8:30-17:30',
                 tel: '123-456-789',
                 qq: '123-456-789',
+                left_panel_state:0
             }
         },
         mounted() {
 
         },
-        methods: {},
+        methods: {
+            left_hide:function (e) {
+                let that = this;
+                if(e == 0){
+                    that.left_panel_state = 1;
+                    this.$emit('left_hide_func');
+                }else{
+                    that.left_panel_state = 0;
+                    this.$emit('right_hide_func');
+                }
+            }
+        },
         components: {}
     }
 </script>
@@ -338,5 +353,29 @@
         display: block;
         margin: 0 auto;
         margin-top: 10px;
+    }
+    .left_hide_icon {
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        float: left;
+        margin-left: 240px;
+        cursor: pointer;
+    }
+    .left_hide_icon:hover {
+        background: #ccc;
+        color: #fff;
+    }
+    .left_show_icon {
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        float: left;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    .left_show_icon:hover {
+        background: #ccc;
+        color: #fff;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div id="navside">
+    <div id="navside" :class="[{'wild':wildState == 0},{'short':wildState != 0}]">
         <header class="logo-env">
             <div class="logo">
                 <router-link :to="{path: '/main'}" class="logo-expanded">
@@ -30,6 +30,7 @@
     export default {
         data() {
             return {
+                wildState:0,
                 navs: [
                     {name: '首页', link: '/#/main', icon: 'el-icon-menu'},
                     {
@@ -70,6 +71,12 @@
 
         },
         methods: {
+            hidePanel() {
+                this.wildState = 1;
+            },
+            showPanel() {
+                this.wildState = 0;
+            },
             handleNodeClick: function (data, index, child) {
                 let that = this;
                 console.log(data, child, index);
@@ -108,7 +115,6 @@
 
     #navside {
         position: absolute;
-        width: 230px;
         height: 100%;
         overflow: hidden;
         z-index: 2222;
@@ -117,7 +123,12 @@
         text-align: center;
         line-height: 200px;
     }
-
+    .wild {
+        width: 230px;
+    }
+    .short {
+        width: 0px!important;
+    }
     .logo {
         width: 100%;
         overflow: hidden;
