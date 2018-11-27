@@ -1,9 +1,7 @@
 <template>
     <div id="headside">
         <nav class="navbar user-info-navbar" role="navigation">
-            <!--<i class="left_hide_icon el-icon-arrow-left " @click="left_hide(0)" v-if="left_panel_state == 0"></i>-->
-            <!--<i class="left_show_icon el-icon-arrow-right " @click="left_hide(1)" v-if="left_panel_state == 1"></i>-->
-            <i :class="[{'el-icon-arrow-left':left_panel_state == 0},{'el-icon-arrow-right':left_panel_state == 1},'left_show_icon'] " @click="left_hide"></i>
+            <i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] " @click="left_hide"></i>
             <ul class="user-info-menu right-links list-inline list-unstyled">
                 <li class="pull-left" style="min-height: 40px;">
 						<span class="customer_serve">工作日 {{time}} &nbsp;客服电话： &nbsp;{{tel}}&nbsp;
@@ -30,20 +28,19 @@
                 time: '8:30-17:30',
                 tel: '123-456-789',
                 qq: '123-456-789',
-                left_panel_state:0
+                left_panel_state:true
             }
         },
         mounted() {
 
         },
         methods: {
-            left_hide:function (e) {
+            left_hide:function () {
                 let that = this;
-                if(e == 0){
-                    that.left_panel_state = 1;
+                that.left_panel_state = !that.left_panel_state;
+                if(!that.left_panel_state){
                     this.$emit('left_hide_func');
                 }else{
-                    that.left_panel_state = 0;
                     this.$emit('right_hide_func');
                 }
             }
