@@ -1,7 +1,17 @@
 <template>
     <div id="headside">
         <nav class="navbar user-info-navbar" role="navigation">
-            <i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] " @click="left_hide"></i>
+            <i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] "
+               @click="left_hide"></i>
+            <div  @click="checkNews">
+                <el-badge :value="newnum"
+                          class="item"
+                         >
+                    <el-button size="small">
+                        <i class="el-icon-message"></i>
+                    </el-button>
+                </el-badge>
+            </div>
             <ul class="user-info-menu right-links list-inline list-unstyled">
                 <li class="pull-left" style="min-height: 40px;">
 						<span class="customer_serve">工作日 {{time}} &nbsp;客服电话： &nbsp;{{tel}}&nbsp;
@@ -28,22 +38,45 @@
                 time: '8:30-17:30',
                 tel: '123-456-789',
                 qq: '123-456-789',
-                left_panel_state:true
+                newnum: '',
+                left_panel_state: true
             }
         },
         mounted() {
+            this.readNewNum();
+
+//            定时轮询news
 
         },
         methods: {
-            left_hide:function () {
+//            隐藏左侧和显示
+            left_hide: function () {
                 let that = this;
                 that.left_panel_state = !that.left_panel_state;
-                if(!that.left_panel_state){
+                if (!that.left_panel_state) {
                     this.$emit('left_hide_func');
-                }else{
+                } else {
                     this.$emit('right_hide_func');
                 }
-            }
+            },
+//            打开消息提示
+            checkNews:function () {
+                const h = this.$createElement;
+                this.$notify({
+                    title: '标题名称',
+                    position: 'top-left',
+                    message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案'),
+                    onClose:function () {
+                        //关闭时调用已读接口
+                    }
+                });
+            },
+//            读取消息提示数量
+            readNewNum:function () {
+                this.newnum = 1;
+//                ajax todo
+            },
+
         },
         components: {}
     }
@@ -351,6 +384,7 @@
         margin: 0 auto;
         margin-top: 10px;
     }
+
     .left_hide_icon {
         margin-top: 10px;
         border: 1px solid #ccc;
@@ -359,10 +393,12 @@
         margin-left: 240px;
         cursor: pointer;
     }
+
     .left_hide_icon:hover {
         background: #ccc;
         color: #fff;
     }
+
     .left_show_icon {
         margin-top: 10px;
         border: 1px solid #ccc;
@@ -371,8 +407,17 @@
         margin-left: 10px;
         cursor: pointer;
     }
+
     .left_show_icon:hover {
         background: #ccc;
         color: #fff;
+    }
+    .item {
+        float: left;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    .el-button--small, .el-button--small.is-round {
+        padding: 4px 8px;
     }
 </style>

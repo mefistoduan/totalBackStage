@@ -8,7 +8,7 @@
                 role="tablist">
                 <li :class="{'ui-state-default ui-corner-top  ui-sortable-handle':true,'ui-tabs-active ui-state-active':index == thisClick}"
                     v-for="(tab,index) in tabs">
-                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.link,index)">{{tab.name}}</a>
+                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.link,index)" :href="tab.link">{{tab.name}}</a>
                     <span class="el-icon-close" @click="closeNav(index)"></span>
                 </li>
             </ul>

@@ -41,6 +41,7 @@
                             {name: 'pricing', link: '/#/pricing'},
                             {name: 'form', link: '/#/form'},
                             {name: 'Courses', link: '/#/Courses'},
+                            {name: 'message', link: '/#/message'},
                         ]
                     },
                     {
@@ -117,7 +118,7 @@
         position: absolute;
         height: 100%;
         overflow: hidden;
-        z-index: 2222;
+        z-index: 2000;
         background-color: #2c2e2f;
         color: #333;
         text-align: center;

@@ -14,6 +14,7 @@ import Courses from '@/page/Courses'
 import badges from '@/page/badges'
 import dropdown from '@/page/dropdown'
 import page from '@/page/page'
+import message from '@/page/message'
 import chart_bar from '@/components/chart_bar'
 import chart_line from '@/components/chart_line'
 import chart_dona from '@/components/chart_dona'
@@ -137,6 +138,13 @@ export default new Router({
                 title: 'page'
             },
             component: page
+        }, {
+            path: '/message',
+            name: 'message',
+            meta: {
+                title: 'message'
+            },
+            component: message
         },
         {
             path: '*',
