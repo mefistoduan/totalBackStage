@@ -1,7 +1,7 @@
 <template>
     <div id="index">
         <navside @navOpen="navOpen" ref="mychild"></navside>
-        <headside @left_hide_func="left_hide" @right_hide_func=right_hide></headside>
+        <headside @left_hide_func="left_hide"  @navOpen="navOpen" @right_hide_func="right_hide" ></headside>
         <footside></footside>
         <div id="tabs" :class="[{'tabwild':tabwildState == 0},'ui-tabs', 'ui-widget', 'ui-widget-content', 'ui-corner-all']">
             <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all ui-sortable"
@@ -63,6 +63,7 @@
                 }
             },
             navOpen: function (data) {
+                console.log(data);
                 let that = this;
                 let r = [];
                 let array = that.tabs;

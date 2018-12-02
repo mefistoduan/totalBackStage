@@ -80,7 +80,6 @@
             },
             handleNodeClick: function (data, index, child) {
                 let that = this;
-                console.log(data, child, index);
                 if (child) {
                     this.navshowClick(index);
                 } else {
@@ -95,6 +94,7 @@
                         }).catch(() => {
                         });
                     } else {
+                        console.log(data);
                         this.$emit('navOpen', data);
                     }
                 }

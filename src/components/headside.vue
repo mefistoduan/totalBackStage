@@ -3,10 +3,10 @@
         <nav class="navbar user-info-navbar" role="navigation">
             <i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] "
                @click="left_hide"></i>
-            <div  @click="checkNews">
+            <div @click="checkNews">
                 <el-badge :value="newnum"
                           class="item"
-                         >
+                >
                     <el-button size="small">
                         <i class="el-icon-message"></i>
                     </el-button>
@@ -60,19 +60,26 @@
                 }
             },
 //            打开消息提示
-            checkNews:function () {
+            checkNews: function () {
+                let that = this;
                 const h = this.$createElement;
                 this.$notify({
                     title: '标题名称',
                     position: 'top-left',
-                    message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案'),
-                    onClose:function () {
+                    message: h('i', {style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案'),
+                    onClose: function () {
                         //关闭时调用已读接口
+                    },
+                    onClick: function () {
+                        //关闭时调用已读接口
+                        this.close();//关闭notify
+                        let thisdata = {name: 'message', link: '/#/message'};
+                        that.$emit('navOpen', thisdata);//跳转新的message
                     }
                 });
             },
 //            读取消息提示数量
-            readNewNum:function () {
+            readNewNum: function () {
                 this.newnum = 1;
 //                ajax todo
             },
@@ -412,11 +419,13 @@
         background: #ccc;
         color: #fff;
     }
+
     .item {
         float: left;
         margin-left: 10px;
         margin-top: 10px;
     }
+
     .el-button--small, .el-button--small.is-round {
         padding: 4px 8px;
     }

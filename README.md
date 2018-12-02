@@ -36,7 +36,7 @@ todo list
 
 5.缩起左侧panel 的 button , message icon 带 badge 数字 12/1
 
-6.message页面，有时间顺序，有是否已读
+6.message页面，有时间顺序，有是否已读 12/2
 
 7.常用表格带checkbox，业务弹窗组件 和 select 筛选， input text 筛选
 
