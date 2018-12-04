@@ -46,7 +46,14 @@
             this.readNewNum();
 
 //            定时轮询news
-
+            //设置10s刷新一次数据
+            if (this.timer) {
+                clearInterval(this.timer);
+            }else{
+                this.timer = setInterval(() => {
+                    this.readNewNum();
+                },10000)
+            }
         },
         methods: {
 //            隐藏左侧和显示
@@ -81,6 +88,7 @@
 //            读取消息提示数量
             readNewNum: function () {
                 this.newnum = 1;
+                console.log(this.newnum);
 //                ajax todo
             },
 

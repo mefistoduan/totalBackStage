@@ -154,6 +154,7 @@
         margin: 0 auto;
         height: 30px;
         color: #979898;
+        font-size: 18px;
     }
 
     .main-menu li a:hover {

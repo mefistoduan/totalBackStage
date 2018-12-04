@@ -40,7 +40,7 @@ todo list
 
 7.常用表格带checkbox，业务弹窗组件 和 select 筛选， input text 筛选
 
-8.左侧右上角定时轮询和消息弹窗
+8.左侧右上角定时轮询和消息弹窗 12/4
 
 module
 http://appwork.nicethemes.cn/pages_pricing.html
