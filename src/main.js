@@ -69,3 +69,31 @@ Vue.prototype.valid = function (data,mins,maxs,text){//changeData是函数名
         return true
     }
 };
+
+// 获取当前时间
+Vue.prototype.currentDate = function() {
+    let date = new Date();
+    let seperator1 = "-";
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    let thisdata = year + seperator1 + month + seperator1 + strDate;
+    return thisdata;
+};
+
+
+// 获取开始时间
+Vue.prototype.beforeDay = function () {
+    let date = new Date();
+    let milliseconds = date.getTime() - 1000 * 60 * 60 * 24 * 30;
+    let beforedata = new Date(milliseconds);
+    console.log(beforedata);
+    // let time = newDate.Format("yyyy-MM-dd hh:mm:ss");
+    return beforedata
+};
