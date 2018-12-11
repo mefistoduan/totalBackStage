@@ -94,7 +94,6 @@
                         }).catch(() => {
                         });
                     } else {
-                        console.log(data);
                         this.$emit('navOpen', data);
                     }
                 }

@@ -63,7 +63,6 @@
                 }
             },
             navOpen: function (data) {
-                console.log(data);
                 let that = this;
                 let r = [];
                 let array = that.tabs;

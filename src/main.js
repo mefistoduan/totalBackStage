@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -35,6 +36,7 @@ if(process.env.NODE_ENV === 'development'){
     // let vConsole = new VConsole() // 初始化
 }
 
+Vue.prototype.axios = axios
 
 // 校验内容长度
 Vue.prototype.valid = function (data,mins,maxs,text){//changeData是函数名

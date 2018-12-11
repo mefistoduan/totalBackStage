@@ -88,7 +88,6 @@
 //            读取消息提示数量
             readNewNum: function () {
                 this.newnum = 1;
-                console.log(this.newnum);
 //                ajax todo
             },
 
