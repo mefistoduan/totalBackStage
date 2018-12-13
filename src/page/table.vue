@@ -59,6 +59,7 @@
         </span>
 
         <el-table
+                ref="multipleTable"
                 is-horizontal-resize
                 style="width:96%"
                 :data="tableData"
@@ -129,18 +130,18 @@
                 pageIndex: 1,
                 optionsSelect: [
                     {
-                    value: '0',
-                    label: '全部'
-                },      {
-                    value: '1',
-                    label: '唱歌'
-                }, {
-                    value: '2',
-                    label: '书法'
-                }, {
-                    value: '3',
-                    label: '钢琴'
-                }],
+                        value: '0',
+                        label: '全部'
+                    }, {
+                        value: '1',
+                        label: '唱歌'
+                    }, {
+                        value: '2',
+                        label: '书法'
+                    }, {
+                        value: '3',
+                        label: '钢琴'
+                    }],
                 options: [{
                     value: '10',
                     label: '10'
@@ -154,10 +155,8 @@
                     value: '100',
                     label: '100'
                 },],
-                tableData: [
-                ],
+                tableData: [],
                 multipleSort: false,
-                multipleTable: false,
                 columns: [
                     {
                         field: 'name',
@@ -211,36 +210,71 @@
             },
             pageChange(pageIndex) {
                 this.pageIndex = pageIndex;
-               this.getTableQuery();
+                this.getTableQuery();
             },
             formatter(row, column) {
                 return row.address;
             },
             // 查询按钮
-            query(){
+            query() {
                 this.getTableQuery();
             },
             // 修改按钮
-            change(){},
-            // 删除按钮
-            del(){
-                // todo
+            change() {
             },
-            getTableQuery() {
+            // 删除按钮
+            del() {
                 let that = this;
+                let thisid = '';
+                let rows = this.$refs.multipleTable.selection;
+                rows.forEach((item, index) => {
+                    thisid += item.id + ',';
+                });
+
+                if (!thisid) {
+                    that.$message({
+                        message: '请至少选择一条',
+                        type: 'error'
+                    });
+                    return false
+                }
+
                 let url = 'http://localhost:8080/static/api/table.json';//获取
                 let postdata = {
-                    "bdt":that.value1,
-                    "edt":that.value2,
-                    "tel":that.input_tel,
-                    "hobbit":that.sel_hobbit,
-                    "pageIndex":that.pageIndex,
+                    "listId": thisid,
+                    "state": 44,
                 };
                 let JSON = '';
                 // 实际生产环境使用post
                 axios.get(url, postdata)
                     .then(function (response) {
-                        JSON =  response.data ;
+                        JSON = response.data;
+                        if (JSON.code == 0) {
+                            that.$message({
+                                message: '已删除成功',
+                                type: 'success'
+                            });
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            getTableQuery() {
+                let that = this;
+                let url = 'http://localhost:8080/static/api/table.json';//获取
+                let postdata = {
+                    "bdt": that.value1,
+                    "edt": that.value2,
+                    "tel": that.input_tel,
+                    "hobbit": that.sel_hobbit,
+                    "pageIndex": that.pageIndex,
+                };
+                let JSON = '';
+                // 实际生产环境使用post
+                axios.get(url, postdata)
+                    .then(function (response) {
+                        JSON = response.data;
                         if (JSON.code == 0) {
                             that.tableData = JSON.rs;
                             that.total = JSON.total;
