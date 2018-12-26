@@ -4,7 +4,7 @@
             <div class="header_logo">
                 <!--<img id="logo" src="../../static/images/login/logo.png"/>-->
             </div>
-            <h5 class="title">{{company.app}}</h5>
+            <h5 class="title" @click="appname">{{company.app}}</h5>
             <!--login start-->
             <div class="control">
                 <div class="login col-lg-12 col-xs-12">
@@ -189,17 +189,23 @@
                 sms_login: false,
                 registerFunc: true,//注册入口
                 changeLoginType: false,//登陆方式切换
-                valImgSrc:  'api/sys3/mod/index/login_validcode.php',
+                valImgSrc: 'api/sys3/mod/index/login_validcode.php',
                 company: {
                     name: '洗车公司',
                     tel: '400-007-9360',
-                    app: '洗车管理总后台',
-                    url:' xxx.xxx.com'
+                    app: this.appInfo[0].appname,
+                    url: 'xxx.xxx.com'
                 }
             }
         },
+        created(){
+
+        },
         methods: {
 //            切换验证
+            appname:function () {
+
+            },
             change_login: function () {
                 let that = this;
                 if (that.pwd_login == true) {
@@ -457,7 +463,7 @@
                     } else {
                         this.$notify({
                             title: '警告',
-                            message:JSON.memo,
+                            message: JSON.memo,
                             type: 'warning'
                         });
                     }
@@ -468,7 +474,7 @@
 //            pwd登陆
             loginInfo: function () {
                 const that = this;
-                let url = this.headapi +'?ctl=ajax&mod=index&act=UserLogin';
+                let url = this.headapi + '?ctl=ajax&mod=index&act=UserLogin';
                 let username = this.$refs.username.value;
                 let userpwd = this.$refs.userpwd.value;
                 let uservalid = this.$refs.uservalid.value;
@@ -481,18 +487,18 @@
                     'src': 'pc'
                 };
                 let postdata = qs.stringify(param);
-                axios.post(url, postdata).then(function(data){
+                axios.post(url, postdata).then(function (data) {
                     let json = data.data;
-                    if(json.code == 0){
+                    if (json.code == 0) {
                         that.$router.push({path: '/'});
-                    }else{
+                    } else {
                         that.$notify({
                             title: '警告',
-                            message:json.memo,
+                            message: json.memo,
                             type: 'warning'
                         });
                     }
-                },function(response){
+                }, function (response) {
                     console.info(response);
                 })
             }
@@ -517,7 +523,7 @@
                 } else {
                     that.$notify({
                         title: '警告',
-                        message:json.memo,
+                        message: json.memo,
                         type: 'warning'
                     });
                 }
@@ -610,7 +616,7 @@
 
     #imgValidcode {
         width: 90px;
-        height:30px;
+        height: 30px;
         position: relative;
         float: right;
         bottom: 37px;

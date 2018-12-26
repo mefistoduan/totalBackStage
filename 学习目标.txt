@@ -1,14 +1,7 @@
 
-module
-http://appwork.nicethemes.cn/pages_pricing.html
+总目标 开箱即用，完成一个项目70%的功能。
+首页，图表类，用户管理和信息设置。
 
-ui
-http://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=9402
-
-�ѳ��õļ�������һ�׳���
-
-
-Ȼ��������һ�����õ�APPģ������
-
-
-ѧ��дһ��php+sqlserver�ĺ�̨�������
+尽量以当前表结构为准，力图于现在项目可以无缝切换使用。
+提高封装效果，减少冗余代码
+提升访问速度。
