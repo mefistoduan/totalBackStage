@@ -8,7 +8,7 @@
                 role="tablist">
                 <li :class="{'ui-state-default ui-corner-top  ui-sortable-handle':true,'ui-tabs-active ui-state-active':index == thisClick}"
                     v-for="(tab,index) in tabs">
-                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.link,index)" :href="tab.link">{{tab.name}}</a>
+                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.clmurl,index)" :href="tab.link">{{tab.name}}</a>
                     <span class="el-icon-close" @click="closeNav(index)"></span>
                 </li>
             </ul>
@@ -66,15 +66,15 @@
                 let that = this;
                 let r = [];
                 let array = that.tabs;
-                array.push({name: data.name, link: data.link});
+                array.push({name: data.clmname, clmurl: data.clmurl});
                 for (var i = 0, l = array.length; i < l; i++) {
                     for (var j = i + 1; j < l; j++)
-                        if (array[i].link === array[j].link) j = ++i;
+                        if (array[i].clmurl === array[j].clmurl) j = ++i;
                     r.push(array[i]);
                 }
                 that.tabs = r;
                 this.thisClick = that.tabs.length - 1;
-                this.thisIframe = data.link;
+                this.thisIframe = data.clmurl;
             }
         },
         components: {

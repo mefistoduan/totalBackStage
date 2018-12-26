@@ -12,7 +12,7 @@
                         <li class="form-group">
                             <input type="text" class="form-control" id="username" placeholder="手机号/用户名"
                                    ref="username"
-                               style="border: 1px solid rgb(221, 221, 221);">
+                                   style="border: 1px solid rgb(221, 221, 221);">
                         </li>
                         <li class="form-group">
                             <input type="password" class="form-control" id="userpwd" placeholder="请输入密码"
@@ -24,14 +24,15 @@
                                    @keyup.13="pwdLoginBtn"
                                    ref="uservalid"
                                    style="border: 1px solid rgb(221, 221, 221);">
-                                 <!--onclick="this.src = this.src + '?'+ Math.random();" title="看不清？刷一下试试！">-->
+                            <!--onclick="this.src = this.src + '?'+ Math.random();" title="看不清？刷一下试试！">-->
                             <!--/sys/mod/index/login_validcode.php-->
                             <img id="imgValidcode"
                                  :src="valImgSrc"
                                  title="看不清？刷一下试试！" @click="changeValImg"/>
                         </li>
                         <li class="form-group">
-                            <button type="submit" class="btn btn-default login_btn" id="login_btn" @click="pwdLoginBtn">登录
+                            <button type="submit" class="btn btn-default login_btn" id="login_btn" @click="pwdLoginBtn">
+                                登录
                             </button>
                         </li>
                     </ul>
@@ -58,15 +59,17 @@
                         </li>
                         <li class="form-group">
 
-                            <button type="submit" class="btn btn-default login_btn" id="valid_login_btn" @click="smsLoginBtn">登录</button>
+                            <button type="submit" class="btn btn-default login_btn" id="valid_login_btn"
+                                    @click="smsLoginBtn">登录
+                            </button>
                         </li>
                     </ul>
-                    <div class="info">
+                    <div class="info" v-if="registerFunc">
                         您还没有注册账号？
                         <button id="register" @click="register">注册
                         </button>
                     </div>
-                    <div class="change_container">
+                    <div class="change_container" v-if="changeLoginType">
                         <button id="change_login" @click="change_login">切换验证码登录</button>
                     </div>
                 </div>
@@ -75,9 +78,9 @@
                     <div class="container">
                         <div class="row text-center">
 
-                            Copyright © 2018
-                            <a href="http://xxx.xxx.com/" target="_blank">
-                                xxx.xxx.com
+                            Copyright © {{year}}
+                            <a :href="company.url" target="_blank">
+                                {{company.url}}
                             </a>.
                             All Rights Reserved. xx版权所有 &nbsp;&nbsp;&nbsp;
                         </div>
@@ -174,29 +177,30 @@
 </template>
 <script>
     import axios from 'axios';
-
     let qs = require('qs');
-
     export default {
         data() {
             return {
+                year: '2018',
                 modal_register: false,
                 modal_retrieve: false,
                 modal_ruler: false,
                 pwd_login: true,
                 sms_login: false,
-                valImgSrc: '../../static/images/login/valid_img.png',
+                registerFunc: true,//注册入口
+                changeLoginType: false,//登陆方式切换
+                valImgSrc:  'api/sys3/mod/index/login_validcode.php',
                 company: {
-                    name: 'XXX公司',
-                    tel: '123-5678-91011',
-                    app: 'xxx应用管理后台',
+                    name: '洗车公司',
+                    tel: '400-007-9360',
+                    app: '洗车管理总后台',
+                    url:' xxx.xxx.com'
                 }
             }
         },
         methods: {
 //            切换验证
             change_login: function () {
-                console.log(123);
                 let that = this;
                 if (that.pwd_login == true) {
                     that.pwd_login = false;
@@ -206,9 +210,9 @@
                     that.sms_login = false;
                 }
             },
-            changeValImg:function() {
+            changeValImg: function () {
                 let that = this;
-                that.valImgSrc = that.valImgSrc + '?'+ Math.random();
+                that.valImgSrc = that.valImgSrc + '?' + Math.random();
             },
             // pwd登录
             pwdLoginBtn: function () {
@@ -451,7 +455,11 @@
                     if (json.code == 0) {
                         that.plates = json.rs;
                     } else {
-                        Toast(JSON.memo);
+                        this.$notify({
+                            title: '警告',
+                            message:JSON.memo,
+                            type: 'warning'
+                        });
                     }
                 }, function (response) {
                     console.info(response);
@@ -460,29 +468,33 @@
 //            pwd登陆
             loginInfo: function () {
                 const that = this;
-                let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
+                let url = this.headapi +'?ctl=ajax&mod=index&act=UserLogin';
                 let username = this.$refs.username.value;
                 let userpwd = this.$refs.userpwd.value;
                 let uservalid = this.$refs.uservalid.value;
                 let param = {
                     'usercode': username,
-                    'passwd': userpwd,
-                    'valid': uservalid,
+                    'pwcode': userpwd,
+                    'nvcode': uservalid,
                     'logintype': 1,
+                    'accounttype': 3,
                     'src': 'pc'
                 };
-//                测试时直接跳至主界面
-//                let postdata = qs.stringify(param);
-//                axios.post(url, postdata).then(function(data){
-//                    let json = data.data;
-//                    if(json.code == 0){
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
                         that.$router.push({path: '/'});
-//                    }else{
-//                        Toast(JSON.memo);
-//                    }
-//                },function(response){
-//                    console.info(response);
-//                })
+                    }else{
+                        that.$notify({
+                            title: '警告',
+                            message:json.memo,
+                            type: 'warning'
+                        });
+                    }
+                },function(response){
+                    console.info(response);
+                })
             }
         },
 //        sms登陆
@@ -501,9 +513,13 @@
             axios.post(url, postdata).then(function (data) {
                 let json = data.data;
                 if (json.code == 0) {
-                    that.plates = json.rs;
+                    that.$router.push({path: '/'});
                 } else {
-                    Toast(JSON.memo);
+                    that.$notify({
+                        title: '警告',
+                        message:json.memo,
+                        type: 'warning'
+                    });
                 }
             }, function (response) {
                 console.info(response);
@@ -593,12 +609,14 @@
     }
 
     #imgValidcode {
-        height: 20px;
+        width: 90px;
+        height:30px;
         position: relative;
         float: right;
-        bottom: 30px;
+        bottom: 37px;
         margin-right: 10px;
     }
+
     #imgValidcode2 {
         height: 20px;
         position: relative;
@@ -606,6 +624,7 @@
         bottom: 30px;
         margin-right: 10px;
     }
+
     #get_phone_valid {
         width: 109px;
         float: right;
@@ -623,7 +642,7 @@
         margin: 0 auto;
         float: none;
         display: block;
-        outline: none!important;
+        outline: none !important;
     }
 
     #modal_register {
@@ -899,7 +918,7 @@
         margin-bottom: 7px;
         margin-top: 10px;
         float: left;
-        top:10px
+        top: 10px
     }
 
     #valid_img {

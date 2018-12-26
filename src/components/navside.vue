@@ -4,19 +4,20 @@
             <div class="logo">
                 <router-link :to="{path: '/main'}" class="logo-expanded">
                     <img src="/static/images/comm/logo.svg" alt="">
+                    <p>  {{ appname }}</p>
                 </router-link>
             </div>
             <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
-                <li v-for="(nav,index) in navs" :key="index">
-                    <a @click="handleNodeClick(nav,index,nav.child)">
+                <li v-for="(nav,index) in navs" :key="index" v-show="nav.show == 1">
+                    <a @click="handleNodeClick(nav,index)">
                         <i :class="nav.icon"></i>
-                        <span class="title">{{nav.name}}</span>
+                        <span class="title">{{nav.clmname}}</span>
                     </a>
-                    <ul class="hide_tap" v-if="nav.child" v-show="navshow[index]">
-                        <li v-for="child in nav.child">
+                    <ul class="hide_tap" v-show="childs && index == hasChilds" >
+                        <li v-for="child in childs">
                             <a @click="handleNodeClick(child,index)">
                                 <i class="el-icon-info"></i>
-                                <span class="title">{{child.name}}</span>
+                                <span class="title">{{child.clmname}}</span>
                             </a>
                         </li>
                     </ul>
@@ -31,7 +32,85 @@
         data() {
             return {
                 wildState:0,
-                navs: [
+                appname:'洗车服务管理平台',
+                hasChilds:'',
+                navs: [{
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "\u5546\u5bb6\u9996\u9875",
+                    "clmurl": "/#/main",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                }, {
+                    "clmid": "1",
+                    "spclmid": "0",
+                    "ordno": "1",
+                    "c_level": "1",
+                    "clmcode": "index",
+                    "clmname": "\u5f53\u65e5\u9884\u7ea6",
+                    "clmurl": "/#/user",
+                    "prname": "",
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": "",
+                    "clicon": "front_icon"
+                }
+                    , {
+                        "clmid": "44",
+                        "spclmid": "0",
+                        "ordno": "2",
+                        "c_level": "1",
+                        "clmcode": "gift",
+                        "clmname": "\u8d60\u5238\u67e5\u8be2",
+                        "clmurl": " \/?ctl=main&mod=main&act=gift",
+                        "prname": " ",
+                        "en": "1",
+                        "show": "1",
+                        "grouplist": "2,5",
+                        "memo": " ",
+                        "clicon": "gift_icon"
+                    }, {
+                        "clmid": "2",
+                        "spclmid": "0",
+                        "ordno": "3",
+                        "c_level": "1",
+                        "clmcode": "history",
+                        "clmname": "\u5386\u53f2\u8bb0\u5f55",
+                        "clmurl": "",
+                        "prname": "",
+                        "en": "1",
+                        "show": "1",
+                        "grouplist": "2,5",
+                        "memo": "",
+                        "clicon": "history_icon"
+                    }
+                    , {
+                        "clmid": "5",
+                        "spclmid": "0",
+                        "ordno": "19",
+                        "c_level": "1",
+                        "clmcode": "logout",
+                        "clmname": "\u9000\u51fa\u7cfb\u7edf",
+                        "clmurl": "/#/login",
+                        "prname": "",
+                        "en": "1",
+                        "show": "1",
+                        "grouplist": "2,3,4,5",
+                        "memo": "",
+                        "clicon": "logout_icon"
+                    }
+                ],
+                navshow: [false, false, false],
+                childs: [],
+                navs2: [
                     {name: '首页', link: '/#/main', icon: 'el-icon-menu'},
                     {
                         name: '常用页面', link: '/#', icon: 'el-icon-menu',
@@ -78,26 +157,36 @@
             showPanel() {
                 this.wildState = 0;
             },
-            handleNodeClick: function (data, index, child) {
+            handleNodeClick: function (menudata, index) {
                 let that = this;
-                if (child) {
-                    this.navshowClick(index);
-                } else {
-                    if (data.name == '退出') {
-                        this.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
-                            confirmButtonText: '确定',
-                            cancelButtonText: '取消',
-                            type: 'warning'
-                        }).then(() => {
-//                           ajax todo
-                            that.$router.push({path: '/login'});
-                        }).catch(() => {
-                        });
-                    } else {
-                        this.$emit('navOpen', data);
+                let clmid = menudata['clmid'];
+                let url =  'api/?ctl=ajax&mod=index&act=menu';
+                let param = {
+                    'clmid':clmid,
+                };
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    that.childs = json;
+                    that.hasChilds = index;
+                    if(that.childs.length == 0){//没有子节点时才开始判断跳转
+                        if (menudata.clmname == '退出系统') {
+                            that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
+                                confirmButtonText: '确定',
+                                cancelButtonText: '取消',
+                                type: 'warning'
+                            }).then(() => {
+                                that.$router.push({path: '/login'});
+                            }).catch(() => {
+//                            nothing
+                            });
+                        } else {
+                            that.$emit('navOpen', menudata);
+                        }
                     }
-                }
-
+                },function(response){
+                    console.info(response);
+                });
             },
             navshowClick: function (index) {
                 this.navshow = [false, false, false];

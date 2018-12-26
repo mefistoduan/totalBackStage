@@ -14,6 +14,7 @@ import Courses from '@/page/Courses'
 import badges from '@/page/badges'
 import dropdown from '@/page/dropdown'
 import page from '@/page/page'
+import user from '@/page/user'
 import message from '@/page/message'
 import chart_bar from '@/components/chart_bar'
 import chart_line from '@/components/chart_line'
@@ -145,6 +146,13 @@ export default new Router({
                 title: 'message'
             },
             component: message
+        }, {
+            path: '/user',
+            name: 'user',
+            meta: {
+                title: 'user'
+            },
+            component: user
         },
         {
             path: '*',
