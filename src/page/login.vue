@@ -4,7 +4,7 @@
             <div class="header_logo">
                 <!--<img id="logo" src="../../static/images/login/logo.png"/>-->
             </div>
-            <h5 class="title" @click="appname">{{company.app}}</h5>
+            <h5 class="title">{{company.app}}</h5>
             <!--login start-->
             <div class="control">
                 <div class="login col-lg-12 col-xs-12">
@@ -177,6 +177,7 @@
 </template>
 <script>
     import axios from 'axios';
+
     let qs = require('qs');
     export default {
         data() {
@@ -187,25 +188,20 @@
                 modal_ruler: false,
                 pwd_login: true,
                 sms_login: false,
-                registerFunc: true,//注册入口
+                registerFunc: false,//注册入口
                 changeLoginType: false,//登陆方式切换
-                valImgSrc: 'api/sys3/mod/index/login_validcode.php',
+//                valImgSrc: 'api/sys3/mod/index/login_validcode.php',
+                valImgSrc: 'static/images/login/valid_img.png',//测试用路径
                 company: {
                     name: '洗车公司',
                     tel: '400-007-9360',
-                    app: this.appInfo[0].appname,
+                    app: '洗车管理总后台',
                     url: 'xxx.xxx.com'
                 }
             }
         },
-        created(){
-
-        },
         methods: {
 //            切换验证
-            appname:function () {
-
-            },
             change_login: function () {
                 let that = this;
                 if (that.pwd_login == true) {
@@ -216,6 +212,7 @@
                     that.sms_login = false;
                 }
             },
+//            点击验证码切换
             changeValImg: function () {
                 let that = this;
                 that.valImgSrc = that.valImgSrc + '?' + Math.random();
@@ -296,7 +293,6 @@
                     console.info(response);
                 })
             },
-            // todo
             valid_btn: function () {
                 let img_valid = this.$refs.imgValid.value;
                 let tel = this.$refs.sms_username.value;
@@ -474,7 +470,7 @@
 //            pwd登陆
             loginInfo: function () {
                 const that = this;
-                let url = this.headapi + '?ctl=ajax&mod=index&act=UserLogin';
+                let url =  '/?ctl=ajax&mod=index&act=UserLogin';
                 let username = this.$refs.username.value;
                 let userpwd = this.$refs.userpwd.value;
                 let uservalid = this.$refs.uservalid.value;

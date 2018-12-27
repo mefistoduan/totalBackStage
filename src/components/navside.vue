@@ -28,87 +28,15 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    let qs = require('qs');
     export default {
         data() {
             return {
                 wildState:0,
                 appname:'洗车服务管理平台',
                 hasChilds:'',
-                navs: [{
-                    "clmid": "57",
-                    "spclmid": "0",
-                    "ordno": "0",
-                    "c_level": "2",
-                    "clmcode": "front_index",
-                    "clmname": "\u5546\u5bb6\u9996\u9875",
-                    "clmurl": "/#/main",
-                    "prname": null,
-                    "en": "1",
-                    "show": "1",
-                    "grouplist": "2,5",
-                    "memo": null,
-                    "clicon": "home_icon"
-                }, {
-                    "clmid": "1",
-                    "spclmid": "0",
-                    "ordno": "1",
-                    "c_level": "1",
-                    "clmcode": "index",
-                    "clmname": "\u5f53\u65e5\u9884\u7ea6",
-                    "clmurl": "/#/user",
-                    "prname": "",
-                    "en": "1",
-                    "show": "1",
-                    "grouplist": "2,5",
-                    "memo": "",
-                    "clicon": "front_icon"
-                }
-                    , {
-                        "clmid": "44",
-                        "spclmid": "0",
-                        "ordno": "2",
-                        "c_level": "1",
-                        "clmcode": "gift",
-                        "clmname": "\u8d60\u5238\u67e5\u8be2",
-                        "clmurl": " \/?ctl=main&mod=main&act=gift",
-                        "prname": " ",
-                        "en": "1",
-                        "show": "1",
-                        "grouplist": "2,5",
-                        "memo": " ",
-                        "clicon": "gift_icon"
-                    }, {
-                        "clmid": "2",
-                        "spclmid": "0",
-                        "ordno": "3",
-                        "c_level": "1",
-                        "clmcode": "history",
-                        "clmname": "\u5386\u53f2\u8bb0\u5f55",
-                        "clmurl": "",
-                        "prname": "",
-                        "en": "1",
-                        "show": "1",
-                        "grouplist": "2,5",
-                        "memo": "",
-                        "clicon": "history_icon"
-                    }
-                    , {
-                        "clmid": "5",
-                        "spclmid": "0",
-                        "ordno": "19",
-                        "c_level": "1",
-                        "clmcode": "logout",
-                        "clmname": "\u9000\u51fa\u7cfb\u7edf",
-                        "clmurl": "/#/login",
-                        "prname": "",
-                        "en": "1",
-                        "show": "1",
-                        "grouplist": "2,3,4,5",
-                        "memo": "",
-                        "clicon": "logout_icon"
-                    }
-                ],
-                navshow: [false, false, false],
+                navs: [],
                 childs: [],
                 navs2: [
                     {name: '首页', link: '/#/main', icon: 'el-icon-menu'},
@@ -148,7 +76,7 @@
             }
         },
         mounted() {
-
+            this.getTableQuery();
         },
         methods: {
             hidePanel() {
@@ -157,17 +85,35 @@
             showPanel() {
                 this.wildState = 0;
             },
+            getTableQuery(){
+                let that = this;
+                let url =  '/?ctl=ajax&mod=index&act=menu';
+                let param = {
+                    'clmid':0,
+                };
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
+                        that.navs = json.rs;
+                    }else{
+                        that.navs = '';
+                    }
+                },function(response){
+                    console.info(response);
+                });
+            },
             handleNodeClick: function (menudata, index) {
                 let that = this;
                 let clmid = menudata['clmid'];
-                let url =  'api/?ctl=ajax&mod=index&act=menu';
+                let url =  '/?ctl=ajax&mod=index&act=menu';
                 let param = {
                     'clmid':clmid,
                 };
                 let postdata = qs.stringify(param);
                 axios.post(url, postdata).then(function(data){
                     let json = data.data;
-                    that.childs = json;
+                    that.childs = json.rs;
                     that.hasChilds = index;
                     if(that.childs.length == 0){//没有子节点时才开始判断跳转
                         if (menudata.clmname == '退出系统') {

@@ -12,6 +12,8 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -30,6 +32,8 @@ Vue.prototype.thisUrl = process.env.NODE_ENV === 'development' ? '/api' : '';
 if(process.env.NODE_ENV === 'development'){
     Vue.prototype.headhttp = 'http://op/';//测试端域名，zw
     Vue.prototype.headapi = '/api/';
+    // 引入mockjs
+    require('./mock.js');
 }else{
     Vue.prototype.headhttp = 'http://op.xxx.cc/';//线上实际域名
     Vue.prototype.headapi =  'http://op.xxx.cc/';//线上实际域名
@@ -37,21 +41,6 @@ if(process.env.NODE_ENV === 'development'){
 }
 
 Vue.prototype.axios = axios;
-
-// 项目常量 star
-Vue.prototype.appInfo = [{
-        'appname':'洗车管理总后台',
-        'name':'洗车管理总后台',
-        'tel':'400-007-9360',
-        'url':'xxx.xxx.com',
-    }];
-
-
-
-// 项目常量 end
-
-
-
 
 // 校验内容长度
 Vue.prototype.valid = function (data,mins,maxs,text){//changeData是函数名

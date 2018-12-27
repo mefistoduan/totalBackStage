@@ -1,0 +1,6 @@
+为了安全性，接口字段都应保存在本地不宜同步
+1.登陆 login
+/?ctl=ajax&mod=index&act=login
+
+2.菜单
+/?ctl=ajax&mod=index&act=menu
