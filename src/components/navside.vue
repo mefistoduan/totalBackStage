@@ -38,40 +38,6 @@
                 hasChilds:'',
                 navs: [],
                 childs: [],
-                navs2: [
-                    {name: '首页', link: '/#/main', icon: 'el-icon-menu'},
-                    {
-                        name: '常用页面', link: '/#', icon: 'el-icon-menu',
-                        child: [
-                            {name: '404', link: '/#/recharge'},
-                            {name: '表格', link: '/#/table'},
-                            {name: 'pricing', link: '/#/pricing'},
-                            {name: 'form', link: '/#/form'},
-                            {name: 'Courses', link: '/#/Courses'},
-                            {name: 'message', link: '/#/message'},
-                        ]
-                    },
-                    {
-                        name: '常用组件', link: '/#', icon: 'el-icon-menu',
-                        child: [
-                            {name: 'typography', link: '/#/typography'},
-                            {name: '按钮', link: '/#/button'},
-                            {name: 'badges', link: '/#/badges'},
-                            {name: 'dropdown', link: '/#/dropdown'},
-                            {name: 'page', link: '/#/page'},
-                        ]
-                    }
-                    ,
-                    {
-                        name: '图表', link: '/#', icon: 'el-icon-menu',
-                        child: [
-                            {name: '柱状图', link: '/#/chart_bar'},
-                            {name: '线图', link: '/#/chart_line'},
-                            {name: '环形图', link: '/#/chart_dona'},
-                        ]
-                    },
-                    {name: '退出', link: '/logout', icon: 'el-icon-sold-out'},
-                ],
                 navshow: [false, false, false],
             }
         },
@@ -157,6 +123,10 @@
         color: #333;
         text-align: center;
         line-height: 200px;
+        box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
+        -o-box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
+        -webkit-box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
+        -moz-box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
     }
     .wild {
         width: 230px;
@@ -172,6 +142,12 @@
         margin-bottom: 30px;
         height: 140px;
     }
+    .main-menu {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+    }
 
     .main-menu li {
         width: 100%;
@@ -179,6 +155,7 @@
         display: block;
         margin: 0 auto;
         cursor: pointer;
+        border-bottom: 1px ridge rgba(255, 255, 255, 0.04);
     }
 
     .main-menu li a {
@@ -186,25 +163,38 @@
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        height: 30px;
-        color: #979898;
-        font-size: 18px;
+        height: 46px;
+        line-height: 46px;
+        color: #fff;
     }
 
     .main-menu li a:hover {
         color: #fff;
+        background-color: #008DE7;
     }
 
     .main-menu a i {
         float: left;
+        margin-top: 14px;
+        margin-left: 5px;
     }
 
     .main-menu a span {
         width: 100px;
         float: left;
         text-align: left;
-        height: 20px;
-        text-indent: 10px;
-        line-height: 20px;
+        height: 46px;
+        text-indent: 6px;
+        line-height: 46px;
+        font-size: 14px;
+    }
+    .el-icon-arrow-right {
+        width: 10px;
+        height: 13px;
+        line-height: 13px;
+        color: #fff;
+        font-style: normal;
+        float: right;
+        font-size: 12px;
     }
 </style>

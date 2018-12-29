@@ -591,12 +591,13 @@
     }
 
     .row .title {
-        font-size: 25px;
+        font-size: 50px;
         text-align: center;
         color: #fff;
         font-family: "Microsoft YaHei";
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 60px;
+        text-shadow:3px 2px 3px #000;
     }
 
     .row .form-control {
@@ -1309,7 +1310,7 @@
     }
 
     .white_cube {
-        width: 300px;
+        width: 330px;
         min-height: 288px;
         overflow: hidden;
         display: block;
@@ -1317,8 +1318,7 @@
         background: #fff;
         border-radius: 5px;
         float: none;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding: 25px;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     }
 

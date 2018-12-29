@@ -125,6 +125,7 @@
         overflow: hidden;
         display: block;
         margin: 0 auto;
+        background: #edecec;
     }
 
     .tabIframeWrapper {
@@ -133,11 +134,11 @@
         bottom: 0;
         left: 0;
         right: 0;
-        width: 100%;
+        width: 98%;
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        background: #fff;
+        background: #edecec;
     }
 
     .iframetab {

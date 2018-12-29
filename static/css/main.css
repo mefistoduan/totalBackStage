@@ -930,7 +930,11 @@ ul.dropdown-menu.drp-mnu li {
     color: #fff;
     margin: 0;
 }
-/*---//four-grids-----*/
+.four-grids img {
+    width: 32px;
+    height: 32px;
+}
+    /*---//four-grids-----*/
 .card-body.p-b-20 .list-group {
     margin-bottom: 0;
 }
@@ -1125,9 +1129,12 @@ hr {
 .streamline .sl-item .text-muted {
     color: inherit;
     opacity: .6;
+    font-size: 12px;
 }
 .streamline .sl-item p {
     margin-bottom: 10px;
+    font-size: 14px;
+    text-align: left;
 }
 .streamline .sl-primary{
     border-left-color: #ff4a43;
@@ -1166,8 +1173,12 @@ hr {
 .card .card-body.card-padding {
     padding: 23px 27px;
 }
+.card tr {
+    text-align: left;
+}
 .streamline .sl-item .sl-content {
     margin-left: 24px;
+    text-align: left;
 }
 .panel-body .list-group {
     margin-bottom: 0;
@@ -1176,6 +1187,7 @@ hr {
 .lg-item-heading {
     color: #000;
     font-weight: 600;
+    text-align: left;
 }
 small.lg-item-text {
     color: #777;
@@ -3014,6 +3026,14 @@ ul.bt-list li a {
     animation-fill-mode: forwards;
     -webkit-animation-direction: normal, alternate;
     animation-direction: normal, alternate;
+}
+.main_bottom {
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding-bottom: 30px;
 }
 
 /* Icon Hang */

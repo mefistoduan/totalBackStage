@@ -332,7 +332,7 @@
     .customer_serve {
         float: right;
         margin-right: 20px;
-        font-size: 16px;
+        font-size: 12px;
         color: #585858;
         line-height: 45px;
         text-align: right;
@@ -341,10 +341,6 @@
     #about_us {
         color: #03B1FF;
         cursor: pointer;
-    }
-
-    .user-info-navbar .user-info-menu li a {
-        text-decoration: underline;
     }
 
     .dropdown-menu-list a img {
