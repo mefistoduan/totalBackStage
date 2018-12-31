@@ -7,7 +7,7 @@
                         <img src="static/images/main/m1.png" alt="">
                     </div>
                     <div class="four-text">
-                        <h3>User</h3>
+                        <h3>用户数</h3>
                         <h4>{{User}}</h4>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <img src="static/images/main/m2.png" alt="">
                     </div>
                     <div class="four-text">
-                        <h3>Clients</h3>
+                        <h3>新用户</h3>
                         <h4>{{Clients}}</h4>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <img src="static/images/main/m3.png" alt="">
                     </div>
                     <div class="four-text">
-                        <h3>Projects</h3>
+                        <h3>拨打数</h3>
                         <h4>{{Projects}}</h4>
                     </div>
                 </div>
@@ -40,14 +40,14 @@
                         <img src="static/images/main/m4.png" alt="">
                     </div>
                     <div class="four-text">
-                        <h3>Old</h3>
+                        <h3>充值金额</h3>
                         <h4>{{Old}}</h4>
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
-        <mainChart></mainChart>
+        <mainChart ></mainChart>
         <div class="main_bottom">
             <div class="col-sm-4 wthree-crd">
                 <div class="card">
@@ -122,36 +122,36 @@
                             <hr class="widget-separator">
                             <div class="widget-body">
                                 <div class="streamline">
-                                    <div class="sl-item sl-primary">
+                                    <div  :class="filterColor(act.level)"  v-for="act in actives">
                                         <div class="sl-content">
-                                            <small class="text-muted">5 分钟之前</small>
-                                            <p>Williams has just joined Project X</p>
+                                            <small class="text-muted">{{act.past_time}} 分钟之前</small>
+                                            <p>{{act.active}}</p>
                                         </div>
                                     </div>
-                                    <div class="sl-item sl-danger">
-                                        <div class="sl-content">
-                                            <small class="text-muted">25 分钟之前</small>
-                                            <p>Jane has sent a request for access</p>
-                                        </div>
-                                    </div>
-                                    <div class="sl-item sl-success">
-                                        <div class="sl-content">
-                                            <small class="text-muted">40 分钟之前</small>
-                                            <p>Kate added you to her team</p>
-                                        </div>
-                                    </div>
-                                    <div class="sl-item">
-                                        <div class="sl-content">
-                                            <small class="text-muted">45 minutes ago</small>
-                                            <p>John has finished his task</p>
-                                        </div>
-                                    </div>
-                                    <div class="sl-item sl-warning">
-                                        <div class="sl-content">
-                                            <small class="text-muted">55 分钟之前</small>
-                                            <p>Jim shared a folder with you</p>
-                                        </div>
-                                    </div>
+                                    <!--<div class="sl-item sl-danger">-->
+                                        <!--<div class="sl-content">-->
+                                            <!--<small class="text-muted">25 分钟之前</small>-->
+                                            <!--<p>Jane has sent a request for access</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="sl-item sl-success">-->
+                                        <!--<div class="sl-content">-->
+                                            <!--<small class="text-muted">40 分钟之前</small>-->
+                                            <!--<p>Kate added you to her team</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="sl-item">-->
+                                        <!--<div class="sl-content">-->
+                                            <!--<small class="text-muted">45 minutes ago</small>-->
+                                            <!--<p>John has finished his task</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="sl-item sl-warning">-->
+                                        <!--<div class="sl-content">-->
+                                            <!--<small class="text-muted">55 分钟之前</small>-->
+                                            <!--<p>Jim shared a folder with you</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>
@@ -163,34 +163,121 @@
 </template>
 <script>
     import mainChart from  '../../src/components/mainChart';
-
+    import axios from 'axios';
+    let qs = require('qs');
     export default {
         data() {
             return {
-                User:'24,420',
-                Clients:'96,420',
-                Projects:'11,370',
-                Old:'4,320',
-                time:'2019 年 8 月',
-                money:'21,235',
-                tables:[
-                    {id:2345,name:'精品洗车',amount:'62,000.00'},
-                    {id:2134,name:'滤芯更换',amount:'23,140.00'},
-                    {id:4131,name:'轮胎调整',amount:'300.00'},
-                    {id:5532,name:'贴膜养护',amount:'11,332.00'},
-                ],
-                cons:[
-                    {id:2345,name:'Lorem',mail:'lorem@gmail.com',depart:'Ceo'},
-                    {id:2345,name:'Lorem',mail:'lorem@gmail.com',depart:'Ceo'},
-                    {id:2345,name:'Lorem',mail:'lorem@gmail.com',depart:'Ceo'},
-                    {id:2345,name:'Lorem',mail:'lorem@gmail.com',depart:'Ceo'},
-                ]
+                User:'',
+                Clients:'',
+                Projects:'',
+                Old:'',
+                time:'',
+                money:'',
+                tables:[],
+                actives:[],
+                cons:[]
             }
         },
         mounted() {
-
+//            主要数据获取
+            this.mainQuery();
+//            首页盈利数据
+            this.profitQuery();
+//            首页联系人数据
+            this.contactQuery();
+//            首页最新活动数据
+            this.activeQuery();
         },
-        methods: {},
+        methods: {
+            mainQuery(){
+                const that = this;
+                let url = '/?ctl=ajax&mod=index&act=mainInfo';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
+                        that.User = json.rs[0].User;
+                        that.Clients = json.rs[0].Clients;
+                        that.Projects = json.rs[0].Projects;
+                        that.Old = json.rs[0].Old;
+                    }else{
+                        that.$message.error(json.memo);
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            },
+            profitQuery(){
+                const that = this;
+                let url = '/?ctl=ajax&mod=index&act=profitQuery';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
+                        that.time = json.rs[0].time;
+                        that.money = json.rs[0].money;
+                        that.tables = json.rs[0].tables;
+                    }else{
+                        that.$message.error(json.memo);
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            },
+            contactQuery(){
+                const that = this;
+                let url = '/?ctl=ajax&mod=index&act=contactQuery';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
+                        that.cons = json.rs[0].cons;
+                    }else{
+                        that.$message.error(json.memo);
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            },
+            activeQuery(){
+                const that = this;
+                let url = '/?ctl=ajax&mod=index&act=activeQuery';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(json.code == 0){
+                        that.actives = json.rs[0].actives;
+                    }else{
+                        that.$message.error(json.memo);
+                    }
+                },function(response){
+                    console.info(response);
+                })
+            },
+            filterColor: function (cube) {
+                let color = '';
+                switch (parseInt(cube)){
+                    case 1:
+                        color = 'sl-item sl-primary';
+                        break;
+                    case 2:
+                        color = 'sl-item sl-danger';
+                        break;
+                    case 3:
+                        color = 'sl-item sl-success';
+                        break;
+                    case 0:
+                        color = 'sl-item sl-warning';
+                        break;
+                }
+                return color
+            }
+        },
         components: {
             mainChart
         }
@@ -217,5 +304,6 @@
         background-color: #edecec;
         padding-left: 10px;
         padding-right: 40px;
+        padding-bottom: 20px;
     }
 </style>

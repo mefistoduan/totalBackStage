@@ -177,7 +177,6 @@
 </template>
 <script>
     import axios from 'axios';
-
     let qs = require('qs');
     export default {
         data() {
