@@ -330,7 +330,18 @@
         background-color: #F2F2F2;
         padding-bottom: 80px;
     }
-
+    .sub_title {
+        width: 96%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+        text-align: left;
+    }
+    .sub_title em {
+        text-decoration: none;
+        font-style: normal;
+    }
     .container {
         width: 100%;
         overflow: hidden;
