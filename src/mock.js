@@ -349,10 +349,10 @@ const UserLogin = function (options) {
 const mainInfo = function () {
     let data = [
         {
-            User:'24,420',
-            Clients:'96,420',
-            Projects:'11,370',
-            Old:'4,320',
+            User: '24,420',
+            Clients: '96,420',
+            Projects: '11,370',
+            Old: '4,320',
         }
     ];
     return {
@@ -365,22 +365,22 @@ const mainInfo = function () {
 const mainChart = function () {
     let data = [
         {
-            labels:['1月', '2月', '3月', '4月', '5月', '6月', '7月','8月', '9月', '10月'],
+            labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月'],
             firstDate: [
                 {
                     label: '用户数',
                     backgroundColor: 'rgba(32,163,222,0.4)',
-                    data: [40, 39, 10, 40, 39, 30, 40,40, 139, 51,]
+                    data: [40, 39, 10, 40, 39, 30, 40, 40, 139, 51,]
                 },
                 {
                     label: '洗车数',
                     backgroundColor: 'rgba(17,146,204,0.65)',
-                    data: [32, 39, 10, 44, 39, 80, 40,140, 22, 30,]
+                    data: [32, 39, 10, 44, 39, 80, 40, 140, 22, 30,]
                 },
                 {
                     label: '收入',
                     backgroundColor: 'rgba(16,132,184,7)',
-                    data: [55, 32, 33, 40, 39, 62, 40,20, 39, 44,]
+                    data: [55, 32, 33, 40, 39, 62, 40, 20, 39, 44,]
                 }
             ]
         }
@@ -395,13 +395,13 @@ const mainChart = function () {
 const profitQuery = function () {
     let data = [
         {
-            time:'2019 年 8 月',
-            money:'21,235',
-            tables:[
-                {id:2345,name:'精品洗车',amount:'62,000.00'},
-                {id:2134,name:'滤芯更换',amount:'23,140.00'},
-                {id:4131,name:'轮胎调整',amount:'300.00'},
-                {id:5532,name:'贴膜养护',amount:'11,332.00'},
+            time: '2019 年 8 月',
+            money: '21,235',
+            tables: [
+                {id: 2345, name: '精品洗车', amount: '62,000.00'},
+                {id: 2134, name: '滤芯更换', amount: '23,140.00'},
+                {id: 4131, name: '轮胎调整', amount: '300.00'},
+                {id: 5532, name: '贴膜养护', amount: '11,332.00'},
             ],
         }
     ];
@@ -415,10 +415,10 @@ const profitQuery = function () {
 const contactQuery = function () {
     let data = [
         {
-            cons:[
-                {id:2234,name:'高瑟',mail:'gose@gmail.com',depart:'前台'},
-                {id:3235,name:'巴伐',mail:'bufa@gmail.com',depart:'洗车员工'},
-                {id:2222,name:'金桔',mail:'gode@gmail.com',depart:'经理'},
+            cons: [
+                {id: 2234, name: '高瑟', mail: 'gose@gmail.com', depart: '前台'},
+                {id: 3235, name: '巴伐', mail: 'bufa@gmail.com', depart: '洗车员工'},
+                {id: 2222, name: '金桔', mail: 'gode@gmail.com', depart: '经理'},
             ]
         }
     ];
@@ -432,11 +432,11 @@ const contactQuery = function () {
 const activeQuery = function () {
     let data = [
         {
-            actives:[
-                {id:1234,past_time:'5',active:'高瑟营销1张50次洗车卡',level:'1'},
-                {id:1234,past_time:'15',active:'高瑟修改了登陆密码',level:'2'},
-                {id:1234,past_time:'30',active:'金桔营销10张50次洗车卡',level:'3'},
-                {id:1234,past_time:'55',active:'约翰登陆系统',level:'0'},
+            actives: [
+                {id: 1234, past_time: '5', active: '高瑟营销1张50次洗车卡', level: '1'},
+                {id: 1234, past_time: '15', active: '高瑟修改了登陆密码', level: '2'},
+                {id: 1234, past_time: '30', active: '金桔营销10张50次洗车卡', level: '3'},
+                {id: 1234, past_time: '55', active: '约翰登陆系统', level: '0'},
             ]
         }
     ];
