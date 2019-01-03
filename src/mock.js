@@ -446,6 +446,38 @@ const activeQuery = function () {
         memo: ''
     }
 };
+
+const pricingQuery = function () {
+    let data = [
+        {
+            level: '入门级',
+            price:'19',
+            cc:1,
+            stand_cc:1,
+            gift:0.25,
+        },
+        {
+            level: '企业级',
+            price:'119',
+            cc:5,
+            stand_cc:3,
+            gift:0.25,
+        },
+        {
+            level: '专家级',
+            price:'499',
+            cc:30,
+            stand_cc:15,
+            gift:2.5,
+        }
+    ];
+    return {
+        rs: data,
+        code: 0,
+        memo: ''
+    }
+};
+
 Mock.mock('/news/index', 'post', produceNewsData);//例子
 Mock.mock('/?ctl=ajax&mod=index&act=menu', 'post', menu);//菜单
 Mock.mock('/?ctl=ajax&mod=index&act=UserLogin', 'post', UserLogin);//登陆
@@ -454,17 +486,5 @@ Mock.mock('/?ctl=ajax&mod=index&act=mainChart', 'post', mainChart);//首页大�
 Mock.mock('/?ctl=ajax&mod=index&act=profitQuery', 'post', profitQuery);//首页盈利数据
 Mock.mock('/?ctl=ajax&mod=index&act=contactQuery', 'post', contactQuery);//首页联系人数据
 Mock.mock('/?ctl=ajax&mod=index&act=activeQuery', 'post', activeQuery);//首页最新活动数据
+Mock.mock('/?ctl=ajax&mod=index&act=pricingQuery', 'post', pricingQuery);//pricing数据
 
-$(function () {
-    var temp = '';
-    var names = [];
-    var row = {};
-    $('#content .obu dd a ').each(function(){
-        temp = $(this).attr('href');
-        if(temp){
-            row =  {name:$(this).text(),link:temp}
-            names.push( row);
-        }
-    });
-    console.table(names);
-});

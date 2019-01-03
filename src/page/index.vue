@@ -8,7 +8,7 @@
                 role="tablist">
                 <li :class="{'ui-state-default ui-corner-top  ui-sortable-handle':true,'ui-tabs-active ui-state-active':index == thisClick}"
                     v-for="(tab,index) in tabs">
-                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.clmurl,index)" :href="tab.link">{{tab.name}}</a>
+                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.clmurl,index)" >{{tab.name}}</a>
                     <span class="el-icon-close" @click="closeNav(index)"></span>
                 </li>
             </ul>
@@ -31,7 +31,7 @@
         data() {
             return {
                 tabs: [
-                    {name: '首页', link: '/#/main', icon: 'el-icon-menu'},
+                    {name: '首页', clmurl: '/#/main', icon: 'el-icon-menu'},
                 ],
                 thisIframe: '/#/main',
                 thisClick: 0,
@@ -51,6 +51,7 @@
                 this.$refs.mychild.showPanel();
             },
             openNav: function (link, index) {
+                console.log(link);
                 this.thisClick = index;
                 this.thisIframe = link
             },
