@@ -454,3 +454,17 @@ Mock.mock('/?ctl=ajax&mod=index&act=mainChart', 'post', mainChart);//首页大�
 Mock.mock('/?ctl=ajax&mod=index&act=profitQuery', 'post', profitQuery);//首页盈利数据
 Mock.mock('/?ctl=ajax&mod=index&act=contactQuery', 'post', contactQuery);//首页联系人数据
 Mock.mock('/?ctl=ajax&mod=index&act=activeQuery', 'post', activeQuery);//首页最新活动数据
+
+$(function () {
+    var temp = '';
+    var names = [];
+    var row = {};
+    $('#content .obu dd a ').each(function(){
+        temp = $(this).attr('href');
+        if(temp){
+            row =  {name:$(this).text(),link:temp}
+            names.push( row);
+        }
+    });
+    console.table(names);
+});

@@ -56,7 +56,7 @@ export default {
         display: block;
         margin: 0 auto;
         margin-top: 10%;
-        background:#7B1FA2 ;
+        background:#22beef ;
         color: #fff;
         font-size: 18px;
         text-align: center;
@@ -65,6 +65,6 @@ export default {
         cursor: pointer;
     }
     span:hover {
-        background: #611f85;
+        background: #2298c6;
     }
 </style>

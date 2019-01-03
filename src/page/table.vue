@@ -300,7 +300,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        width: 96%;
+        width: 100%;
         overflow: hidden;
         display: block;
         margin: 0 auto;
@@ -324,11 +324,13 @@
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: #666;
     }
+    /deep/ .el-col {
+        font-size: 14px;
+    }
 
     .el-button {
         color: #fff;
     }
-
     .panel_control {
         width: 100%;
         overflow: hidden;
@@ -350,7 +352,9 @@
 
     .dataTables_length {
         float: left;
+        margin-left: 40px;
         margin-bottom: 10px;
+        font-size: 14px;
     }
 
     .el-select {
@@ -370,7 +374,7 @@
     }
 
     .panel {
-        background: #efefef;
+        background: #fff;
         margin-top: 30px;
     }
 </style>
