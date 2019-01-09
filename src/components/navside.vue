@@ -79,9 +79,11 @@
                 let postdata = qs.stringify(param);
                 axios.post(url, postdata).then(function(data){
                     let json = data.data;
-                    that.childs = json.rs;
                     that.hasChilds = index;
-                    if(that.childs.length == 0){//没有子节点时才开始判断跳转
+                    if(json.rs.length != 0){
+                        that.childs = json.rs;
+                    }
+                    if(json.rs.length == 0){//没有子节点时才开始判断跳转
                         if (menudata.clmname == '退出系统') {
                             that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
                                 confirmButtonText: '确定',
