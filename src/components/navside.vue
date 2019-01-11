@@ -72,6 +72,8 @@
             handleNodeClick: function (menudata, index) {
                 let that = this;
                 let clmid = menudata['clmid'];
+                let c_level = menudata['c_level'];
+                let clmurl = menudata['clmurl'];
                 let url =  '/?ctl=ajax&mod=index&act=menu';
                 let param = {
                     'clmid':clmid,
@@ -79,11 +81,11 @@
                 let postdata = qs.stringify(param);
                 axios.post(url, postdata).then(function(data){
                     let json = data.data;
-                    that.hasChilds = index;
-                    if(json.rs.length != 0){
+                    if(c_level == 1 ){
                         that.childs = json.rs;
                     }
-                    if(json.rs.length == 0){//没有子节点时才开始判断跳转
+                    that.hasChilds = index;
+                    if(clmurl != ''){//没有子节点时才开始判断跳转
                         if (menudata.clmname == '退出系统') {
                             that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
                                 confirmButtonText: '确定',
