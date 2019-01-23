@@ -20,10 +20,8 @@ const produceNewsData = function () {
 
 // 菜单
 const menu = function (options) {
-    let clmid = options.body;
-    let navs = [];
-    if (clmid == 'clmid=0') {
-        navs = [{
+        let clmid = options.body;
+        let navs = [{
             "clmid": "1",
             "spclmid": "0",
             "ordno": "0",
@@ -46,7 +44,112 @@ const menu = function (options) {
             "show": "1",
             "grouplist": "2,5",
             "memo": "",
-            "clicon": "front_icon"
+            "clicon": "front_icon",
+            "childs": [{
+                "clmid": "57",
+                "spclmid": "0",
+                "ordno": "0",
+                "c_level": "2",
+                "clmcode": "front_index",
+                "clmname": "404",
+                "clmurl": "/#/recharge",
+                "prname": null,
+                "en": "1",
+                "show": "1",
+                "grouplist": "2,5",
+                "memo": null,
+                "clicon": "home_icon"
+            },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "表格",
+                    "clmurl": "/#/table",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "pricing",
+                    "clmurl": "/#/pricing",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "form",
+                    "clmurl": "/#/form",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "Courses",
+                    "clmurl": "/#/Courses",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "message",
+                    "clmurl": "/#/message",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "用户管理",
+                    "clmurl": "/#/user",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },]
         }, {
             "clmid": "3",
             "spclmid": "0",
@@ -60,7 +163,82 @@ const menu = function (options) {
             "show": "1",
             "grouplist": "2,5",
             "memo": "",
-            "clicon": "front_icon"
+            "clicon": "front_icon",
+            "childs": [{
+                "clmid": "57",
+                "spclmid": "0",
+                "ordno": "0",
+                "c_level": "2",
+                "clmcode": "front_index",
+                "clmname": "typography",
+                "clmurl": "/#/typography",
+                "prname": null,
+                "en": "1",
+                "show": "1",
+                "grouplist": "2,5",
+                "memo": null,
+                "clicon": "home_icon"
+            },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "按钮",
+                    "clmurl": "/#/button",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "badges",
+                    "clmurl": "/#/badges",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "dropdown",
+                    "clmurl": "/#/dropdown",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "page",
+                    "clmurl": "/#/page",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },]
         }, {
             "clmid": "4",
             "spclmid": "0",
@@ -74,7 +252,52 @@ const menu = function (options) {
             "show": "1",
             "grouplist": "2,5",
             "memo": "",
-            "clicon": "front_icon"
+            "clicon": "front_icon",
+            "childs": [{
+                "clmid": "57",
+                "spclmid": "0",
+                "ordno": "0",
+                "c_level": "2",
+                "clmcode": "front_index",
+                "clmname": "柱状图",
+                "clmurl": "/#/chart_bar",
+                "prname": null,
+                "en": "1",
+                "show": "1",
+                "grouplist": "2,5",
+                "memo": null,
+                "clicon": "home_icon"
+            },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "线图",
+                    "clmurl": "/#/chart_line",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+                {
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "环形图",
+                    "clmurl": "/#/chart_dona",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },]
         },
             {
                 "clmid": "66",
@@ -91,251 +314,13 @@ const menu = function (options) {
                 "memo": "",
                 "clicon": "logout_icon"
             }];
+        return {
+            rs: navs,
+            code: 0,
+            memo: ''
+        }
     }
-    //常用页面
-    if (clmid == 'clmid=2') {
-        navs = [{
-            "clmid": "57",
-            "spclmid": "0",
-            "ordno": "0",
-            "c_level": "2",
-            "clmcode": "front_index",
-            "clmname": "404",
-            "clmurl": "/#/recharge",
-            "prname": null,
-            "en": "1",
-            "show": "1",
-            "grouplist": "2,5",
-            "memo": null,
-            "clicon": "home_icon"
-        },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "表格",
-                "clmurl": "/#/table",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "pricing",
-                "clmurl": "/#/pricing",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "form",
-                "clmurl": "/#/form",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "Courses",
-                "clmurl": "/#/Courses",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "message",
-                "clmurl": "/#/message",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "用户管理",
-                "clmurl": "/#/user",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-        ]
-    }
-    // 常用组件
-    if (clmid == 'clmid=3') {
-        navs = [{
-            "clmid": "57",
-            "spclmid": "0",
-            "ordno": "0",
-            "c_level": "2",
-            "clmcode": "front_index",
-            "clmname": "typography",
-            "clmurl": "/#/typography",
-            "prname": null,
-            "en": "1",
-            "show": "1",
-            "grouplist": "2,5",
-            "memo": null,
-            "clicon": "home_icon"
-        },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "按钮",
-                "clmurl": "/#/button",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "badges",
-                "clmurl": "/#/badges",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "dropdown",
-                "clmurl": "/#/dropdown",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "page",
-                "clmurl": "/#/page",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-        ]
-    }
-    // 图表
-    if (clmid == 'clmid=4') {
-        navs = [{
-            "clmid": "57",
-            "spclmid": "0",
-            "ordno": "0",
-            "c_level": "2",
-            "clmcode": "front_index",
-            "clmname": "柱状图",
-            "clmurl": "/#/chart_bar",
-            "prname": null,
-            "en": "1",
-            "show": "1",
-            "grouplist": "2,5",
-            "memo": null,
-            "clicon": "home_icon"
-        },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "线图",
-                "clmurl": "/#/chart_line",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-            {
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "环形图",
-                "clmurl": "/#/chart_dona",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
-
-        ]
-    }
-    return {
-        rs: navs,
-        code: 0,
-        memo: ''
-    }
-};
+;
 
 // 登陆
 const UserLogin = function (options) {
@@ -451,24 +436,24 @@ const pricingQuery = function () {
     let data = [
         {
             level: '入门级',
-            price:'19',
-            cc:1,
-            stand_cc:1,
-            gift:0.25,
+            price: '19',
+            cc: 1,
+            stand_cc: 1,
+            gift: 0.25,
         },
         {
             level: '企业级',
-            price:'119',
-            cc:5,
-            stand_cc:3,
-            gift:0.25,
+            price: '119',
+            cc: 5,
+            stand_cc: 3,
+            gift: 0.25,
         },
         {
             level: '专家级',
-            price:'499',
-            cc:30,
-            stand_cc:15,
-            gift:2.5,
+            price: '499',
+            cc: 30,
+            stand_cc: 15,
+            gift: 2.5,
         }
     ];
     return {

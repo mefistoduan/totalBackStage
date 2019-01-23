@@ -8,13 +8,13 @@
                 </router-link>
             </div>
             <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
-                <li v-for="(nav,index) in navs" :key="index" >
+                <li v-for="(nav,index) in navs" :key="index" v-show="nav.show == 1">
                     <a @click="handleNodeClick(nav,index)">
                         <i :class="nav.icon"></i>
                         <span class="title">{{nav.clmname}}</span>
                     </a>
                     <ul class="hide_tap" v-show="childs && index == hasChilds" >
-                        <li v-for="child in nav.childs">
+                        <li v-for="child in childs">
                             <a @click="handleNodeClick(child,index)">
                                 <i class="el-icon-info"></i>
                                 <span class="title">{{child.clmname}}</span>
@@ -34,7 +34,7 @@
         data() {
             return {
                 wildState:0,
-                appname:'号码精灵管理平台',
+                appname:'洗车服务管理平台',
                 hasChilds:'',
                 navs: [],
                 childs: [],
@@ -53,50 +53,71 @@
             },
             getTableQuery(){
                 let that = this;
-                let url =   '/?ctl=ajax&mod=index&act=menu';
+                let url =  '/?ctl=ajax&mod=index&act=menu';
                 let param = {
-                    'clmid':6,
+                    'clmid':0,
                 };
                 let postdata = qs.stringify(param);
                 axios.post(url, postdata).then(function(data){
                     let json = data.data;
-                    that.navs = json.rs;
-                    console.log( that.navs);
+                    if(json.code == 0){
+                        that.navs = json.rs;
+                    }else{
+                        that.navs = '';
+                    }
                 },function(response){
                     console.info(response);
                 });
             },
             handleNodeClick: function (menudata, index) {
                 let that = this;
+                let clmid = menudata['clmid'];
+                let c_level = menudata['c_level'];
                 let clmurl = menudata['clmurl'];
-                if (menudata.clmname == '退出系统') {
-                    that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
-                        type: 'warning'
-                    }).then(() => {
-                        that.$router.push({path: '/login'});
-                    }).catch(() => {
-//                            nothing
-                    });
-                } else {
-                    if(clmurl != ''){
-                        that.$emit('navOpen', menudata);
-                    }else{
-                        that.hasChilds = index;
+                let url =  '/?ctl=ajax&mod=index&act=menu';
+                let param = {
+                    'clmid':clmid,
+                };
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    if(c_level == 1 ){
+                        that.childs = json.rs;
                     }
-                }
+                    that.hasChilds = index;
+                    if(clmurl != ''){//没有子节点时才开始判断跳转
+                        if (menudata.clmname == '退出系统') {
+                            that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
+                                confirmButtonText: '确定',
+                                cancelButtonText: '取消',
+                                type: 'warning'
+                            }).then(() => {
+                                that.$router.push({path: '/login'});
+                            }).catch(() => {
+//                            nothing
+                            });
+                        } else {
+                            that.$emit('navOpen', menudata);
+                        }
+                    }
+                },function(response){
+                    console.info(response);
+                });
             },
             navshowClick: function (index) {
                 this.navshow = [false, false, false];
                 this.navshow[index] = true;
-            },
+            }
         },
         components: {}
     }
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    @import "../../static/css/bootstrap.css";
+    @import "../../static/css/xenon-core.css";
+
     #navside {
         position: absolute;
         height: 100%;
