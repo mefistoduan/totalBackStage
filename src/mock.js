@@ -463,6 +463,41 @@ const pricingQuery = function () {
     }
 };
 
+const warehouseQuery = function () {
+    let single =    {
+        whid: 1,
+        goodsid: 2,
+        hdid: '1.0.0',
+        cpuid: '1.0.0',
+        did: '1.0.0',
+        maketime: '2019-09-19',
+        whtime: '2019-09-19',
+        versionmemo: '升级了界面效果，提高了反应速度',
+        equipnum: 3,
+        operator: '尼古拉斯·赵四',
+    };
+    let data = [];
+    for(var i = 0; i < 10; i++) {
+        data.push(single);
+    }
+    return {
+        rs: data,
+        total: 100,
+        code: 0,
+        memo: ''
+    }
+};
+
+const warehouseAdd = function () {
+    let data = [];
+
+    return {
+        rs: data,
+        code: 0,
+        memo: ''
+    }
+};
+
 Mock.mock('/news/index', 'post', produceNewsData);//例子
 Mock.mock('/?ctl=ajax&mod=index&act=menu', 'post', menu);//菜单
 Mock.mock('/?ctl=ajax&mod=index&act=UserLogin', 'post', UserLogin);//登陆
@@ -472,4 +507,6 @@ Mock.mock('/?ctl=ajax&mod=index&act=profitQuery', 'post', profitQuery);//首页�
 Mock.mock('/?ctl=ajax&mod=index&act=contactQuery', 'post', contactQuery);//首页联系人数据
 Mock.mock('/?ctl=ajax&mod=index&act=activeQuery', 'post', activeQuery);//首页最新活动数据
 Mock.mock('/?ctl=ajax&mod=index&act=pricingQuery', 'post', pricingQuery);//pricing数据
-
+Mock.mock('/?ctl=ajax&mod=warehouse&act=warehouseQuery', 'post', warehouseQuery);// 入库查询
+Mock.mock('/?ctl=ajax&mod=warehouse&act=warehouseAdd', 'post', warehouseQuery);// 入库查询
+Mock.mock('/?ctl=ajax&mod=warehouse&act=warehouseEdit', 'post', warehouseQuery);// 入库查询

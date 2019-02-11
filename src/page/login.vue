@@ -178,10 +178,11 @@
 <script>
     import axios from 'axios';
     let qs = require('qs');
+    import Global from '../Global.js'
     export default {
         data() {
             return {
-                year: '2018',
+                year: new Date().getFullYear(),
                 modal_register: false,
                 modal_retrieve: false,
                 modal_ruler: false,
@@ -191,12 +192,7 @@
                 changeLoginType: false,//登陆方式切换
 //                valImgSrc: 'api/sys3/mod/index/login_validcode.php',
                 valImgSrc: 'static/images/login/valid_img.png',//测试用路径
-                company: {
-                    name: '洗车公司',
-                    tel: '400-007-9360',
-                    app: '洗车管理总后台',
-                    url: 'xxx.xxx.com'
-                }
+                company: globalCompany(),
             }
         },
         methods: {
