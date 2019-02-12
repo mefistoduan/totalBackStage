@@ -507,6 +507,6 @@ Mock.mock('/?ctl=ajax&mod=index&act=profitQuery', 'post', profitQuery);//首页�
 Mock.mock('/?ctl=ajax&mod=index&act=contactQuery', 'post', contactQuery);//首页联系人数据
 Mock.mock('/?ctl=ajax&mod=index&act=activeQuery', 'post', activeQuery);//首页最新活动数据
 Mock.mock('/?ctl=ajax&mod=index&act=pricingQuery', 'post', pricingQuery);//pricing数据
-Mock.mock('/?ctl=ajax&mod=warehouse&act=warehouseQuery', 'post', warehouseQuery);// 入库查询
-Mock.mock('/?ctl=ajax&mod=warehouse&act=warehouseAdd', 'post', warehouseQuery);// 入库查询
-Mock.mock('/?ctl=ajax&mod=warehouse&act=warehouseEdit', 'post', warehouseQuery);// 入库查询
+Mock.mock('/api/?ctl=ajax&mod=warehouse&act=warehouseQuery', 'post', warehouseQuery);// 入库查询
+Mock.mock('/api/?ctl=ajax&mod=warehouse&act=warehouseAdd', 'post', warehouseQuery);// 入库查询
+Mock.mock('/api/?ctl=ajax&mod=warehouse&act=warehouseEdit', 'post', warehouseQuery);// 入库查询

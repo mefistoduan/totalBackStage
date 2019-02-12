@@ -30,13 +30,9 @@ router.beforeEach((to, from, next) => {
 Vue.prototype.thisUrl = process.env.NODE_ENV === 'development' ? '/api' : '';
 
 if(process.env.NODE_ENV === 'development'){
-    Vue.prototype.headhttp = 'http://op/';//测试端域名，zw
-    Vue.prototype.headapi = '/api/';
     // 引入mockjs
     require('./mock.js');
 }else{
-    Vue.prototype.headhttp = 'http://op.xxx.cc/';//线上实际域名
-    Vue.prototype.headapi =  'http://op.xxx.cc/';//线上实际域名
     // let vConsole = new VConsole() // 初始化
 }
 
@@ -102,4 +98,13 @@ Vue.prototype.beforeDay = function () {
     console.log(beforedata);
     // let time = newDate.Format("yyyy-MM-dd hh:mm:ss");
     return beforedata
+};
+
+Vue.prototype.fmtDate = function (datetime,length) {
+    if ((datetime == '') || (datetime == undefined))
+        return '';
+    if ((datetime == '1900-01-01') || (datetime == '1900-01-01 00:00:00.000'))
+        return '';
+    length = !length ? 10: length;//缺省参数
+    return (datetime != null) ? datetime.substr(0,length) : '';
 };

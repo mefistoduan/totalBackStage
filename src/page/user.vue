@@ -420,7 +420,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    let url = this.headapi + '?ctl=ajax&mod=warehouse&act=warehouseDelete';
+                    let url = headapi + '?ctl=ajax&mod=warehouse&act=warehouseDelete';
                     let param = {
                         thisid: thisid
                     };
@@ -452,9 +452,9 @@
                 let that = this;
                 let url = '';
                 if (that.dialog.dialog_title == '编辑入库') {
-                    url = this.headapi + '?ctl=ajax&mod=warehouse&act=warehouseAdd';
+                    url = headapi + '?ctl=ajax&mod=warehouse&act=warehouseAdd';
                 } else {
-                    url = this.headapi + '?ctl=ajax&mod=warehouse&act=warehouseEdit';
+                    url = headapi + '?ctl=ajax&mod=warehouse&act=warehouseEdit';
                 }
                 that.equipInUpdate(url);
             },

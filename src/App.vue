@@ -11,14 +11,6 @@ export default {
 </script>
 
 <style>
-#app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    width: 100%;
-    overflow: hidden;
-    display: block;
-    margin: 0 auto;
-}
+@import "../static/css/bootstrap.css";
+@import "../static/css/ele.css";
 </style>
