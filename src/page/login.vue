@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" :style="bk">
         <div class="row">
             <div class="header_logo">
                 <!--<img id="logo" src="../../static/images/login/logo.png"/>-->
@@ -19,7 +19,7 @@
                                    ref="userpwd"
                                    style="border: 1px solid rgb(221, 221, 221);">
                         </li>
-                        <li class="form-group">
+                        <li class="form-group" v-if="true">
                             <input type="text" class="form-control" id="uservalid_img" placeholder="验证码"
                                    @keyup.13="pwdLoginBtn"
                                    ref="uservalid"
@@ -177,12 +177,15 @@
 </template>
 <script>
     import axios from 'axios';
+
     let qs = require('qs');
     import Global from '../Global.js'
+
     export default {
         data() {
             return {
                 year: new Date().getFullYear(),
+                overtime: '',
                 modal_register: false,
                 modal_retrieve: false,
                 modal_ruler: false,
@@ -190,9 +193,22 @@
                 sms_login: false,
                 registerFunc: false,//注册入口
                 changeLoginType: false,//登陆方式切换
-//                valImgSrc: 'api/sys3/mod/index/login_validcode.php',
-                valImgSrc: 'static/images/login/valid_img.png',//测试用路径
+                valImgSrc: headapi + 'sys/mod/index/login_validcode.php',//测试用路径
                 company: globalCompany(),
+                bk: {
+                    backgroundImage: "url(" + require("../../static/images/login/bg.jpg") + ")",
+                    backgroundRepeat: "no-repeat",
+                },
+            }
+        },
+        mounted() {
+            this.overtime = new Date();
+            // 如果是手动退出用户
+            if(this.$route.query.status == 1){
+                // 刷新验证图
+                this.changeValImg();
+                // 重置倒计时
+                this.overtime = new Date();
             }
         },
         methods: {
@@ -214,20 +230,23 @@
             },
             // pwd登录
             pwdLoginBtn: function () {
+                let that = this;
                 let username = this.$refs.username.value;
                 let userpwd = this.$refs.userpwd.value;
                 let uservalid = this.$refs.uservalid.value;
-                if (!this.valid(username, 2, 17, '用户名')) return;
-                if (!this.valid(userpwd, 5, 17, '密码')) return;
-                if (!this.valid(uservalid, 3, 5, '验证码')) return;
+                // 重置验证码超时
+                that.overtime = new Date();
+                if (!globalValid(username, 2, 17, '用户名', that)) return;
+                if (!globalValid(userpwd, 5, 17, '密码', that)) return;
+                if (!globalValid(uservalid, 3, 5, '验证码', that)) return;
                 this.loginInfo();
             },
 //            sms 登陆
             smsLoginBtn: function () {
                 let sms_username = this.$refs.sms_username.value;
                 let sms_valid = this.$refs.sms_valid.value;
-                if (!this.valid(sms_username, 2, 17, '手机号')) return;
-                if (!this.valid(sms_valid, 4, 6, '短信验证码')) return;
+                if (!globalValid(sms_username, 2, 17, '手机号', that)) return;
+                if (!globalValid(sms_valid, 4, 6, '短信验证码', that)) return;
                 this.sms_loginInfo();
             },
             //获取注册手机验证码
@@ -239,7 +258,7 @@
                     this.$message.error('手机号码不能为空');
                     return false
                 }
-                if (!this.valid(tel, 10, 12, '手机号')) return;
+                if (!globalValid(tel, 10, 12, '手机号', that)) return;
                 if (!img_valid) {
                     this.$message.error('图形验证码不能为空');
                     return false
@@ -248,7 +267,7 @@
                     this.$message.error('图形验证码位数不正确');
                     return false
                 }
-                let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
+                let url = headapi + '?ctl=ajax&mod=index&act=xxx';
                 let param = {
                     phone: tel,
                     tcode: img_valid,
@@ -266,8 +285,7 @@
                                 clearInterval(timer);//停止计时器
                                 that.valid_button = "重新发送";
                                 that.button_state = false;
-                            }
-                            else {
+                            } else {
                                 countdown--;
                                 that.valid_button = countdown + "秒";
                                 that.button_state = true
@@ -296,7 +314,7 @@
                     this.$message.error('手机号码不能为空');
                     return false
                 }
-                if (!this.valid(tel, 10, 12, '手机号')) return;
+                if (!globalValid(tel, 10, 12, '手机号', that)) return;
                 if (!img_valid) {
                     this.$message.error('图形验证码不能为空');
                     return false
@@ -305,7 +323,7 @@
                     this.$message.error('图形验证码位数不正确');
                     return false
                 }
-                let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
+                let url = headapi + '?ctl=ajax&mod=index&act=xxx';
                 let param = {
                     phone: tel,
                     tcode: img_valid,
@@ -323,8 +341,7 @@
                                 clearInterval(timer);//停止计时器
                                 that.valid_button = "重新发送";
                                 that.button_state = false;
-                            }
-                            else {
+                            } else {
                                 countdown--;
                                 that.valid_button = countdown + "秒";
                                 that.button_state = true
@@ -354,7 +371,7 @@
                     this.$message.error('手机号码不能为空');
                     return false
                 }
-                if (!this.valid(tel, 10, 12, '手机号')) return;
+                if (!globalValid(tel, 10, 12, '手机号', that)) return;
                 if (!img_valid) {
                     this.$message.error('图形验证码不能为空');
                     return false
@@ -363,7 +380,7 @@
                     this.$message.error('图形验证码位数不正确');
                     return false
                 }
-                let url = this.headapi + '?ctl=ajax&mod=index&act=regsend';
+                let url = headapi + '?ctl=ajax&mod=index&act=regsend';
                 let param = {
                     phone: tel,
                     tcode: img_valid,
@@ -381,8 +398,7 @@
                                 clearInterval(timer);//停止计时器
                                 that.valid_button = "重新发送";
                                 that.button_state = false;
-                            }
-                            else {
+                            } else {
                                 countdown--;
                                 that.valid_button = countdown + "秒";
                                 that.button_state = true
@@ -427,9 +443,9 @@
                 let first_pwd = this.$refs.first_pwd.value;
                 let confirm_pwd = this.$refs.confirm_pwd.value;
                 let agree = this.$refs.agree.checked;
-                if (!this.valid(re_phone, 10, 12, '手机')) return;
-                if (!this.valid(re_phonevalid, 5, 7, '验证码')) return;
-                if (!this.valid(first_pwd, 5, 7, '密码')) return;
+                if (!globalValid(re_phone, 10, 12, '手机', that)) return;
+                if (!globalValid(re_phonevalid, 5, 7, '验证码', that)) return;
+                if (!globalValid(first_pwd, 5, 7, '密码', that)) return;
                 if (first_pwd != confirm_pwd) {
                     that.$message({
                         message: '两遍密码不一致！',
@@ -444,7 +460,7 @@
                     });
                     return false
                 }
-                let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
+                let url = headapi + '?ctl=ajax&mod=index&act=xxx';
                 let param = {};
                 let postdata = qs.stringify(param);
                 axios.post(url, postdata).then(function (data) {
@@ -465,14 +481,22 @@
 //            pwd登陆
             loginInfo: function () {
                 const that = this;
-                let url =  '/?ctl=ajax&mod=index&act=UserLogin';
+                let url = headapi + '?ctl=ajax&mod=index&act=login';
                 let username = this.$refs.username.value;
                 let userpwd = this.$refs.userpwd.value;
                 let uservalid = this.$refs.uservalid.value;
+                let current = new Date();
+                let betweenTime = current - that.overtime;
+                let s = 120;
+                if(betweenTime > s*1000 ){
+                    that.changeValImg();
+                    that.$message.error('验证码已超时，请重新输入');
+                    return false
+                }
                 let param = {
                     'usercode': username,
-                    'pwcode': userpwd,
-                    'nvcode': uservalid,
+                    'passwd': userpwd,
+                    'vcode': uservalid,
                     'logintype': 1,
                     'accounttype': 3,
                     'src': 'pc'
@@ -481,6 +505,8 @@
                 axios.post(url, postdata).then(function (data) {
                     let json = data.data;
                     if (json.code == 0) {
+                        that.userName = json.userName;
+                        localStorage.userName = json.username;
                         that.$router.push({path: '/'});
                     } else {
                         that.$notify({
@@ -494,41 +520,12 @@
                 })
             }
         },
-//        sms登陆
-        sms_loginInfo: function () {
-            const that = this;
-            let url = this.headapi + '?ctl=ajax&mod=index&act=xxx';
-            let sms_username = that.$refs.sms_username.value;
-            let userValid = that.$refs.sms_valid.value;
-            let param = {
-                'usercode': sms_username,
-                'smscode': userValid,
-                'logintype': 2,
-                'src': 'pc'
-            };
-            let postdata = qs.stringify(param);
-            axios.post(url, postdata).then(function (data) {
-                let json = data.data;
-                if (json.code == 0) {
-                    that.$router.push({path: '/'});
-                } else {
-                    that.$notify({
-                        title: '警告',
-                        message: json.memo,
-                        type: 'warning'
-                    });
-                }
-            }, function (response) {
-                console.info(response);
-            })
-        }
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @import "../../static/css/customer.css";
-    @import "../../static/css/bootstrap.css";
 
     ul, li {
         list-style: none;
@@ -553,7 +550,8 @@
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        background: url("../../static/images/login/bg.jpg") top center no-repeat;
+        background-repeat: no-repeat;
+        background-position: top center;
         background-size: 100% 100%;
     }
 
@@ -592,7 +590,7 @@
         font-family: "Microsoft YaHei";
         margin-top: 20px;
         margin-bottom: 60px;
-        text-shadow:3px 2px 3px #000;
+        text-shadow: 3px 2px 3px #000;
     }
 
     .row .form-control {
@@ -951,11 +949,8 @@
         width: 80%;
     }
 
-    /*
-    å°†åˆå§‹çš„checkboxçš„æ ·å¼æ”¹å˜
-    */
     .checkbox-custom input[type="checkbox"] {
-        opacity: 0; /*å°†åˆå§‹çš„checkboxéšè—èµ·æ¥*/
+        opacity: 0;
         position: absolute;
         cursor: pointer;
         z-index: 2;
@@ -965,9 +960,6 @@
 
     }
 
-    /*
-    è®¾è®¡æ–°çš„checkboxï¼Œä½ç½®
-    */
     .checkbox-custom label:before {
         content: '';
         position: absolute;
@@ -1000,7 +992,7 @@
     .checkbox-custom label {
         cursor: pointer;
         line-height: 1.2;
-        font-weight: normal; /*æ”¹å˜äº†remembermeçš„å­—ä½“*/
+        font-weight: normal;
         margin-bottom: 0;
         text-align: left;
     }
@@ -1306,7 +1298,6 @@
 
     .white_cube {
         width: 330px;
-        min-height: 288px;
         overflow: hidden;
         display: block;
         margin: 0 auto;

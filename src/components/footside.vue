@@ -3,7 +3,7 @@
         <footer class="main-footer sticky footer-type-1  col-lg-12">
             <div class="footer-inner col-lg-12">
                 <div class="footer-text text-center col-lg-12">
-                    © 2018 - <a href="#" target="_blank"><span>Copyright © 2018 {{url}} &nbsp  {{name}}版权所有 </span></a> -
+                    © {{year}} - <a href="#" target="_blank"><span>Copyright ©  {{url}}  {{name}}版权所有 </span></a> -
                     All rights reserved
                 </div>
             </div>
@@ -12,14 +12,17 @@
 </template>
 
 <script>
-export default {
-    data () {
-    return {
-        url: ' xxx.xxx.com',
-        name: ' xx'
+    export default {
+        data () {
+            return {
+                year:companyInfo.year,
+                url: companyInfo.url,
+                name: companyInfo.main
+            }
+        },
+        mounted() {
+        },
     }
-    },
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

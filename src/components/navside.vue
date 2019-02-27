@@ -3,7 +3,7 @@
         <header class="logo-env">
             <div class="logo">
                 <router-link :to="{path: '/main'}" class="logo-expanded">
-                    <img src="/static/images/comm/logo.svg" alt="">
+                    <img src="/static/images/comm/logo.png" alt="">
                     <p>  {{ appname }}</p>
                 </router-link>
             </div>
@@ -11,13 +11,13 @@
                 <li v-for="(nav,index) in navs" :key="index" >
                     <a @click="handleNodeClick(nav,index)">
                         <i :class="nav.icon"></i>
-                        <span class="title">{{nav.clmname}}</span>
+                        <span class="title" :data-url="nav.clmurl">{{nav.clmname}}</span>
                     </a>
                     <ul class="hide_tap" v-show="childs && index == hasChilds" >
-                        <li v-for="child in nav.childs">
+                        <li v-for="(child,j) in nav.childs" v-bind:key="j" >
                             <a @click="handleNodeClick(child,index)">
                                 <i class="el-icon-info"></i>
-                                <span class="title">{{child.clmname}}</span>
+                                <span class="title" :data-url="child.clmurl">{{child.clmname}}</span>
                             </a>
                         </li>
                     </ul>
@@ -34,7 +34,7 @@
         data() {
             return {
                 wildState:0,
-                appname:'号码精灵管理平台',
+                appname:'',
                 hasChilds:'',
                 navs: [],
                 childs: [],
@@ -53,15 +53,17 @@
             },
             getTableQuery(){
                 let that = this;
-                let url =   '/?ctl=ajax&mod=index&act=menu';
-                let param = {
-                    'clmid':6,
-                };
+                let url =   headapi + '?ctl=ajax&mod=index&act=getMenu';
+                let param = {};
                 let postdata = qs.stringify(param);
                 axios.post(url, postdata).then(function(data){
                     let json = data.data;
-                    that.navs = json.rs;
-                    console.log( that.navs);
+                    if(json.length == 0){
+                        // 无token退回登陆页
+                        that.$router.push({path: '/login',query: { status: 1}});
+                    }else{
+                        that.navs = json;
+                    }
                 },function(response){
                     console.info(response);
                 });
@@ -75,15 +77,15 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                        that.$router.push({path: '/login'});
+                        that.logout();
                     }).catch(() => {
 //                            nothing
                     });
                 } else {
-                    if(clmurl != ''){
-                        that.$emit('navOpen', menudata);
-                    }else{
+                    if(!clmurl){
                         that.hasChilds = index;
+                    }else{
+                        that.$emit('navOpen', menudata);
                     }
                 }
             },
@@ -91,6 +93,19 @@
                 this.navshow = [false, false, false];
                 this.navshow[index] = true;
             },
+            // 注销
+            logout(){
+                const that = this;
+                let url =  headapi+'?ctl=ajax&mod=index&act=logout';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function(data){
+                    let json = data.data;
+                    that.$router.push({path: '/login',query: { status: 1}});
+                },function(response){
+                    console.info(response);
+                })
+            }
         },
         components: {}
     }

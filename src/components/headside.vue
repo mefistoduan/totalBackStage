@@ -6,6 +6,7 @@
             <div @click="checkNews">
                 <el-badge :value="newnum"
                           class="item"
+                          v-if="newnumState"
                 >
                     <el-button size="small">
                         <i class="el-icon-message"></i>
@@ -33,27 +34,27 @@
         data() {
             return {
                 user: {
-                    name: 'mefisto',
+                    name: localStorage.userName,
                 },
                 time: '8:30-17:30',
                 tel: '123-456-789',
                 qq: '123-456-789',
                 newnum: '',
+                newnumState: false,
                 left_panel_state: true
             }
         },
         mounted() {
             this.readNewNum();
-
 //            定时轮询news
             //设置10s刷新一次数据
-            if (this.timer) {
-                clearInterval(this.timer);
-            }else{
-                this.timer = setInterval(() => {
-                    this.readNewNum();
-                },10000)
-            }
+            // if (this.timer) {
+            //     clearInterval(this.timer);
+            // }else{
+            //     this.timer = setInterval(() => {
+            //         this.readNewNum();
+            //     },10000)
+            // }
         },
         methods: {
 //            隐藏左侧和显示
@@ -87,7 +88,8 @@
             },
 //            读取消息提示数量
             readNewNum: function () {
-                this.newnum = 1;
+                this.newnum = 0;
+                this.newnumState = false;
 //                ajax todo
             },
 

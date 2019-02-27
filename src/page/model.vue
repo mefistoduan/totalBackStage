@@ -9,6 +9,9 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    let qs = require('qs');
+    import Global from '../Global.js'
 export default {
     data () {
     return {
@@ -29,20 +32,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import "../../static/css/ele.css";
-    #pages {
-        position: absolute;
-        top:0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        overflow-y: scroll;
-        display: block;
-        margin: 0 auto;
-        background-color: #F2F2F2;
-        padding-bottom: 80px;
-    }
+    @import "../assets/css/panel.css";
 </style>
