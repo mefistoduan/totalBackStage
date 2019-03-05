@@ -13,7 +13,7 @@ headapi = process.env.NODE_ENV === 'development' ? '/api/' : '../';
 // login
 globalCompany = function () {
     let globalCompany = {
-        name: '',
+        name: 'xxx',
         tel: '400-007-9360',
         app: '设备管理总后台',
         url: 'xxx.xxx.com'
@@ -112,7 +112,6 @@ globalfmtDate = function (datetime, length) {
 };
 
 //格式化日期  年月日
-
 globaltime2String = function(time){
     let datetime = new Date();
     datetime.setTime(time);
@@ -121,7 +120,6 @@ globaltime2String = function(time){
     let date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
     return year + "-" + month + "-" + date;
 };
-
 
 // 获取当前时间
 globalcurrent = function () {
