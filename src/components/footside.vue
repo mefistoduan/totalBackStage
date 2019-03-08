@@ -13,9 +13,9 @@
 
 <script>
     export default {
-        data () {
+        data() {
             return {
-                year:companyInfo.year,
+                year: companyInfo.year,
                 url: companyInfo.url,
                 name: companyInfo.main
             }
@@ -28,7 +28,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @import "../../static/css/customer.css";
-    @import "../../static/css/bootstrap.css";
+
     #footside {
         position: absolute;
         bottom: 0;

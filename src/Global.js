@@ -1,6 +1,6 @@
 companyInfo = {
-    url: 'http://det.shandongewall.com/',
-    main: 'E-WALL',
+    url: 'http://xxx.xxx.com/',
+    main: 'Mefisto',
     year: new Date().getFullYear(),
 };
 
@@ -14,7 +14,7 @@ headapi = process.env.NODE_ENV === 'development' ? '/api/' : '../';
 globalCompany = function () {
     let globalCompany = {
         name: 'xxx',
-        tel: '400-007-9360',
+        tel: '400-000-0000',
         app: '设备管理总后台',
         url: 'xxx.xxx.com'
     };
