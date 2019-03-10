@@ -507,11 +507,20 @@
                         localStorage.userName = json.username;
                         that.$router.push({path: '/'});
                     } else {
-                        that.$notify({
-                            title: '警告',
-                            message: json.memo,
-                            type: 'warning'
-                        });
+                        if(json.code == 10005){
+                            that.$refs.userpwd.value = '';
+                            that.$notify({
+                                title: '警告',
+                                message: '密码错误，请重新输入',
+                                type: 'warning'
+                            });
+                        }else{
+                            that.$notify({
+                                title: '警告',
+                                message: json.memo,
+                                type: 'warning'
+                            });
+                        }
                     }
                 }, function (response) {
                     console.info(response);

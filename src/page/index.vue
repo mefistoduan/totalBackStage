@@ -51,7 +51,6 @@
                 this.$refs.mychild.showPanel();
             },
             openNav: function (link, index) {
-                console.log(link);
                 this.thisClick = index;
                 this.thisIframe = link
             },
@@ -59,8 +58,8 @@
                 if (index == 0) {
                     this.thisIframe = '/#/main'
                 } else {
-                    this.tabs.splice(index, index + 1);
-                    this.thisIframe = '/#/main'
+                    this.tabs.splice(index, 1);
+                    this.thisIframe = this.tabs[index-1].clmurl;
                 }
             },
             navOpen: function (data) {
