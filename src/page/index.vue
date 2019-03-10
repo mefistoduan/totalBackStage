@@ -15,7 +15,10 @@
             <div id="tabs-0" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom"
                  role="tabpanel" aria-hidden="false">
                 <div class="tabIframeWrapper">
-                    <iframe :class="[{'iframetab_wild':tabwildState == 0},'iframetab']" :src="thisIframe">Load Failed?</iframe>
+                    <!--<iframe :class="[{'iframetab_wild':tabwildState == 0},'iframetab']" :src="thisIframe">Load Failed?</iframe>-->
+                    <keep-alive>
+                        <router-view></router-view>
+                    </keep-alive>
                 </div>
             </div>
         </div>
@@ -26,7 +29,6 @@
     import navside from '../../src/components/navside';
     import headside from '../../src/components/headside';
     import footside from '../../src/components/footside';
-
     export default {
         data() {
             return {
@@ -75,6 +77,8 @@
                 that.tabs = r;
                 this.thisClick = that.tabs.length - 1;
                 this.thisIframe = data.clmurl;
+                console.log(data.clmurl);
+                that.$router.push({path:data.clmurl});
             }
         },
         components: {

@@ -53,7 +53,7 @@
             },
             getTableQuery(){
                 let that = this;
-                let url =   headapi + '?ctl=ajax&mod=index&act=getMenu';
+                let url = '/?ctl=ajax&mod=index&act=menu';
                 let param = {};
                 let postdata = qs.stringify(param);
                 axios.post(url, postdata).then(function(data){
@@ -62,7 +62,7 @@
                         // 无token退回登陆页
                         that.$router.push({path: '/login',query: { status: 1}});
                     }else{
-                        that.navs = json;
+                        that.navs = json.rs;
                     }
                 },function(response){
                     console.info(response);

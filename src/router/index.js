@@ -29,138 +29,144 @@ export default new Router({
         meta: {
             title: '首页'
         },
-        component: index
+        component: index,
+        children: [
+            {
+                path: '/login',
+                name: 'login',
+                meta: {
+                    title: '登陆'
+                },
+                component: login
+            },
+            {
+                path: '/',
+                name: 'main',
+                meta: {
+                    title: '首页'
+                },
+                component: main,
+                children: [
+                    {path: '', component: main,},
+                    {path: '/pricing', component: pricing,}
+                ]
+            }, {
+                path: '/table',
+                name: 'table',
+                meta: {
+                    title: '表格'
+                },
+                component: table
+            },
+            {
+                path: '/chart_bar',
+                name: 'chart_bar',
+                meta: {
+                    title: '首页'
+                },
+                component: chart_bar
+            },
+            {
+                path: '/chart_line',
+                name: 'chart_line',
+                meta: {
+                    title: '首页'
+                },
+                component: chart_line
+            },
+            {
+                path: '/chart_dona',
+                name: 'chart_dona',
+                meta: {
+                    title: '首页'
+                },
+                component: chart_dona
+            },
+            {
+                path: '/form',
+                name: 'form',
+                meta: {
+                    title: 'form'
+                },
+                component: form
+            },
+            {
+                path: '/pricing',
+                name: 'pricing',
+                meta: {
+                    title: 'pricing'
+                },
+                component: pricing
+            },
+            {
+                path: '/typography',
+                name: 'typography',
+                meta: {
+                    title: 'typography'
+                },
+                component: typography
+            },
+            {
+                path: '/button',
+                name: 'button',
+                meta: {
+                    title: '按钮'
+                },
+                component: button
+            },
+            {
+                path: '/Courses',
+                name: 'Courses',
+                meta: {
+                    title: 'Courses'
+                },
+                component: Courses
+            },
+            {
+                path: '/badges',
+                name: 'badges',
+                meta: {
+                    title: 'badges'
+                },
+                component: badges
+            }, {
+                path: '/dropdown',
+                name: 'dropdown',
+                meta: {
+                    title: 'dropdown'
+                },
+                component: dropdown
+            }, {
+                path: '/page',
+                name: 'page',
+                meta: {
+                    title: 'page'
+                },
+                component: page
+            }, {
+                path: '/message',
+                name: 'message',
+                meta: {
+                    title: 'message'
+                },
+                component: message
+            }, {
+                path: '/user',
+                name: 'user',
+                meta: {
+                    title: 'user'
+                },
+                component: user
+            },
+            {
+                path: '*',
+                name: 'four',
+                meta: {
+                    title: '404'
+                },
+                component: four,//维保详情
+            },
+        ]
     },
-        {
-            path: '/login',
-            name: 'login',
-            meta: {
-                title: '登陆'
-            },
-            component: login
-        },
-        {
-            path: '/main',
-            name: 'main',
-            meta: {
-                title: '首页'
-            },
-            component: main
-        }, {
-            path: '/table',
-            name: 'table',
-            meta: {
-                title: '表格'
-            },
-            component: table
-        },
-        {
-            path: '/chart_bar',
-            name: 'chart_bar',
-            meta: {
-                title: '首页'
-            },
-            component: chart_bar
-        },
-        {
-            path: '/chart_line',
-            name: 'chart_line',
-            meta: {
-                title: '首页'
-            },
-            component: chart_line
-        },
-        {
-            path: '/chart_dona',
-            name: 'chart_dona',
-            meta: {
-                title: '首页'
-            },
-            component: chart_dona
-        },
-        {
-            path: '/form',
-            name: 'form',
-            meta: {
-                title: 'form'
-            },
-            component: form
-        },
-        {
-            path: '/pricing',
-            name: 'pricing',
-            meta: {
-                title: 'pricing'
-            },
-            component: pricing
-        },
-        {
-            path: '/typography',
-            name: 'typography',
-            meta: {
-                title: 'typography'
-            },
-            component: typography
-        },
-        {
-            path: '/button',
-            name: 'button',
-            meta: {
-                title: '按钮'
-            },
-            component: button
-        },
-        {
-            path: '/Courses',
-            name: 'Courses',
-            meta: {
-                title: 'Courses'
-            },
-            component: Courses
-        },
-        {
-            path: '/badges',
-            name: 'badges',
-            meta: {
-                title: 'badges'
-            },
-            component: badges
-        }, {
-            path: '/dropdown',
-            name: 'dropdown',
-            meta: {
-                title: 'dropdown'
-            },
-            component: dropdown
-        }, {
-            path: '/page',
-            name: 'page',
-            meta: {
-                title: 'page'
-            },
-            component: page
-        }, {
-            path: '/message',
-            name: 'message',
-            meta: {
-                title: 'message'
-            },
-            component: message
-        }, {
-            path: '/user',
-            name: 'user',
-            meta: {
-                title: 'user'
-            },
-            component: user
-        },
-        {
-            path: '*',
-            name: 'four',
-            meta: {
-                title: '404'
-            },
-            component: four,//维保详情
-        },
     ]
 })
