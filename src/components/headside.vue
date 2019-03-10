@@ -14,16 +14,23 @@
                 </el-badge>
             </div>
             <ul class="user-info-menu right-links list-inline list-unstyled">
-                <li class="pull-left" style="min-height: 40px;">
-						<span class="customer_serve">工作日 {{time}} &nbsp;客服电话： &nbsp;{{tel}}&nbsp;
-                            <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzkzODA2Mzg3OV80ODQ0MTlfNDAwMDA3OTM2MF8yXw"
-                               id="qq_customer" target="_blank">
-                                 客服QQ: {{qq}}
-                            </a>
-                        </span>
-                </li>
                 <li class="dropdown user-profile">
-                    <span class="customer_serve">{{user.name}}</span>
+                    <el-dropdown>
+                          <span class="el-dropdown-link customer_serve">
+                            {{user.name}}<i class="el-icon-arrow-down el-icon--right"></i>
+                          </span>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item icon="el-icon-plus" @click.native ="logoutClick">退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </li>
+                <li class="pull-right" style="min-height: 40px;">
+                    <span class="customer_serve">工作日 {{time}} &nbsp;客服电话： &nbsp;{{tel}}&nbsp;
+                        <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzkzODA2Mzg3OV80ODQ0MTlfNDAwMDA3OTM2MF8yXw"
+                           id="qq_customer" target="_blank">
+                             客服QQ: {{qq}}
+                        </a>
+                    </span>
                 </li>
             </ul>
         </nav>
@@ -34,7 +41,8 @@
         data() {
             return {
                 user: {
-                    name: localStorage.userName,
+                    // name: localStorage.userName,
+                    name: 'localStorage.userName',
                 },
                 time: '8:30-17:30',
                 tel: '123-456-789',
@@ -92,6 +100,33 @@
                 this.newnumState = false;
 //                ajax todo
             },
+            // 退出登录
+            logoutClick: function () {
+                console.log(123);
+                let that = this;
+                that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    that.logout();
+                }).catch(() => {
+//                            nothing
+                });
+            },
+            // 注销
+            logout() {
+                const that = this;
+                let url = headapi + '?ctl=ajax&mod=index&act=logout';
+                let param = {};
+                let postdata = qs.stringify(param);
+                axios.post(url, postdata).then(function (data) {
+                    let json = data.data;
+                    that.$router.push({path: '/login', query: {status: 1}});
+                }, function (response) {
+                    console.info(response);
+                })
+            }
 
         },
         components: {}
@@ -101,8 +136,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @import "../../static/css/customer.css";
-    @import "../../static/css/bootstrap.css";
-    @import "../../static/css/xenon-core.css";
 
     #headside {
         width: 100%;
@@ -433,5 +466,14 @@
 
     .el-button--small, .el-button--small.is-round {
         padding: 4px 8px;
+    }
+
+    .pull-right {
+        float: right;
+    }
+
+    .user-profile {
+        float: right;
+        cursor: pointer;
     }
 </style>
