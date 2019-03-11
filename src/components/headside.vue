@@ -102,7 +102,6 @@
             },
             // 退出登录
             logoutClick: function () {
-                console.log(123);
                 let that = this;
                 that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
                     confirmButtonText: '确定',
