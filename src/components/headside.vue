@@ -111,7 +111,10 @@
                 }).then(() => {
                     that.logout();
                 }).catch(() => {
-//                            nothing
+                    this.$message({
+                        showClose: true,
+                        message: '您已取消退出操作',
+                    });
                 });
             },
             // 注销
@@ -127,7 +130,6 @@
                     console.info(response);
                 })
             }
-
         },
         components: {}
     }
