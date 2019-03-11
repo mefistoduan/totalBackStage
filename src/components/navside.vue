@@ -12,6 +12,10 @@
                     <a @click="handleNodeClick(nav,index)">
                         <i :class="nav.icon"></i>
                         <span class="title" :data-url="nav.clmurl">{{nav.clmname}}</span>
+                        <div v-if="nav.childs != ''  && nav.clmname != '退出系统' && nav.clmname != '首页' ">
+                            <i class="el-icon-arrow-up" v-if="childs && index == hasChilds && showChilds"></i>
+                            <i class="el-icon-arrow-down" v-else></i>
+                        </div>
                     </a>
                     <ul class="hide_tap" v-show="childs && index == hasChilds" >
                         <li v-for="(child,j) in nav.childs" v-bind:key="j" >
