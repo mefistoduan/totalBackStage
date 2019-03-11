@@ -95,11 +95,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import "../../static/css/customer.css";
-    @import "../../static/css/bootstrap.css";
     @import "../../static/css/index.css";
     @import "../../static/css/ui.css";
-
     #index {
         position: absolute;
         top: 0;
@@ -166,9 +163,5 @@
 
     .iframetab_wild {
         width: 100% !important;
-    }
-
-    .ui-tabs .ui-tabs-nav li.ui-tabs-active {
-
     }
 </style>
