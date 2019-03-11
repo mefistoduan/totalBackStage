@@ -12,14 +12,6 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
     },
-    mounted() {
-
-    },
-    methods: {
-    },
-    components: {
-
-    }
 }
 </script>
 
@@ -35,8 +27,7 @@ export default {
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        background: url("../../static/images/four/bg.jpg")top center no-repeat;
-        background-size: 100% 100%;
+        background:#2c2e2f
     }
     h5 {
         width: 100%;
