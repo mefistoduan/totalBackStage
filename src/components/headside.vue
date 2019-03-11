@@ -4,13 +4,8 @@
             <i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] "
                @click="left_hide"></i>
             <div @click="checkNews">
-                <el-badge :value="newnum"
-                          class="item"
-                          v-if="newnumState"
-                >
-                    <el-button size="small">
-                        <i class="el-icon-message"></i>
-                    </el-button>
+                <el-badge :value="newnum" class="item" v-if="!newnumState">
+                    <i class="el-icon-message message_btn"></i>
                 </el-badge>
             </div>
             <ul class="user-info-menu right-links list-inline list-unstyled">
@@ -20,11 +15,11 @@
                             {{user.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                           </span>
                         <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item icon="el-icon-plus" @click.native ="logoutClick">退出登录</el-dropdown-item>
+                            <el-dropdown-item icon="el-icon-plus" @click.native="logoutClick">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                 </li>
-                <li class="pull-right" style="min-height: 40px;">
+                <li class="pull-right">
                     <span class="customer_serve">工作日 {{time}} &nbsp;客服电话： &nbsp;{{tel}}&nbsp;
                         <a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&amp;key=XzkzODA2Mzg3OV80ODQ0MTlfNDAwMDA3OTM2MF8yXw"
                            id="qq_customer" target="_blank">
@@ -47,8 +42,8 @@
                 time: '8:30-17:30',
                 tel: '123-456-789',
                 qq: '123-456-789',
-                newnum: '',
-                newnumState: false,
+                newnum: 1,
+                newnumState: true,
                 left_panel_state: true
             }
         },
@@ -133,11 +128,7 @@
         components: {}
     }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import "../../static/css/customer.css";
-
     #headside {
         width: 100%;
         height: 41px;
@@ -157,6 +148,11 @@
         border: 0;
         padding: 0;
         margin-bottom: 0px;
+    }
+
+    .user-info-navbar .user-info-menu > li {
+        height: 40px;
+        line-height: 40px;
     }
 
     .user-info-navbar .user-info-menu > li > a {
@@ -212,10 +208,6 @@
         opacity: 0;
     }
 
-    .frm-body {
-        background-color: #eeeeee;
-    }
-
     .sidebar-menu {
         display: table-cell;
         position: relative;
@@ -224,65 +216,6 @@
         z-index: 1;
     }
 
-    footer.main-footer {
-        padding: 8px 20px 0px 20px;
-        border-top: 1px solid #dddddd;
-        font-size: 12px;
-        margin-left: -30px;
-        margin-right: -30px;
-        margin-top: 10px;
-        margin-bottom: -10px;
-        background-color: #eeeeee;
-    }
-
-    .panel {
-        position: relative;
-        background: #ffffff;
-        padding: 10px 10px;
-        border: 0;
-        margin-top: 5px;
-        margin-bottom: 0px;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-    }
-
-    .panel .panel-body {
-        padding: 0;
-        padding-top: 20px;
-        color: #000000;
-    }
-
-    .panel-title {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-
-    .panel .panel-heading {
-        position: relative;
-        padding: 0;
-        margin: 0;
-        background: none;
-        font-size: 17px;
-        padding-bottom: 0px;
-        border-bottom: 2px solid #f5f5f5;
-    }
-
-    .panel.panel-color .panel-heading {
-        margin-top: -10px;
-        margin-left: -10px;
-        margin-right: -10px;
-        padding: 10px 10px;
-        border-bottom: 0;
-    }
-
-    .panel.panel-color.collapsed > .panel-heading {
-        margin-bottom: -10px;
-    }
-
-    .xe-widget.xe-progress-counter.xe-progress-counter-huise {
-        background-color: #d7d7d7
-    }
 
     .xe-widget.xe-progress-counter.xe-progress-counter-huise .xe-background {
         color: #fff
@@ -335,49 +268,6 @@
         padding-right: 5px;
     }
 
-    .comm_style {
-        max-width: 200px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        margin: 0 auto;
-    }
-
-    .img_style {
-        width: 40px;
-        /*height: 40px;*/
-        overflow: hidden;
-        display: block;
-        margin: 0 auto;
-    }
-
-    #modal_img {
-        width: 300px;
-        height: 300px;
-        overflow: hidden;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .modal-content {
-        margin: 0 auto;
-        /*width: 50%;*/
-        /*20170623 mefisto*/
-    }
-
-    .customer_serve {
-        float: right;
-        margin-right: 20px;
-        font-size: 12px;
-        color: #585858;
-        line-height: 45px;
-        text-align: right;
-    }
-
-    #about_us {
-        color: #03B1FF;
-        cursor: pointer;
-    }
 
     .dropdown-menu-list a img {
         width: 30px;
@@ -396,22 +286,6 @@
     .empty_li_noti {
         text-align: center;
         line-height: 50px !important;
-    }
-
-    .disagree_invite {
-        background-color: #FF0000;
-    }
-
-    .agree_invite {
-        background-color: #25CC42;
-    }
-
-    .disagree_invite:hover {
-        background-color: #d20000;
-    }
-
-    .agree_invite:hover {
-        background-color: #25CC42;
     }
 
     .invite_msg {
@@ -476,5 +350,20 @@
     .user-profile {
         float: right;
         cursor: pointer;
+    }
+
+    .message_btn {
+        width: 25px;
+        height: 25px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        line-height: 25px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .message_btn:hover {
+        color: #409EFF;
+        border: 1px solid #409EFF;
     }
 </style>

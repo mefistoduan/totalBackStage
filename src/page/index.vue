@@ -1,21 +1,21 @@
 <template>
     <div id="index">
         <navside @navOpen="navOpen" ref="mychild"></navside>
-        <headside @left_hide_func="left_hide"  @navOpen="navOpen" @right_hide_func="right_hide" ></headside>
+        <headside @left_hide_func="left_hide" @navOpen="navOpen" @right_hide_func="right_hide"></headside>
         <footside></footside>
-        <div id="tabs" :class="[{'tabwild':tabwildState == 0},'ui-tabs', 'ui-widget', 'ui-widget-content', 'ui-corner-all']">
+        <div id="tabs"
+             :class="[{'tabwild':tabwildState == 0},'ui-tabs', 'ui-widget', 'ui-widget-content', 'ui-corner-all']">
             <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all ui-sortable"
                 role="tablist">
                 <li :class="{'ui-state-default ui-corner-top  ui-sortable-handle':true,'ui-tabs-active ui-state-active':index == thisClick}"
                     v-for="(tab,index) in tabs">
-                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.clmurl,index)" >{{tab.name}}</a>
+                    <a class="tabref ui-tabs-anchor" @click="openNav(tab.clmurl,index)">{{tab.name}}</a>
                     <span class="el-icon-close" @click="closeNav(index)"></span>
                 </li>
             </ul>
             <div id="tabs-0" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom"
                  role="tabpanel" aria-hidden="false">
                 <div class="tabIframeWrapper">
-                    <!--<iframe :class="[{'iframetab_wild':tabwildState == 0},'iframetab']" :src="thisIframe">Load Failed?</iframe>-->
                     <keep-alive>
                         <router-view></router-view>
                     </keep-alive>
@@ -29,13 +29,13 @@
     import navside from '../../src/components/navside';
     import headside from '../../src/components/headside';
     import footside from '../../src/components/footside';
+
     export default {
         data() {
             return {
                 tabs: [
-                    {name: '首页', clmurl: '/#/main', icon: 'el-icon-menu'},
+                    {name: '首页', clmurl: '/main', icon: 'el-icon-menu'},
                 ],
-                thisIframe: '/#/main',
                 thisClick: 0,
                 tabwildState: 1,
             }
@@ -54,14 +54,22 @@
             },
             openNav: function (link, index) {
                 this.thisClick = index;
-                this.thisIframe = link
+                this.$router.push({path: link});
             },
             closeNav: function (index) {
+                let that = this;
                 if (index == 0) {
-                    this.thisIframe = '/#/main'
+                    that.$message({
+                        showClose: true,
+                        message: '已经是最后一页咯',
+                        type: 'warning'
+                    });
+                    that.tabs[0].name = '首页';
+                    that.$router.push({path: '/main'});
                 } else {
-                    this.tabs.splice(index, 1);
-                    this.thisIframe = this.tabs[index-1].clmurl;
+                    that.tabs.splice(index, 1);
+                    that.thisClick = index - 1;
+                    that.$router.push({path: that.tabs[index - 1].clmurl});
                 }
             },
             navOpen: function (data) {
@@ -76,9 +84,7 @@
                 }
                 that.tabs = r;
                 this.thisClick = that.tabs.length - 1;
-                this.thisIframe = data.clmurl;
-                console.log(data.clmurl);
-                that.$router.push({path:data.clmurl});
+                that.$router.push({path: data.clmurl});
             }
         },
         components: {
@@ -119,8 +125,9 @@
         height: 100%;
         overflow: hidden;
     }
+
     .tabwild {
-        margin-left: 0!important;
+        margin-left: 0 !important;
     }
 
     .ui-tabs .ui-tabs-panel {
@@ -156,8 +163,9 @@
         overflow: hidden;
         float: left;
     }
+
     .iframetab_wild {
-        width: 100%!important;
+        width: 100% !important;
     }
 
     .ui-tabs .ui-tabs-nav li.ui-tabs-active {

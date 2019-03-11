@@ -46,11 +46,16 @@ export default new Router({
                     title: '首页'
                 },
                 component: main,
-                children: [
-                    {path: '', component: main,},
-                    {path: '/pricing', component: pricing,}
-                ]
-            }, {
+            },
+            {
+                path: '/main',
+                name: 'main',
+                meta: {
+                    title: '首页'
+                },
+                component: main
+            },
+            {
                 path: '/table',
                 name: 'table',
                 meta: {
