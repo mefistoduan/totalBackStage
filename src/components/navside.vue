@@ -17,7 +17,7 @@
                             <i class="el-icon-arrow-down" v-else></i>
                         </div>
                     </a>
-                    <ul class="hide_tap" v-show="childs && index == hasChilds" >
+                    <ul class="hide_tap" v-show="childs && index == hasChilds && showChilds" >
                         <li v-for="(child,j) in nav.childs" v-bind:key="j" >
                             <a @click="handleNodeClick(child,index)">
                                 <i class="el-icon-info"></i>
@@ -39,6 +39,7 @@
             return {
                 wildState:0,
                 appname:'',
+                showChilds:false,
                 hasChilds:'',
                 navs: [],
                 childs: [],
@@ -83,11 +84,15 @@
                     }).then(() => {
                         that.logout();
                     }).catch(() => {
-//                            nothing
+                        that.$message({
+                            showClose: true,
+                            message: '您已取消退出操作',
+                        });
                     });
                 } else {
                     if(!clmurl){
                         that.hasChilds = index;
+                        that.showChilds =  !that.showChilds;
                     }else{
                         that.$emit('navOpen', menudata);
                     }
