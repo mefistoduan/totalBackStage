@@ -28,17 +28,17 @@
 }
 
 .panel /deep/ .el-input {
-    width: 140px;
+    width: 150px;
     float: left;
 }
 
 .panel /deep/ .el-select {
-    width: 140px;
+    width: 150px;
     float: left;
 }
 
 .panel /deep/ .el-input__inner {
-    width: 140px;
+    width: 150px;
     border-radius: 0;
     float: left;
 }
@@ -170,4 +170,10 @@
 /deep/  .el-dialog__body .el-textarea {
     width: 70%;
     float: left;
+}
+.mid_time {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 35px;
 }
