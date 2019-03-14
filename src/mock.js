@@ -517,7 +517,43 @@ const softquery = function () {
 };
 
 const warehouseAdd = function () {
-    let data = [];
+    let data = [
+
+    ];
+
+    return {
+        rs: data,
+        code: 0,
+        memo: ''
+    }
+};
+const opt_dept = function () {
+    let data = [
+        {
+            "0":"1",
+            "1":"|-- 设备管理系统",
+            "2":"设备管理系统",
+            "deptid":"1",
+            "deptlevel":"1",
+            "deptname":"|-- 设备管理系统"
+        },
+        {
+            "0":"2",
+            "1":"　|-- xman",
+            "2":"xman",
+            "deptid":"2",
+            "deptlevel":"2",
+            "deptname":"　|-- xman"
+        },
+        {
+            "0":"3",
+            "1":"　　|-- Roma",
+            "2":"Roma",
+            "deptid":"3",
+            "deptlevel":"3",
+            "deptname":"　　|-- Roma"
+        }
+    ];
 
     return {
         rs: data,
@@ -539,3 +575,4 @@ Mock.mock('/api/?ctl=ajax&mod=warehouse&act=warehouseQuery', 'post', warehouseQu
 Mock.mock('/api/?ctl=ajax&mod=warehouse&act=warehouseAdd', 'post', warehouseQuery);// 入库查询
 Mock.mock('/api/?ctl=ajax&mod=warehouse&act=warehouseEdit', 'post', warehouseQuery);// 入库查询
 Mock.mock('/api/?ctl=ajax&mod=verctrl&act=softquery', 'post', softquery);// 入库查询
+Mock.mock('/api/?ctl=ajax&mod=index&act=opt_dept', 'post', opt_dept);// 入库查询

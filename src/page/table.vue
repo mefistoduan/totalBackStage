@@ -46,9 +46,9 @@
         </div>
         <div class="table_container">
         <span class="dataTables_length">
-            每页  <el-select v-model="pageItem" placeholder="请选择条数">
+            每页  <el-select v-model="pageination.pageItem" placeholder="请选择条数" @change="handleSizeChange">
             <el-option
-                    v-for="item in options"
+                    v-for="item in pageination.pageoptions"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
@@ -56,7 +56,8 @@
         </el-select>
             条记录
         </span>
-            <el-button type="success" @click="addNewSw" class="pull-left ">+ 新增软件版本</el-button>
+            <el-button type="success" @click="addNewSw" class="pull-right ">+ 新增软件版本</el-button>
+
             <el-table
                     ref="multipleTable"
                     is-horizontal-resize
@@ -161,7 +162,7 @@
                 </el-table-column>
             </el-table>
             <br>
-            <el-pagination :total="total" @current-change="pageChange"></el-pagination>
+            <el-pagination :total="pageination.total" :page-size="pageination.pageItem" @current-change="pageChange"></el-pagination>
         </div>
         <!--modal star-->
         <dialog_referrer_list
@@ -340,14 +341,16 @@
             return {
                 // database 基本配置项目
                 dialogVisible: false,
-                pageItem: '10',
-                limit: '10',
-                total: 0,
-                pageIndex: 1,
-                options: pageOptions(),
-                multipleSort: false,
+                pageination:{
+                    pageItem: 10,
+                    pageoptions:  pageOptions(),
+                    total: 0,
+                    pageIndex: 1,
+                },
                 tableData: [],
-                totalTableData: [],
+                allTableData: [],
+                limit: '10',
+                multipleSort: false,
                 fileList: [],
                 eldialog: {
                     name: '',
@@ -359,6 +362,7 @@
                     agid:'',
                     shopid: '',
                     shopOpt: '',
+                    search: '',
                     time1:  globalBt(),
                     optionsHd: HdOptions(),
                 },
@@ -459,11 +463,9 @@
                     .then(function (response) {
                         JSON = response.data;
                         if (JSON.code == 0) {
-                            that.totalTableData = JSON.rs;
-                            const sliceArr = that.totalTableData.slice(0,5);
-                            console.log('sliceArr ',sliceArr);
-                            that.tableData = JSON.rs;
-                            that.total = JSON.total;
+                            that.allTableData = JSON.rs;
+                            // 设置分页数据
+                            that.setPaginations();
                         } else {
                             that.$message.error(JSON.memo);
                         }
@@ -472,6 +474,45 @@
                         console.log(error);
                     });
             },
+            // 设置分页数据
+            setPaginations(){
+                // 分页属性
+                let that = this;
+                that.pageination.total = that.allTableData.length;
+                // 默认分页
+                that.tableData = that.allTableData.filter((item,index) => {
+                    return index < that.pageination.pageItem;
+                });
+            },
+            // 每页显示数量
+            handleSizeChange(){
+                let that = this;
+                that.tableData = that.allTableData.filter((item,index) => {
+                    return index < that.pageination.pageItem;
+                })
+            },
+            // 翻页
+            pageChange(pageIndex) {
+                let that = this;
+                // this.pageination.pageIndex = pageIndex;
+                // 获取当前页
+                let index = that.pageination.pageItem  * (pageIndex - 1);
+                // 数据总数
+                let nums =  that.pageination.pageItem * pageIndex;
+                // 容器
+                let tables = [];
+                for(var i = index; i < nums; i++) {
+                    if(that.allTableData[i]){
+                        tables.push(that.allTableData[i])
+                    }
+                    this.tableData = tables;
+                }
+            },
+            // 自动排序
+            sortChange(params) {
+                console.log(params)
+            },
+
             // 新增软件版本
             addNewSw() {
                 this.dialog.dialog_title = '新增软件版本';
@@ -568,16 +609,7 @@
                     });
                 })
             },
-            // 自动排序
-            sortChange(params) {
-                console.log(params)
-            },
-            // 翻页
-            pageChange(pageIndex) {
-                this.pageIndex = pageIndex;
-                this.getTableQuery();
-            },
-            //            过滤时间
+            // 过滤时间
             filterFmtDate(value, row, column) {
                 let that = this;
                 return globalfmtDate(column, 11);
@@ -860,7 +892,5 @@
     .form-horizontal .form-group {
         overflow: hidden;
     }
-    /deep/  .el-input {
-        width: 50%;
-    }
+
 </style>
