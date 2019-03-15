@@ -494,7 +494,6 @@
             // 翻页
             pageChange(pageIndex) {
                 let that = this;
-                // this.pageination.pageIndex = pageIndex;
                 // 获取当前页
                 let index = that.pageination.pageItem  * (pageIndex - 1);
                 // 数据总数
