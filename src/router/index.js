@@ -14,6 +14,7 @@ import Courses from '@/page/Courses'
 import badges from '@/page/badges'
 import dropdown from '@/page/dropdown'
 import page from '@/page/page'
+import pwd from '@/page/pwd'
 import user from '@/page/user'
 import message from '@/page/message'
 import chart_bar from '@/components/chart_bar'
@@ -102,6 +103,14 @@ export default new Router({
                     title: 'pricing'
                 },
                 component: pricing
+            },
+            {
+                path: '/pwd',
+                name: 'pwd',
+                meta: {
+                    title: 'pwd'
+                },
+                component: pwd
             },
             {
                 path: '/typography',
