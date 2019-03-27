@@ -24,163 +24,165 @@ import chart_dona from '@/components/chart_dona'
 Vue.use(Router);
 
 export default new Router({
-    routes: [{
-        path: '/',
-        name: 'index',
-        meta: {
-            title: '首页'
+    routes: [
+        {
+            path: '/login',
+            name: 'login',
+            meta: {
+                title: '登陆'
+            },
+            component: login
         },
-        component: index,
-        children: [
-            {
-                path: '/login',
-                name: 'login',
-                meta: {
-                    title: '登陆'
-                },
-                component: login
+        {
+            path: '/',
+            name: 'index',
+            meta: {
+                title: '首页'
             },
-            {
-                path: '/',
-                name: 'main',
-                meta: {
-                    title: '首页'
+            component: index,
+            children: [
+                {
+                    path: '/',
+                    name: 'main',
+                    meta: {
+                        title: '首页'
+                    },
+                    component: main,
                 },
-                component: main,
-            },
-            {
-                path: '/main',
-                name: 'main',
-                meta: {
-                    title: '首页'
+                {
+                    path: '/main',
+                    name: 'main',
+                    meta: {
+                        title: '首页'
+                    },
+                    component: main
                 },
-                component: main
-            },
-            {
-                path: '/table',
-                name: 'table',
-                meta: {
-                    title: '表格'
+                {
+                    path: '/table',
+                    name: 'table',
+                    meta: {
+                        title: '表格'
+                    },
+                    component: table
                 },
-                component: table
-            },
-            {
-                path: '/chart_bar',
-                name: 'chart_bar',
-                meta: {
-                    title: '首页'
+                {
+                    path: '/chart_bar',
+                    name: 'chart_bar',
+                    meta: {
+                        title: '首页'
+                    },
+                    component: chart_bar
                 },
-                component: chart_bar
-            },
-            {
-                path: '/chart_line',
-                name: 'chart_line',
-                meta: {
-                    title: '首页'
+                {
+                    path: '/chart_line',
+                    name: 'chart_line',
+                    meta: {
+                        title: '首页'
+                    },
+                    component: chart_line
                 },
-                component: chart_line
-            },
-            {
-                path: '/chart_dona',
-                name: 'chart_dona',
-                meta: {
-                    title: '首页'
+                {
+                    path: '/chart_dona',
+                    name: 'chart_dona',
+                    meta: {
+                        title: '首页'
+                    },
+                    component: chart_dona
                 },
-                component: chart_dona
-            },
-            {
-                path: '/form',
-                name: 'form',
-                meta: {
-                    title: 'form'
+                {
+                    path: '/form',
+                    name: 'form',
+                    meta: {
+                        title: 'form'
+                    },
+                    component: form
                 },
-                component: form
-            },
-            {
-                path: '/pricing',
-                name: 'pricing',
-                meta: {
-                    title: 'pricing'
+                {
+                    path: '/pricing',
+                    name: 'pricing',
+                    meta: {
+                        title: 'pricing'
+                    },
+                    component: pricing
                 },
-                component: pricing
-            },
-            {
-                path: '/pwd',
-                name: 'pwd',
-                meta: {
-                    title: 'pwd'
+                {
+                    path: '/pwd',
+                    name: 'pwd',
+                    meta: {
+                        title: 'pwd'
+                    },
+                    component: pwd
                 },
-                component: pwd
-            },
-            {
-                path: '/typography',
-                name: 'typography',
-                meta: {
-                    title: 'typography'
+                {
+                    path: '/typography',
+                    name: 'typography',
+                    meta: {
+                        title: 'typography'
+                    },
+                    component: typography
                 },
-                component: typography
-            },
-            {
-                path: '/button',
-                name: 'button',
-                meta: {
-                    title: '按钮'
+                {
+                    path: '/button',
+                    name: 'button',
+                    meta: {
+                        title: '按钮'
+                    },
+                    component: button
                 },
-                component: button
-            },
-            {
-                path: '/Courses',
-                name: 'Courses',
-                meta: {
-                    title: 'Courses'
+                {
+                    path: '/Courses',
+                    name: 'Courses',
+                    meta: {
+                        title: 'Courses'
+                    },
+                    component: Courses
                 },
-                component: Courses
-            },
-            {
-                path: '/badges',
-                name: 'badges',
-                meta: {
-                    title: 'badges'
+                {
+                    path: '/badges',
+                    name: 'badges',
+                    meta: {
+                        title: 'badges'
+                    },
+                    component: badges
+                }, {
+                    path: '/dropdown',
+                    name: 'dropdown',
+                    meta: {
+                        title: 'dropdown'
+                    },
+                    component: dropdown
+                }, {
+                    path: '/page',
+                    name: 'page',
+                    meta: {
+                        title: 'page'
+                    },
+                    component: page
+                }, {
+                    path: '/message',
+                    name: 'message',
+                    meta: {
+                        title: 'message'
+                    },
+                    component: message
+                }, {
+                    path: '/user',
+                    name: 'user',
+                    meta: {
+                        title: 'user'
+                    },
+                    component: user
                 },
-                component: badges
-            }, {
-                path: '/dropdown',
-                name: 'dropdown',
-                meta: {
-                    title: 'dropdown'
+                {
+                    path: '*',
+                    name: 'four',
+                    meta: {
+                        title: '404'
+                    },
+                    component: four,//维保详情
                 },
-                component: dropdown
-            }, {
-                path: '/page',
-                name: 'page',
-                meta: {
-                    title: 'page'
-                },
-                component: page
-            }, {
-                path: '/message',
-                name: 'message',
-                meta: {
-                    title: 'message'
-                },
-                component: message
-            }, {
-                path: '/user',
-                name: 'user',
-                meta: {
-                    title: 'user'
-                },
-                component: user
-            },
-            {
-                path: '*',
-                name: 'four',
-                meta: {
-                    title: '404'
-                },
-                component: four,//维保详情
-            },
-        ]
-    },
+            ]
+        },
+
     ]
 })
