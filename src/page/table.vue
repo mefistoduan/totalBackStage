@@ -68,6 +68,7 @@
                     row-hover-color="#eee"
                     row-click-color="#edf7ff"
                     :default-sort="{prop: 'date', order: 'descending'}"
+                    v-loading="loading"
             >
                 <el-table-column
                         label="序号"
@@ -351,6 +352,7 @@
                 allTableData: [],
                 limit: '10',
                 multipleSort: false,
+                loading: true,
                 fileList: [],
                 eldialog: {
                     name: '',
@@ -450,6 +452,7 @@
             // 页面数据查询
             getTableQuery() {
                 let that = this;
+                that.loading = true;
                 let url = headapi + '?ctl=ajax&mod=verctrl&act=softquery';//获取
                 let param = {
                     'goodsname': that.panel.goodsname,//产品名称
@@ -462,6 +465,7 @@
                 axios.post(url, postdata)
                     .then(function (response) {
                         JSON = response.data;
+                        that.loading = false;
                         if (JSON.code == 0) {
                             that.allTableData = JSON.rs;
                             // 设置分页数据

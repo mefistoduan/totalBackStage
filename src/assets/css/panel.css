@@ -39,8 +39,12 @@
 
 .panel /deep/ .el-input__inner {
     width: 150px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 5px;
     border-radius: 0;
     float: left;
+    padding-right: 22px;
 }
 
 .panel /deep/ .el-date-editor--daterange {
@@ -52,7 +56,7 @@
 }
 
 .panel {
-    width: 96%;
+    width: 100%;
     overflow: hidden;
     display: block;
     margin: 0 auto;
@@ -72,22 +76,27 @@
 }
 
 .table_container {
-    width: 96%;
+    width: 100%;
     overflow: hidden;
     margin-top: 5px;
     margin-bottom: 10px;
     background-color: #fff;
-    margin-left: 2%;
     float: left;
     padding: 10px;
 }
 
 .table_container /deep/ .el-input .el-input__inner {
+    height: 30px;
+    line-height: 30px;
     width: 100px;
+    padding-right: 22px;
 }
 
 .table_container /deep/ .el-select .el-input__inner {
+    height: 30px;
+    line-height: 30px;
     width: 70px;
+    padding-right: 22px;
 }
 
 .dataTables_length {
@@ -214,4 +223,28 @@
 }
 .green {
     color: #67c23a;
+}
+.yellow {
+    color: yellow;
+}
+
+.red_icon {
+    background:red ;
+}
+.red_green {
+    background:#67c23a ;
+}
+.el-dialog__body em {
+    width: 70px;
+    float: left;
+    margin-left: 10px;
+    text-align: right;
+    margin-right: 10px;
+}
+.el-dialog__body .el-col {
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
