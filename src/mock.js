@@ -74,7 +74,7 @@ const menu = function (options) {
                     "grouplist": "2,5",
                     "memo": null,
                     "clicon": "home_icon"
-                },{
+                }, {
                     "clmid": "57",
                     "spclmid": "0",
                     "ordno": "0",
@@ -478,7 +478,7 @@ const pricingQuery = function () {
 };
 
 const warehouseQuery = function () {
-    let single =    {
+    let single = {
         whid: 1,
         goodsid: 2,
         hdid: '1.0.0',
@@ -491,7 +491,7 @@ const warehouseQuery = function () {
         operator: '尼古拉斯·赵四',
     };
     let data = [];
-    for(var i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
         data.push(single);
     }
     return {
@@ -505,18 +505,18 @@ const warehouseQuery = function () {
 const softquery = function () {
     let single = '';
     let data = [];
-    for(var i = 0; i < 100; i++) {
-        single =    {
+    for (var i = 0; i < 10; i++) {
+        single = {
             whid: 1,
             goodsid: 2,
             hdid: '1.0.0',
-            cpuid: '1.0.0',
-            pcbaversion: Random.natural(10),
-            did: '1.0.0',
+            goodsname: '1.0.0',
+            pcbaversion: Random.natural(3),
+            osversion: '1.0.0',
             maketime: '2019-09-19',
             whtime: '2019-09-19',
-            versionmemo: '升级了界面效果，提高了反应速度',
-            equipnum: 3,
+            name: '升级了界面效果，提高了反应速度',
+            equipnum: Random.integer(1,10),
             operator: '尼古拉斯·赵四',
         };
         data.push(single);
@@ -531,9 +531,7 @@ const softquery = function () {
 };
 
 const warehouseAdd = function () {
-    let data = [
-
-    ];
+    let data = [];
 
     return {
         rs: data,
@@ -544,28 +542,28 @@ const warehouseAdd = function () {
 const opt_dept = function () {
     let data = [
         {
-            "0":"1",
-            "1":"|-- 设备管理系统",
-            "2":"设备管理系统",
-            "deptid":"1",
-            "deptlevel":"1",
-            "deptname":"|-- 设备管理系统"
+            "0": "1",
+            "1": "|-- 设备管理系统",
+            "2": "设备管理系统",
+            "deptid": "1",
+            "deptlevel": "1",
+            "deptname": "|-- 设备管理系统"
         },
         {
-            "0":"2",
-            "1":"　|-- xman",
-            "2":"xman",
-            "deptid":"2",
-            "deptlevel":"2",
-            "deptname":"　|-- xman"
+            "0": "2",
+            "1": "　|-- xman",
+            "2": "xman",
+            "deptid": "2",
+            "deptlevel": "2",
+            "deptname": "　|-- xman"
         },
         {
-            "0":"3",
-            "1":"　　|-- Roma",
-            "2":"Roma",
-            "deptid":"3",
-            "deptlevel":"3",
-            "deptname":"　　|-- Roma"
+            "0": "3",
+            "1": "　　|-- Roma",
+            "2": "Roma",
+            "deptid": "3",
+            "deptlevel": "3",
+            "deptname": "　　|-- Roma"
         }
     ];
 

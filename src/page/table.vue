@@ -90,7 +90,7 @@
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="osversion"
+                        prop="equipnum"
                         label="软件版本号"
                         sortable
                 >
