@@ -92,7 +92,8 @@
                 } else {
                     if(!clmurl){
                         that.hasChilds = index;
-                        that.showChilds =  !that.showChilds;
+                        // that.showChilds =  !that.showChilds;
+                        that.showChilds = true;
                     }else{
                         that.$emit('navOpen', menudata);
                     }
