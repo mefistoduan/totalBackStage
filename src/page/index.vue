@@ -1,7 +1,7 @@
 <template>
     <div id="index">
-        <navside @navOpen="navOpen" ref="mychild"></navside>
         <headside @left_hide_func="left_hide" @navOpen="navOpen" @right_hide_func="right_hide"></headside>
+        <navside @navOpen="navOpen" ref="mychild"></navside>
         <footside></footside>
         <div id="tabs"
              :class="[{'tabwild':tabwildState == 0},'ui-tabs', 'ui-widget', 'ui-widget-content', 'ui-corner-all']">
@@ -96,7 +96,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @import "../../static/css/index.css";
-    @import "../../static/css/ui.css";
     #index {
         position: absolute;
         top: 0;
@@ -110,7 +109,17 @@
         background-color: #F2F2F2;
     }
 
+    ul,li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
     .el-icon-close {
+        position: relative;
+        bottom: 48px;
+        right: -16px;
+        float: right;
         font-size: 12px;
         margin-top: 10px;
         margin-right: 5px;
@@ -118,9 +127,13 @@
 
     #tabs {
         position: absolute;
-        top: 40px;
-        height: 100%;
+        top: 78px;
         overflow: hidden;
+        bottom:0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
     }
 
     .tabwild {
@@ -128,6 +141,11 @@
     }
 
     .ui-tabs .ui-tabs-panel {
+        position: absolute;
+        top: 54px;
+        bottom:0;
+        left: 0;
+        right: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -138,14 +156,13 @@
 
     .tabIframeWrapper {
         position: absolute;
-        top: 45px;
+        top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        width: 98%;
+        width: 88%;
         overflow: hidden;
-        display: block;
-        margin: 0 auto;
+        float: left;
         background: #edecec;
     }
 
@@ -164,4 +181,47 @@
     .iframetab_wild {
         width: 100% !important;
     }
+
+    /*new*/
+    .ui-tabs-nav {
+        width: 100%;
+        height: 51px;
+        line-height: 54px;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        background: #fff;
+        padding-left: 26px;
+        border-bottom: 5px solid #E6E6E6;
+    }
+    .ui-state-default {
+        min-width: 90px;
+        height: 51px;
+        float: left;
+        margin-right: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-bottom: 3px solid #fff;
+    }
+    .ui-tabs-active {
+        min-width: 66px;
+        height: 46px;
+        border-bottom: 3px solid #03B1FF;
+    }
+    .ui-tabs-nav a {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+        height: 46px;
+        line-height: 46px;
+        font-size: 14px;
+        color: #222222;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+    }
+
 </style>

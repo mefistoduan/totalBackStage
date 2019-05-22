@@ -1,17 +1,21 @@
 <template>
     <div id="headside">
+
         <nav class="navbar user-info-navbar" role="navigation">
-            <i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] "
-               @click="left_hide"></i>
-            <div @click="checkNews">
-                <el-badge :value="newnum" class="item" v-if="!newnumState">
-                    <i class="el-icon-message message_btn"></i>
-                </el-badge>
-            </div>
+            <!--<i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] "-->
+            <!--@click="left_hide"></i>-->
+            <!--<div @click="checkNews">-->
+            <!--<el-badge :value="newnum" class="item" v-if="!newnumState">-->
+            <!--<i class="el-icon-message message_btn"></i>-->
+            <!--</el-badge>-->
+            <!--</div>-->
             <ul class="user-info-menu right-links list-inline list-unstyled">
+                <img src="../../static/images/comm/head_logo.png" id="head_logo" alt="">
+                <span class="sub_title"></span>
                 <li class="dropdown user-profile">
                     <el-dropdown>
                           <span class="el-dropdown-link customer_serve">
+                                  <img src="../../static/images/comm/user.png" id="userhead" alt="">
                             {{user.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                           </span>
                         <el-dropdown-menu slot="dropdown">
@@ -32,22 +36,26 @@
     </div>
 </template>
 <script>
+    import axios from 'axios';
+    let qs = require('qs');
+    import Global from '../Global.js'
     export default {
         data() {
             return {
                 user: {
-                    // name: localStorage.userName,
-                    name: 'localStorage.userName',
+                    name:'',
+                    usercode:'',
                 },
                 time: '8:30-17:30',
-                tel: '123-456-789',
-                qq: '123-456-789',
+                tel: '400-007-9360',
+                qq: '4000079360',
                 newnum: 1,
                 newnumState: true,
                 left_panel_state: true
             }
         },
         mounted() {
+            this.readName();
             this.readNewNum();
 //            定时轮询news
             //设置10s刷新一次数据
@@ -60,8 +68,18 @@
             // }
         },
         methods: {
+            readName(){
+                if(!localStorage.usercode){
+                    this.$router.push({path:'/login'});
+                    this.user.name = '未登录';
+                    return false
+                }else{
+                    this.user.name = localStorage.userName;
+                    this.user.usercode = localStorage.usercode;
+                }
+            },
 //            隐藏左侧和显示
-            left_hide: function () {
+            left_hide () {
                 let that = this;
                 that.left_panel_state = !that.left_panel_state;
                 if (!that.left_panel_state) {
@@ -71,7 +89,7 @@
                 }
             },
 //            打开消息提示
-            checkNews: function () {
+            checkNews () {
                 let that = this;
                 const h = this.$createElement;
                 this.$notify({
@@ -90,40 +108,33 @@
                 });
             },
 //            读取消息提示数量
-            readNewNum: function () {
+            readNewNum () {
                 this.newnum = 0;
                 this.newnumState = false;
 //                ajax todo
             },
             // 退出登录
-            logoutClick: function () {
+            logoutClick () {
                 let that = this;
-                that.$confirm('此操作将退出当前账号, 是否继续?', '提示', {
+                this.$alert('此操作将退出当前账号', '退出', {
                     confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    that.logout();
-                }).catch(() => {
-                    this.$message({
-                        showClose: true,
-                        message: '您已取消退出操作',
-                    });
+                    callback: action => {
+                        let url = headapi + '?ctl=ajax&mod=index&act=logout';
+                        let param = {};
+                        let postdata = qs.stringify(param);
+                        axios.post(url, postdata).then(function (data) {
+                            let json = data.data;
+                            localStorage.userName = '';
+                            localStorage.usercode = '';
+                            that.user.name = '';
+                            // top.window.location.href = '../login?status=1';
+                            that.$router.push({path: '/login', query: {status: 1}});
+                        }, function (response) {
+                            console.info(response);
+                        })
+                    }
                 });
             },
-            // 注销
-            logout() {
-                const that = this;
-                let url = headapi + '?ctl=ajax&mod=index&act=logout';
-                let param = {};
-                let postdata = qs.stringify(param);
-                axios.post(url, postdata).then(function (data) {
-                    let json = data.data;
-                    that.$router.push({path: '/login', query: {status: 1}});
-                }, function (response) {
-                    console.info(response);
-                })
-            }
         },
         components: {}
     }
@@ -131,28 +142,43 @@
 <style scoped>
     #headside {
         width: 100%;
-        height: 41px;
+        height: 78px;
         overflow: hidden;
-        float: right;
+        display: block;
+        margin: 0 auto;
         z-index: 1111;
+        background: #03B1FF;
+        color: #fff;
     }
 
+    #head_logo {
+        margin-top: 18px;
+        margin-left: 40px;
+        float: left;
+    }
+
+    .sub_title {
+        font-size: 20px;
+        margin-left: 15px;
+        margin-top: 9px;
+        float: left;
+    }
     .user-info-navbar {
         width: 100%;
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        background-color: #ffffff;
         min-height: 0;
-        height: 41px;
+        height: 78px;
+        line-height: 78px;
         border: 0;
         padding: 0;
         margin-bottom: 0px;
     }
 
     .user-info-navbar .user-info-menu > li {
-        height: 40px;
-        line-height: 40px;
+        height: 78px;
+        line-height: 78px;
     }
 
     .user-info-navbar .user-info-menu > li > a {
@@ -365,5 +391,17 @@
     .message_btn:hover {
         color: #409EFF;
         border: 1px solid #409EFF;
+    }
+    .customer_serve {
+        color: #fff;
+    }
+    .customer_serve a {
+        color: #fff;
+    }
+    #userhead {
+        float: left;
+        margin-top: 25px;
+        margin-right: 10px;
+        margin-left: 41px;
     }
 </style>

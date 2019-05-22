@@ -1,24 +1,24 @@
 <template>
     <div id="navside" :class="[{'wild':wildState == 0},{'short':wildState != 0}]">
         <header class="logo-env">
-            <div class="logo">
-                <router-link :to="{path: '/main'}" class="logo-expanded">
-                    <img src="/static/images/comm/logo.png" alt="">
-                    <p>  {{ appname }}</p>
-                </router-link>
-            </div>
+            <!--<div class="logo">-->
+            <!--<router-link :to="{path: '/main'}" class="logo-expanded">-->
+            <!--<img src="/static/images/comm/logo.png" alt="">-->
+            <!--<p>  {{ appname }}</p>-->
+            <!--</router-link>-->
+            <!--</div>-->
             <ul id="main-menu" class="main-menu" data-clmid="0" data-url="">
-                <li v-for="(nav,index) in navs" :key="index" >
+                <li v-for="(nav,index) in navs" :key="index">
                     <a @click="handleNodeClick(nav,index)">
-                        <i :class="nav.icon"></i>
+                        <i :class="nav.clicon"></i>
                         <span class="title" :data-url="nav.clmurl">{{nav.clmname}}</span>
-                        <div v-if="nav.childs != ''  && nav.clmname != '退出系统' && nav.clmname != '首页' ">
-                            <i class="el-icon-arrow-up" v-if="childs && index == hasChilds && showChilds"></i>
-                            <i class="el-icon-arrow-down" v-else></i>
-                        </div>
+                        <!--<div v-if="nav.childs != ''  && nav.clmname != '退出系统' && nav.clmname != '首页' ">-->
+                        <!--<i class="el-icon-arrow-up" v-if="childs && index == hasChilds && showChilds"></i>-->
+                        <!--<i class="el-icon-arrow-down" v-else></i>-->
+                        <!--</div>-->
                     </a>
-                    <ul class="hide_tap" v-show="childs && index == hasChilds && showChilds" >
-                        <li v-for="(child,j) in nav.childs" v-bind:key="j" >
+                    <ul class="hide_tap child_tap" v-show="childs && index == hasChilds && showChilds">
+                        <li v-for="(child,j) in nav.childs" v-bind:key="j">
                             <a @click="handleNodeClick(child,index)">
                                 <i class="el-icon-info"></i>
                                 <span class="title" :data-url="child.clmurl">{{child.clmname}}</span>
@@ -37,10 +37,10 @@
     export default {
         data() {
             return {
-                wildState:0,
-                appname:'',
-                showChilds:false,
-                hasChilds:'',
+                wildState: 0,
+                appname: '',
+                showChilds: false,
+                hasChilds: '',
                 navs: [],
                 childs: [],
                 navshow: [false, false, false],
@@ -73,7 +73,7 @@
                     console.info(response);
                 });
             },
-            handleNodeClick: function (menudata, index) {
+            handleNodeClick(menudata, index) {
                 let that = this;
                 let clmurl = menudata['clmurl'];
                 if (menudata.clmname == '退出系统') {
@@ -90,11 +90,11 @@
                         });
                     });
                 } else {
-                    if(!clmurl){
+                    if (!clmurl) {
                         that.hasChilds = index;
-                        // that.showChilds =  !that.showChilds;
+                        // that.showChilds = !that.showChilds;
                         that.showChilds = true;
-                    }else{
+                    } else {
                         that.$emit('navOpen', menudata);
                     }
                 }
@@ -121,27 +121,35 @@
     }
 </script>
 
+
 <style scoped>
+    ul, li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
     #navside {
         position: absolute;
+        top: 78px;
         height: 100%;
         overflow: hidden;
         z-index: 2000;
-        background-color: #2c2e2f;
+        background-color: #EFEFEF;
         color: #333;
         text-align: center;
         line-height: 200px;
-        box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
-        -o-box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
-        -webkit-box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
-        -moz-box-shadow: 0px 0px 10px 0px rgb(58, 41, 31);
+        border-right: 6px solid #E6E6E6;
     }
+
     .wild {
         width: 230px;
     }
+
     .short {
-        width: 0px!important;
+        width: 0px !important;
     }
+
     .logo {
         width: 100%;
         overflow: hidden;
@@ -150,11 +158,13 @@
         margin-bottom: 30px;
         height: 140px;
     }
+
     .main-menu {
         width: 100%;
         overflow: hidden;
         display: block;
         margin: 0 auto;
+        margin-top: 20px;
     }
 
     .main-menu li {
@@ -163,7 +173,7 @@
         display: block;
         margin: 0 auto;
         cursor: pointer;
-        border-bottom: 1px ridge rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid #E5E5E5;
     }
 
     .main-menu li a {
@@ -171,14 +181,18 @@
         overflow: hidden;
         display: block;
         margin: 0 auto;
-        height: 46px;
-        line-height: 46px;
-        color: #fff;
+        height: 57px;
+        line-height: 57px;
+        color: #3B3B3B;
+        border-left: 3px solid #EFEFEF;
+        font-size: 16px;
+        text-align: center;
     }
 
     .main-menu li a:hover {
-        color: #fff;
-        background-color: #008DE7;
+        background-color: #fff;
+        border-left: 3px solid #03B1FF;
+        color: #03B1FF;
     }
 
     .main-menu a i {
@@ -188,14 +202,15 @@
     }
 
     .main-menu a span {
-        width: 100px;
+        min-width: 100px;
         float: left;
         text-align: left;
-        height: 46px;
+        height: 57px;
         text-indent: 6px;
-        line-height: 46px;
-        font-size: 14px;
+        line-height: 57px;
+        font-size: 16px;
     }
+
     .el-icon-arrow-right {
         width: 10px;
         height: 13px;
@@ -205,4 +220,66 @@
         float: right;
         font-size: 12px;
     }
+
+    #main-menu li a > i {
+        width: 22px;
+        height: 22px;
+        float: left;
+        background-position: top center;
+        background-repeat: no-repeat;
+        margin-left: 33px;
+        margin-top: 18px;
+        margin-right: 21px;
+    }
+
+    .child_tap a i {
+        margin-left: 53px !important;
+        margin-right: 11px !important;
+    }
+
+    .child_tap a span {
+        font-size: 14px;
+    }
+
+    #main-menu li a .icon_home {
+        background-image: url("../../static/images/comm/icon_home.png");
+    }
+
+    #main-menu li a:hover .icon_home {
+        background-image: url("../../static/images/comm/icon_home_h.png");
+    }
+
+    #main-menu a .icon_account {
+        background-image: url("../../static/images/navside/icon_account.png");
+    }
+
+    #main-menu a:hover .icon_account {
+        background-image: url("../../static/images/navside/icon_account_b.png");
+    }
+
+    #main-menu a .icon_equip {
+        background-image: url("../../static/images/navside/icon_equip.png");
+    }
+
+    #main-menu a:hover .icon_equip {
+        background-image: url("../../static/images/navside/icon_equip_b.png");
+    }
+
+    #main-menu a .icon_fee {
+        background-image: url("../../static/images/navside/icon_fee.png");
+    }
+
+    #main-menu a:hover .icon_fee {
+        background-image: url("../../static/images/navside/icon_fee_b.png");
+    }
+
+    #main-menu a .icon_buy {
+        background-image: url("../../static/images/navside/icon_buy.png");
+    }
+
+    #main-menu a:hover .icon_buy {
+        background-image: url("../../static/images/navside/icon_buy_b.png");
+    }
+
+
 </style>
