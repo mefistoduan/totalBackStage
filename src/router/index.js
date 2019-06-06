@@ -20,6 +20,7 @@ import message from '@/page/message'
 import chart_bar from '@/components/chart_bar'
 import chart_line from '@/components/chart_line'
 import chart_dona from '@/components/chart_dona'
+import map from '@/page/map'
 
 Vue.use(Router);
 
@@ -35,20 +36,11 @@ export default new Router({
         },
         {
             path: '/',
-            name: 'index',
             meta: {
                 title: '首页'
             },
             component: index,
             children: [
-                {
-                    path: '/',
-                    name: 'main',
-                    meta: {
-                        title: '首页'
-                    },
-                    component: main,
-                },
                 {
                     path: '/main',
                     name: 'main',
@@ -172,6 +164,13 @@ export default new Router({
                         title: 'user'
                     },
                     component: user
+                },{
+                    path: '/map',
+                    name: 'map',
+                    meta: {
+                        title: 'map'
+                    },
+                    component: map
                 },
                 {
                     path: '*',

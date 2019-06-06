@@ -1,6 +1,5 @@
 <template>
     <div id="headside">
-
         <nav class="navbar user-info-navbar" role="navigation">
             <!--<i :class="[{'el-icon-arrow-left left_hide_icon':left_panel_state},{'el-icon-arrow-right left_show_icon':!left_panel_state}] "-->
             <!--@click="left_hide"></i>-->
@@ -47,8 +46,8 @@
                     usercode:'',
                 },
                 time: '8:30-17:30',
-                tel: '400-007-9360',
-                qq: '4000079360',
+                tel: '400-123-1234',
+                qq: '400001231234',
                 newnum: 1,
                 newnumState: true,
                 left_panel_state: true

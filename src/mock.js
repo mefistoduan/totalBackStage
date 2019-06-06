@@ -311,7 +311,23 @@ const menu = function (options) {
                     "grouplist": "2,5",
                     "memo": null,
                     "clicon": "home_icon"
-                },]
+                },
+                {
+                    "clmid": "66",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "地图",
+                    "clmurl": "/map",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
+                },
+            ]
         },
             {
                 "clmid": "66",
@@ -327,7 +343,8 @@ const menu = function (options) {
                 "grouplist": "2,3,4,5",
                 "memo": "",
                 "clicon": "logout_icon"
-            }];
+            }
+        ];
         return {
             rs: navs,
             code: 0,
@@ -516,7 +533,7 @@ const softquery = function () {
             maketime: '2019-09-19',
             whtime: '2019-09-19',
             name: '升级了界面效果，提高了反应速度',
-            equipnum: Random.integer(1,10),
+            equipnum: Random.integer(1, 10),
             operator: '尼古拉斯·赵四',
         };
         data.push(single);
