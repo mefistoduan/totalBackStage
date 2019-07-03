@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>totalbackstage</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <title>totalbackstage管理系统</title>
+    <style>
+        #loading_icon {
+            position: absolute;
+            overflow: hidden;
+            display: block;
+            margin: 0 auto;
+            top: 30%;
+            left: 0;
+            right: 0;
+        }
+        #loading_h5 {
+            position: absolute;
+            top: 40%;
+            left: 0;
+            right: 0;
+            font-size: 30px;
+            width: 100%;
+            overflow: hidden;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <img src="static/images/comm/loading.gif" alt="loading" id="loading_icon">
+    <h5 id="loading_h5">totalbackstage管理系统正在载入...</h5>
+</div>
+<!-- built files will be auto injected -->
+</body>
 </html>
