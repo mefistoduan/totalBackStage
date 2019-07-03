@@ -66,10 +66,12 @@
                     is-horizontal-resize
                     :data="tableData"
                     border
+                    v-loading="loading"
                     :multiple-sort="multipleSort"
                     @sort-change="sortChange"
                     row-hover-color="#eee"
                     row-click-color="#edf7ff"
+                    :row-class-name="tableRowClassName"
                     :default-sort="{prop: 'date', order: 'descending'}"
             >
                 <el-table-column
@@ -236,7 +238,9 @@
                 field_id: '',
                 field_memo: '',
                 field_shop: 1,
+                loading: true,
                 unlockers: [],
+
                 optionsSelect: [
                     {
                         value: '',
@@ -329,6 +333,7 @@
             },
             getTableQuery() {
                 let that = this;
+                that.loading = true;
                 let url = '/?ajax=spider_account_query';
                 let param = {
                     BT: that.bt,
@@ -342,6 +347,7 @@
                 axios.post(url, postdata)
                     .then(function (response) {
                         JSON = response.data;
+                        that.loading = false;
                         if (JSON.code == 0) {
                             that.tableData = JSON.rs;
                             that.table_total = JSON.rs.length;
@@ -352,6 +358,15 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            // table tr 变色
+            tableRowClassName({row, rowIndex}) {
+                if (rowIndex % 2 == 0) {
+                    return 'warning-row';
+                } else {
+                    return 'success-row';
+                }
+                return '';
             },
             //            过滤时间
             filterFmtDate(value, row, column) {
