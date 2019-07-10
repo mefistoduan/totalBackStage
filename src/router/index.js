@@ -32,7 +32,7 @@ export default new Router({
             meta: {
                 title: '登陆'
             },
-            component: login
+            component: () => import('@/page/login.vue')
         },
         {
             path: '/',
@@ -47,7 +47,7 @@ export default new Router({
                     meta: {
                         title: '首页'
                     },
-                    component: main
+                    component: () => import('@/page/main.vue')
                 },
                 {
                     path: '/table',
