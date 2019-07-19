@@ -171,6 +171,13 @@ export default new Router({
                         title: 'map'
                     },
                     component: map
+                },{
+                    path: '/upload',
+                    name: 'upload',
+                    meta: {
+                        title: 'upload'
+                    },
+                    component: upload
                 },
                 {
                     path: '*',

@@ -326,6 +326,20 @@ const menu = function (options) {
                     "grouplist": "2,5",
                     "memo": null,
                     "clicon": "home_icon"
+                }, {
+                    "clmid": "66",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "upload",
+                    "clmname": "上传",
+                    "clmurl": "/upload",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
                 },
             ]
         },
