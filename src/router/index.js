@@ -1,26 +1,6 @@
 /* eslint-disable */
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/page/index'
-import four from '@/page/four'
-import login from '@/page/login'
-import main from '@/page/main'
-import table from '@/page/table'
-import form from '@/page/form'
-import pricing from '@/page/pricing'
-import typography from '@/page/typography'
-import button from '@/page/button'
-import Courses from '@/page/Courses'
-import badges from '@/page/badges'
-import dropdown from '@/page/dropdown'
-import page from '@/page/page'
-import pwd from '@/page/pwd'
-import user from '@/page/user'
-import message from '@/page/message'
-import chart_bar from '@/components/chart_bar'
-import chart_line from '@/components/chart_line'
-import chart_dona from '@/components/chart_dona'
-import map from '@/page/map'
 
 Vue.use(Router);
 
@@ -39,7 +19,7 @@ export default new Router({
             meta: {
                 title: '首页'
             },
-            component: index,
+            component: () => import('@/page/index.vue'),
             children: [
                 {
                     path: '/main',
@@ -55,7 +35,7 @@ export default new Router({
                     meta: {
                         title: '表格'
                     },
-                    component: table
+                    component: () => import('@/page/table.vue')
                 },
                 {
                     path: '/chart_bar',
@@ -63,7 +43,7 @@ export default new Router({
                     meta: {
                         title: '首页'
                     },
-                    component: chart_bar
+                    component: () => import('@/components/chart_bar.vue')
                 },
                 {
                     path: '/chart_line',
@@ -71,7 +51,7 @@ export default new Router({
                     meta: {
                         title: '首页'
                     },
-                    component: chart_line
+                    component: () => import('@/components/chart_line.vue')
                 },
                 {
                     path: '/chart_dona',
@@ -79,7 +59,7 @@ export default new Router({
                     meta: {
                         title: '首页'
                     },
-                    component: chart_dona
+                    component: () => import('@/components/chart_dona.vue')
                 },
                 {
                     path: '/form',
@@ -87,7 +67,7 @@ export default new Router({
                     meta: {
                         title: 'form'
                     },
-                    component: form
+                    component: () => import('@/page/form.vue')
                 },
                 {
                     path: '/pricing',
@@ -95,7 +75,7 @@ export default new Router({
                     meta: {
                         title: 'pricing'
                     },
-                    component: pricing
+                    component: () => import('@/page/pricing.vue')
                 },
                 {
                     path: '/pwd',
@@ -103,7 +83,7 @@ export default new Router({
                     meta: {
                         title: 'pwd'
                     },
-                    component: pwd
+                    component: () => import('@/page/pwd.vue')
                 },
                 {
                     path: '/typography',
@@ -111,7 +91,7 @@ export default new Router({
                     meta: {
                         title: 'typography'
                     },
-                    component: typography
+                    component: () => import('@/page/typography.vue')
                 },
                 {
                     path: '/button',
@@ -119,7 +99,7 @@ export default new Router({
                     meta: {
                         title: '按钮'
                     },
-                    component: button
+                    component: () => import('@/page/button.vue')
                 },
                 {
                     path: '/Courses',
@@ -127,7 +107,7 @@ export default new Router({
                     meta: {
                         title: 'Courses'
                     },
-                    component: Courses
+                    component: () => import('@/page/Courses.vue')
                 },
                 {
                     path: '/badges',
@@ -135,49 +115,56 @@ export default new Router({
                     meta: {
                         title: 'badges'
                     },
-                    component: badges
+                    component: () => import('@/page/badges.vue')
                 }, {
                     path: '/dropdown',
                     name: 'dropdown',
                     meta: {
                         title: 'dropdown'
                     },
-                    component: dropdown
+                    component: () => import('@/page/dropdown.vue')
                 }, {
                     path: '/page',
                     name: 'page',
                     meta: {
                         title: 'page'
                     },
-                    component: page
+                    component: () => import('@/page/page.vue')
                 }, {
                     path: '/message',
                     name: 'message',
                     meta: {
                         title: 'message'
                     },
-                    component: message
+                    component: () => import('@/page/message.vue')
                 }, {
                     path: '/user',
                     name: 'user',
                     meta: {
                         title: 'user'
                     },
-                    component: user
+                    component: () => import('@/page/user.vue')
                 },{
                     path: '/map',
                     name: 'map',
                     meta: {
                         title: 'map'
                     },
-                    component: map
+                    component: () => import('@/page/map.vue')
                 },{
                     path: '/upload',
                     name: 'upload',
                     meta: {
                         title: 'upload'
                     },
-                    component: upload
+                    component: () => import('@/page/upload.vue')
+                },{
+                    path: '/upload2',
+                    name: 'upload2',
+                    meta: {
+                        title: 'upload2'
+                    },
+                    component: () => import('@/page/upload2.vue')
                 },
                 {
                     path: '*',
@@ -185,7 +172,7 @@ export default new Router({
                     meta: {
                         title: '404'
                     },
-                    component: four,//维保详情
+                    component: () => import('@/page/four.vue')
                 },
             ]
         },

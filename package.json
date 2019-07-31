@@ -11,11 +11,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^2.1.0",
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
     "element-china-area-data": "^4.1.2",
     "element-ui": "^2.4.7",
     "mockjs": "^1.0.1-beta3",
+    "tinymce": "^5.0.12",
     "vue": "^2.5.2",
     "vue-chartjs": "^3.4.0",
     "vue-datatable": "^1.0.4",
