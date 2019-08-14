@@ -144,27 +144,34 @@ export default new Router({
                         title: 'user'
                     },
                     component: () => import('@/page/user.vue')
-                },{
+                }, {
                     path: '/map',
                     name: 'map',
                     meta: {
                         title: 'map'
                     },
                     component: () => import('@/page/map.vue')
-                },{
+                }, {
                     path: '/upload',
                     name: 'upload',
                     meta: {
                         title: 'upload'
                     },
                     component: () => import('@/page/upload.vue')
-                },{
+                }, {
                     path: '/upload2',
                     name: 'upload2',
                     meta: {
                         title: 'upload2'
                     },
                     component: () => import('@/page/upload2.vue')
+                }, {
+                    path: '/tickMap',
+                    name: 'tickMap',
+                    meta: {
+                        title: 'tickMap'
+                    },
+                    component: () => import('@/page/tickMap.vue')
                 },
                 {
                     path: '*',

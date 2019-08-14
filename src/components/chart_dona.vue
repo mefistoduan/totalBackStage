@@ -21,6 +21,7 @@
                 labels:['1月', '2月', '3月', '4月'],
                 firstDate: [
                     {
+                        borderColor: ['#000000'],
                         backgroundColor: [
                             '#41B883',
                             '#E46651',

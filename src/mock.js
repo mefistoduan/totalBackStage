@@ -326,6 +326,21 @@ const menu = function (options) {
                     "grouplist": "2,5",
                     "memo": null,
                     "clicon": "home_icon"
+                },
+                {
+                    "clmid": "66",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "tickMap",
+                    "clmname": "监控地图",
+                    "clmurl": "/tickMap",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
                 }, {
                     "clmid": "66",
                     "spclmid": "0",

@@ -53,9 +53,6 @@
                 // 加载PositionPicker，loadUI的路径参数为模块名中 'ui/' 之后的部分
                 let AMapUI = this.AMapUI = window.AMapUI;
                 let AMap = this.AMap = window.AMap;
-
-
-
                 AMapUI.loadUI(['misc/PositionPicker'], PositionPicker => {
                     let mapConfig = {
                         zoom: 16,
