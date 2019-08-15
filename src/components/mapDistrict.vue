@@ -87,19 +87,19 @@
                     '710000':2.64, //台湾
                     '810000':3.0, //香港
                     '820000':4.7 //澳门
-                }
+                };
                 var getColorByDGP = function(adcode){
                     if(!colors[adcode]){
                         var gdp = GDPSpeed[adcode];
                         if(!gdp){
                             colors[adcode] = 'rgb(227,227,227)'
                         }else{
-                            var rg = 255-Math.floor((gdp-5)/5*255);
+                            var rg = 225-Math.floor((gdp-5)/5*255);
                             colors[adcode] = 'rgb('+ rg +','+ rg +',255)';
                         }
                     }
                     return colors[adcode]
-                }
+                };
 
                 var disCountry = new AMap.DistrictLayer.Country({
                     zIndex:10,
@@ -114,7 +114,7 @@
                             return getColorByDGP(props.adcode_pro)
                         }
                     }
-                })
+                });
 
 
                 var map = new AMap.Map("js-container",{
@@ -131,7 +131,7 @@
                     ],
                     viewMode:'3D',
                     resizeEnable: true
-                })
+                });
                 map.addControl(new AMap.Scale());
                 map.addControl(new AMap.ToolBar({liteStyle:true}));
             }
