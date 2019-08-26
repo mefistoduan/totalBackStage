@@ -42,8 +42,23 @@ todo list
 
 8.左侧右上角定时轮询和消息弹窗 12/4
 
-module
-http://appwork.nicethemes.cn/pages_pricing.html
+----
 
-ui
-http://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=9402
+### vue+element 快速后台页面模板系统
+
+1.基本的登陆
+
+2.默认的静态图首页/简单数据的展示的首页
+
+3.datatable的数据展示，支持后端按页码查询（专业点的说法是怎么说来着？。。。
+
+4.密码修改
+
+5.chart
+
+6.高德地图
+
+7.文件上传
+
+
+
