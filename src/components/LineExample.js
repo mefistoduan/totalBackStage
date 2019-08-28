@@ -1,32 +1,26 @@
-import { Line } from './BaseCharts'
+import {Line} from './BaseCharts'
 import axios from 'axios';
+
 let qs = require('qs');
 export default {
     extends: Line,
-    data () {
+    data() {
         return {
-            labels:[],
-            datasets:[],
+            labels: [],
+            datasets: [],
         }
     },
     props: ['url'],
-    mounted () {
-        const that = this;
-        let url = this.url;
-        let param = {};
-        let postdata = qs.stringify(param);
-        axios.post(url, postdata).then(function(data){
-            let json = data.data;
-            if(json.code == 0){
-                console.log(json.rs[0]);
-                that.renderChart({
-                    labels: json.rs[0].labels,
-                    datasets:json.rs[0].firstDate
-                }, {responsive: true, maintainAspectRatio: false})
-            }else{
-            }
-        },function(response){
-            console.info(response);
-        });
+    mounted() {
+        this.renderChart({
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+                {
+                    label: 'Data One',
+                    backgroundColor: '#f87979',
+                    data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+                }
+            ]
+        }, {responsive: false, maintainAspectRatio: false})
     }
 }

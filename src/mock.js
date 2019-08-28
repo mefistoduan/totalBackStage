@@ -178,21 +178,7 @@ const menu = function (options) {
             "grouplist": "2,5",
             "memo": "",
             "clicon": "front_icon",
-            "childs": [{
-                "clmid": "57",
-                "spclmid": "0",
-                "ordno": "0",
-                "c_level": "2",
-                "clmcode": "front_index",
-                "clmname": "typography",
-                "clmurl": "/typography",
-                "prname": null,
-                "en": "1",
-                "show": "1",
-                "grouplist": "2,5",
-                "memo": null,
-                "clicon": "home_icon"
-            },
+            "childs": [
                 {
                     "clmid": "57",
                     "spclmid": "0",
@@ -216,21 +202,6 @@ const menu = function (options) {
                     "clmcode": "front_index",
                     "clmname": "badges",
                     "clmurl": "/badges",
-                    "prname": null,
-                    "en": "1",
-                    "show": "1",
-                    "grouplist": "2,5",
-                    "memo": null,
-                    "clicon": "home_icon"
-                },
-                {
-                    "clmid": "57",
-                    "spclmid": "0",
-                    "ordno": "0",
-                    "c_level": "2",
-                    "clmcode": "front_index",
-                    "clmname": "dropdown",
-                    "clmurl": "/dropdown",
                     "prname": null,
                     "en": "1",
                     "show": "1",
@@ -326,22 +297,8 @@ const menu = function (options) {
                     "grouplist": "2,5",
                     "memo": null,
                     "clicon": "home_icon"
-                },
-                {
-                    "clmid": "66",
-                    "spclmid": "0",
-                    "ordno": "0",
-                    "c_level": "2",
-                    "clmcode": "tickMap",
-                    "clmname": "监控地图",
-                    "clmurl": "/tickMap",
-                    "prname": null,
-                    "en": "1",
-                    "show": "1",
-                    "grouplist": "2,5",
-                    "memo": null,
-                    "clicon": "home_icon"
-                }, {
+                }
+                , {
                     "clmid": "66",
                     "spclmid": "0",
                     "ordno": "0",

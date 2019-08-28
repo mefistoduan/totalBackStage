@@ -96,6 +96,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @import "../../static/css/index.css";
+
     #index {
         position: absolute;
         top: 0;
@@ -109,7 +110,7 @@
         background-color: #F2F2F2;
     }
 
-    ul,li {
+    ul, li {
         list-style: none;
         padding: 0;
         margin: 0;
@@ -129,7 +130,7 @@
         position: absolute;
         top: 78px;
         overflow: hidden;
-        bottom:0;
+        bottom: 0;
         left: 0;
         right: 0;
         width: 100%;
@@ -143,7 +144,7 @@
     .ui-tabs .ui-tabs-panel {
         position: absolute;
         top: 54px;
-        bottom:0;
+        bottom: 0;
         left: 0;
         right: 0;
         width: 100%;
@@ -194,6 +195,7 @@
         padding-left: 26px;
         border-bottom: 5px solid #E6E6E6;
     }
+
     .ui-state-default {
         min-width: 90px;
         height: 51px;
@@ -203,11 +205,13 @@
         padding-right: 5px;
         border-bottom: 3px solid #fff;
     }
+
     .ui-tabs-active {
         min-width: 66px;
         height: 46px;
         border-bottom: 3px solid #03B1FF;
     }
+
     .ui-tabs-nav a {
         width: 100%;
         overflow: hidden;

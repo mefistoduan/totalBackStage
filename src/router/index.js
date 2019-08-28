@@ -86,14 +86,6 @@ export default new Router({
                     component: () => import('@/page/pwd.vue')
                 },
                 {
-                    path: '/typography',
-                    name: 'typography',
-                    meta: {
-                        title: 'typography'
-                    },
-                    component: () => import('@/page/typography.vue')
-                },
-                {
                     path: '/button',
                     name: 'button',
                     meta: {
@@ -116,13 +108,6 @@ export default new Router({
                         title: 'badges'
                     },
                     component: () => import('@/page/badges.vue')
-                }, {
-                    path: '/dropdown',
-                    name: 'dropdown',
-                    meta: {
-                        title: 'dropdown'
-                    },
-                    component: () => import('@/page/dropdown.vue')
                 }, {
                     path: '/page',
                     name: 'page',
@@ -165,13 +150,6 @@ export default new Router({
                         title: 'upload2'
                     },
                     component: () => import('@/page/upload2.vue')
-                }, {
-                    path: '/tickMap',
-                    name: 'tickMap',
-                    meta: {
-                        title: 'tickMap'
-                    },
-                    component: () => import('@/page/tickMap.vue')
                 },
                 {
                     path: '*',

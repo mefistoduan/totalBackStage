@@ -42,8 +42,10 @@
                                 </div>
                             </div>
                         </li>
+                        <li>
+                            <el-button type="primary"  @click="dialog_ok">上传</el-button>
+                        </li>
                     </ul>
-                    <button @click="dialog_ok">上传</button>
                 </div>
             </div>
         </div>
@@ -141,4 +143,38 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @import "../assets/css/panel.css";
+    ul,li {
+        margin: 0;
+        list-style: none;
+    }
+    em,i {
+        font-style: normal;
+    }
+    .cur_modal {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px 15px;
+    }
+    .form-group {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .form-group em {
+        width: 200px;
+        float: left;
+    }
+    /deep/ .el-textarea {
+        width: 300px!important;
+        float: left!important;
+    }
+    /deep/ .el-textarea__inner {
+
+    }
 </style>

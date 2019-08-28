@@ -57,7 +57,11 @@
         mounted() {
 
         },
-        methods: {},
+        methods: {
+            handleClick(){
+                console.log(123);
+            }
+        },
         components: {}
     }
 </script>

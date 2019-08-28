@@ -65,7 +65,7 @@
                     let json = data.data;
                     if(json.length == 0){
                         // 无token退回登陆页
-                        that.$router.push({path: '/login',query: { status: 1}});
+                        // that.$router.push({path: '/login',query: { status: 1}});
                     }else{
                         that.navs = json.rs;
                     }

@@ -69,7 +69,7 @@
         methods: {
             readName(){
                 if(!localStorage.usercode){
-                    this.$router.push({path:'/login'});
+                    // this.$router.push({path:'/login'});
                     this.user.name = '未登录';
                     return false
                 }else{
