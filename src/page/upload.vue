@@ -174,7 +174,4 @@ export default {
         width: 300px!important;
         float: left!important;
     }
-    /deep/ .el-textarea__inner {
-
-    }
 </style>
