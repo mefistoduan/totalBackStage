@@ -57,7 +57,6 @@ export function generateChart (chartId, chartType) {
                 _plugins: this.plugins
             }
         },
-
         methods: {
             addPlugin (plugin) {
                 this.$data._plugins.push(plugin)
@@ -68,7 +67,7 @@ export function generateChart (chartId, chartType) {
                 }
             },
             renderChart (data, options) {
-                if (this.$data._chart) this.$data._chart.destroy()
+                if (this.$data._chart) this.$data._chart.destroy();
                 this.$data._chart = new Chart(
                     this.$refs.canvas.getContext('2d'), {
                         type: chartType,
@@ -77,6 +76,14 @@ export function generateChart (chartId, chartType) {
                         plugins: this.$data._plugins
                     }
                 )
+            },
+            runDate(data){
+                let that = this;
+                if (this.$data._chart.data.datasets.length > 0) {
+                    this.$data._chart.data.datasets[0].data = data;
+                    this.$data._chart.update();
+                }
+                this.$data._chart.update();
             }
         },
         beforeDestroy () {

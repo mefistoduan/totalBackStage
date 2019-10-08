@@ -52,6 +52,13 @@ export default new Router({
                         title: '首页'
                     },
                     component: () => import('@/components/chart_line.vue')
+                }, {
+                    path: '/chart_runline',
+                    name: 'chart_runline',
+                    meta: {
+                        title: '实时线图'
+                    },
+                    component: () => import('@/components/chart_runline.vue')
                 },
                 {
                     path: '/chart_dona',
