@@ -281,6 +281,20 @@ const menu = function (options) {
                     "grouplist": "2,5",
                     "memo": null,
                     "clicon": "home_icon"
+                },{
+                    "clmid": "57",
+                    "spclmid": "0",
+                    "ordno": "0",
+                    "c_level": "2",
+                    "clmcode": "front_index",
+                    "clmname": "ec实时线图",
+                    "clmurl": "/chart_ecline",
+                    "prname": null,
+                    "en": "1",
+                    "show": "1",
+                    "grouplist": "2,5",
+                    "memo": null,
+                    "clicon": "home_icon"
                 },
                 {
                     "clmid": "57",

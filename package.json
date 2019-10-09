@@ -14,6 +14,7 @@
     "@tinymce/tinymce-vue": "^2.1.0",
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
+    "echarts": "^4.3.0",
     "element-china-area-data": "^4.1.2",
     "element-ui": "^2.4.7",
     "mockjs": "^1.0.1-beta3",
@@ -81,5 +82,23 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "browser": {
+    "jquery": "./src/components/jquery.min.js",
+    "flot": "./src/components/charts/jquery.flot.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "flot": {
+      "exports": "flot",
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  }
 }

@@ -59,6 +59,13 @@ export default new Router({
                         title: '实时线图'
                     },
                     component: () => import('@/components/chart_runline.vue')
+                }, {
+                    path: '/chart_ecline',
+                    name: 'chart_ecline',
+                    meta: {
+                        title: '实时线图'
+                    },
+                    component: () => import('@/components/chart_ecline.vue')
                 },
                 {
                     path: '/chart_dona',
